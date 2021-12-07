@@ -18,27 +18,31 @@ router.get("/logout", async (req, res) => {
   res.redirect("/");
 });
 
-router.get("/:id", async (req, res) => {
+router.get("/id/:id", async (req, res) => {
   try {
     const users = await userData.getUserById(req.params.id);
-    const reviews = await reviewData.getReviewsByField(null, req.params.id, null, null, null, null);
+    const reviews = await reviewData.getReviewsByField(null, req.params.id, null, null, null , null);
     res.render("users/profile", { users: users, reviews: reviews, user: req.session.user });
   } catch (e) {
     res.status(404).render("landing/error", { error: e });
   }
 });
 
+router.get("/private", async (req, res) => {
+  return res.render("users/private", { users: req.session.user }); 
+});
+
 router.post("/login", async (req, res) => {
-  if (!req.body) {
-    res.status(401).render("users/login", { title: "Log In", error: "Error: Username or password was not provided" });
+  if(!req.body){
+    res.status(401).render("users/login", {title: "Log In", error: "Error: Username or password was not provided"});
   }
   const { username, password } = req.body;
   if (!username) {
-    res.status(400).render("users/login", { title: "Log In", error: "You must provide an email" });
+    res.status(400).render("users/login", {title: "Log In", error: "You must provide an email"});
     return;
   }
   if (!password) {
-    res.status(400).render("users/login", { title: "Log In", error: "You must provide a password" });
+    res.status(400).render("users/login", {title: "Log In", error: "You must provide a password"});
     return;
   }
   try {
@@ -53,11 +57,11 @@ router.post("/login", async (req, res) => {
 
 
 router.post("/signup", async (req, res) => {
-  if (!req.body) {
-    res.status(401).render("users/signup", { error: "Please fill out all fields" });
+  if(!req.body){
+    res.status(401).render("users/signup", {error: "Please fill out all fields"});
   }
   let formBody = req.body;
-
+  
   const firstName = req.body.firstName;
   const lastName = req.body.lastName;
   const username = req.body.username;
@@ -67,25 +71,25 @@ router.post("/signup", async (req, res) => {
 
 
   if (!firstName) {
-    res.status(400).render("users/signup", { title: "Sign Up", error: "You must provide a first name", post: formBody });
+    res.status(400).render("users/signup",{title: "Sign Up", error: "You must provide a first name", post: formBody });
   }
   else if (!lastName) {
-    res.status(400).render("users/signup", { title: "Sign Up", error: "You must provide a last name", post: formBody });
+    res.status(400).render("users/signup",{title: "Sign Up",  error: "You must provide a last name" , post: formBody});
   }
   else if (!username) {
-    res.status(400).render("users/signup", { title: "Sign Up", error: "You must provide a username", post: formBody });
+    res.status(400).render("users/signup",{title: "Sign Up", error: "You must provide a username" , post: formBody});
   }
   else if (!password) {
-    res.status(400).render("users/signup", { title: "Sign Up", error: "You must provide password", post: formBody });
+    res.status(400).render("users/signup",{title: "Sign Up", error: "You must provide password" , post: formBody});
   }
   else if (!email) {
-    res.status(400).render("users/signup", { title: "Sign Up", error: "You must provide an email", post: formBody });
+    res.status(400).render("users/signup",{title: "Sign Up", error: "You must provide an email" , post: formBody});
   }
-
+  
   else {
     let userAdded;
     try {
-      userAdded = await userData.createUser(
+       userAdded = await userData.createUser(
         username,
         firstName,
         lastName,
@@ -94,22 +98,22 @@ router.post("/signup", async (req, res) => {
         makeupLevel
       );
       req.session.user = userAdded;
-    } catch (e) {
-      res.status(400).render("users/signup", { title: "Sign Up", error: "Error: " + e });
+    } catch(e) {
+      res.status(400).render("users/signup", {title: "Sign Up", error: "Error: " + e});
     }
-    if (!userAdded) {
-      res.status(500).render("users/signup", { title: "Sign Up", error: "Error: Internal Server Error" });
+    if(!userAdded){
+      res.status(500).render("users/signup", {title: "Sign Up", error: "Error: Internal Server Error"});
     }
-    else if (userAdded) {
+    else if(userAdded){
       res.render("users/login");
       return;
     }
-    else {
-      res.status(500).render("users/signup", { title: "Sign Up", error: "Error: Internal Server Error" });
+    else{
+      res.status(500).render("users/signup", {title: "Sign Up", error: "Error: Internal Server Error"});
     }
-
+    
   }
-
+  
 });
 
 router.post("/wishlist/:prodId", async (req, res) => {
@@ -232,7 +236,6 @@ router.put("/private", async (req, res) => {
     );
     res.json(user);
   } catch (e) {
-    console.log("znan put", e)
     res.status(404).send({ error: e });
   }
 });

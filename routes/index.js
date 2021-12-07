@@ -2,7 +2,7 @@ const productsRoutes = require("./products.js");
 const reviewsRoutes = require("./reviews.js");
 const usersRoutes = require("./users.js");
 const adminRoutes = require("./admin.js");
-const profileRoutes = require("./profile.js");
+//const profileRoutes = require("./profile.js");
 const usersData = require("../data").users;
 
 const constructorMethod = (app) => {
@@ -10,7 +10,7 @@ const constructorMethod = (app) => {
   app.use("/reviews", reviewsRoutes);
   app.use("/users", usersRoutes);
   app.use("/admin", adminRoutes);
-  app.use("/profile", profileRoutes);
+  //app.use("/profile", profileRoutes);
 
   app.get("/", (req, res) => {
     return res.render("landing/landing", { user: req.session.user });
