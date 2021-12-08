@@ -43,24 +43,24 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+
 router.get("/private/:id", async (req, res) => {
   const users = await userData.getUserById(req.session.user._id.toString());
 
   return res.render("users/private", { users: users, user: req.session.user });
 });
 
-
 router.post("/login", async (req, res) => {
-  if(!req.body){
-    res.status(401).render("users/login", {title: "Log In", error: "Error: Username or password was not provided"});
+  if (!req.body) {
+    res.status(401).render("users/login", { title: "Log In", error: "Error: Username or password was not provided" });
   }
   const { username, password } = req.body;
   if (!username) {
-    res.status(400).render("users/login", {title: "Log In", error: "You must provide an email"});
+    res.status(400).render("users/login", { title: "Log In", error: "You must provide an email" });
     return;
   }
   if (!password) {
-    res.status(400).render("users/login", {title: "Log In", error: "You must provide a password"});
+    res.status(400).render("users/login", { title: "Log In", error: "You must provide a password" });
     return;
   }
   try {
@@ -75,11 +75,11 @@ router.post("/login", async (req, res) => {
 
 
 router.post("/signup", async (req, res) => {
-  if(!req.body){
-    res.status(401).render("users/signup", {error: "Please fill out all fields"});
+  if (!req.body) {
+    res.status(401).render("users/signup", { error: "Please fill out all fields" });
   }
   let formBody = req.body;
-  
+
   const firstName = req.body.firstName;
   const lastName = req.body.lastName;
   const username = req.body.username;
@@ -115,10 +115,11 @@ router.post("/signup", async (req, res) => {
         makeupLevel
       );
       req.session.user = userAdded;
+
     if(!userAdded){
       res.status(500).render("users/signup", {title: "Sign Up", error: "Error: Internal Server Error"});
     }
-    else if(userAdded){
+    else if (userAdded) {
       res.render("users/login");
       return;
     }
@@ -129,7 +130,6 @@ router.post("/signup", async (req, res) => {
   catch(e) {
     res.status(400).render("users/signup", {title: "Sign Up", error: "Error: " + e});
   }
-    
 });
 
 router.post("/wishlist/:prodId", async (req, res) => {
@@ -259,6 +259,7 @@ router.put("/private", async (req, res) => {
     );
     res.json(user);
   } catch (e) {
+    console.log("znan put", e)
     res.status(404).send({ error: e });
   }
 });

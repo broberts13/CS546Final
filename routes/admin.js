@@ -40,6 +40,11 @@ router.post("/", async (req, res) => {
   }
 });
 
+// router.get("/tttttt", async (req, res) => {
+//   console.log("pillow asdfasdf")
+//   return res.render("users/private", { users: req.session.user }); 
+// });
+
 router.post("/delete", async (req, res) => {
   try {
     const {
