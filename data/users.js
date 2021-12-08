@@ -51,12 +51,12 @@ async function createUser(
   userName,
   firstName,
   lastName,
+  userImage,
   password,
   email,
   makeupLevel
 ) {
 
-  userImage = "/public/uploads/profile.jpg";
   userName = userName.toLowerCase();
 
   if (!validate.validString(userName))
@@ -69,6 +69,8 @@ async function createUser(
     throw "Password must be a valid string.";
   if (!validate.validEmail(email)) 
     throw "invalid Email";
+  if (!validate.validString(userImage)) 
+    userImage = "/public/uploads/profile.jpg";
 
   var regexuser = /^[a-zA-Z0-9]{4,}$/;
 
@@ -80,7 +82,7 @@ async function createUser(
   }
   const userCollection = await users();
   const existUser = await userCollection.findOne({
-    userName: userName.toLowerCase(),
+    userName: userName,
   });
   if (existUser) {
     throw "Username already Exists";
@@ -204,6 +206,7 @@ async function addToWishList(userId, prodId) {
   user.wishList.forEach((e) => {
     if (e == prodId) {
       flag = true;
+     
     }
   });
   userId = ObjectId(userId);
@@ -218,6 +221,22 @@ async function addToWishList(userId, prodId) {
   }
 }
 
+async function RemoveWishList(userId, prodId) {
+  const userCollection = await users();
+  const user = await getUserById(userId);
+
+  userId = ObjectId(userId);
+  
+    const updatedInfo = await userCollection.updateOne(
+      { _id: userId },
+      { $pull: { wishList: prodId } }
+    );
+    if (updatedInfo.modifiedCount === 0) {
+      throw "Could not remove wishlist";
+    }
+  
+}
+
 module.exports = {
   getUsers,
   getUserById,
@@ -226,4 +245,5 @@ module.exports = {
   remove,
   login,
   addToWishList,
+  RemoveWishList
 };

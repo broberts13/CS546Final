@@ -1,50 +1,79 @@
 <div class="main">
   <div class="shop_top">
     <div class="container">
-      <div class="row">  
-         <div class="col-md-9 single_left">
+      <div class="row">
+        <div class="col-md-9 single_left">
           <div class="single_image">
             <ul id="etalage">
               <li>
-                <a href="optionallink.html">
-                  <img
-                    class="etalage_thumb_image"
-                    src="{{product.productPicture}}"
-                  />
-                  <img
-                    class="etalage_source_image"
-                    src="{{product.productPicture}}"
-                  />
-                </a>
+                <img
+                  class="etalage_thumb_image"
+                  src="{{product.productPicture}}"
+                />
+                <img
+                  class="etalage_source_image"
+                  src="{{product.productPicture}}"
+                />
               </li>
             </ul>
           </div>
-
           <!-- end product_slider -->
           <div class="single_right">
             <h3>{{product.productName}}</h3>
-       
-            <p class="m_10"><strong>Brand: </strong>{{product.brand}}</p>
-            
+            <p class="m_10"><strong>Brand:</strong>{{product.brand}}</p>
             <p class="m_10"><strong>Category</strong><br>{{product.category}}</p>
+            <p class="m_10"><strong>Rating</strong><br>{{product.overallRating}}</p>
 
+            <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+		        <button id="like" type="submit" class="box-btn" data-productid="{{product._id}}"><span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span></button>
+            <br>				    	
+
+            <input type="hidden" id="userID" value="{{flag}}">
+            <input type="hidden" id="revlikeID" value="{{flag1}}">
+            <div class="btn_form">
+              <form>
+                <label for="box-btn">Like</label>
+              </form>
+            </div>
             <ul class="add-to-links">
               <li><i class="fa fa-heart red-color " ></i><a
                   id="btn-whishlist"
                   href="/users/wishlist/{{product._id}}"
                 > Add to wishlist</a></li>
-            </ul>
-            <a class="float-left btn text-white btn-danger"> <i class="fa fa-heart"></i> Like</a>
+            </ul>    
           </div>
           <div class="clear"> </div>
         </div>
-        <div class="col-md-3">
-          <div class="box-info-product">
-            <p class="price2">${{product.price}}</p>
-            <a href = {{product.productLinks}}>Buy Now</a>
-          </div>
-        </div>
-      </div>
+            <div class="col-md-3">
+              <div class="box-info-product">
+                <p class="price2">${{product.price}}</p>
+                <p><strong>Links to buy this product:</strong></p>
+                  {{#each product.productLinks}}
+                  
+                  <a href="{{this}}">Buy here</a>
+                  <br>
+                  {{/each}}
+                </div>
+              </div>
+            </div>
+<!--
+              <span>Reviews:</span>
+              <select>
+                <option>{{product.reviews.length}}</option>
+               
+              </select>
+            </ul>
+            <form>
+            <button type="button" name="Submit" class="exclusive">
+              <a href="{{product.productLinks.[0]}}"><span>Let's Buy</span></a>
+            </button>
+            </form>      
+-->   </div>
+    </div>
+  </div>
+</div>
       
 
 <div class="container">
@@ -112,8 +141,8 @@
                 data-select2-id="1"
                 tabindex="-1"
                 aria-hidden="true"
-              >
-                <option data-select2-id="3">Most Relevant</option>
+                >
+                <option data-select2-id="3">Most Liked</option>
                 <option>Most Recent</option>
               </select>
               <span
@@ -137,7 +166,7 @@
                       role="textbox"
                       aria-readonly="true"
                       title="Most Relevant"
-                    >Most Relevant</span>
+                    ></span>
                     <span
                       class="select2-selection__arrow"
                       role="presentation"
@@ -147,60 +176,189 @@
                 <span class="dropdown-wrapper" aria-hidden="true"></span>
               </span>
             </div>
+            <div class="row">
+              <div class="col-md-6">
+                <table class="stars-counters">
+                  <tbody>
+                    <tr class="">
+                      <td>
+                        <span>
+                          <button
+                            class="fit-button fit-button-color-blue fit-button-fill-ghost fit-button-size-medium stars-filter"
+                          >5 Stars</button>
+                        </span>
+                      </td>
+                      <td class="progress-bar-container">
+                        <div
+                          class="fit-progressbar fit-progressbar-bar star-progress-bar"
+                        >
+                          <div class="fit-progressbar-background">
+                            <span
+                              class="progress-fill"
+                              style="width: {{status.bar5}}%;"
+                            ></span>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="star-num">({{status.a}})</td>
+                    </tr>
+                    <tr class="">
+                      <td>
+                        <span>
+                          <button
+                            class="fit-button fit-button-color-blue fit-button-fill-ghost fit-button-size-medium stars-filter"
+                          >4 Stars</button>
+                        </span>
+                      </td>
+                      <td class="progress-bar-container">
+                        <div
+                          class="fit-progressbar fit-progressbar-bar star-progress-bar"
+                        >
+                          <div class="fit-progressbar-background">
+                            <span
+                              class="progress-fill"
+                              style="width: {{status.bar4}}%;"
+                            ></span>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="star-num">({{status.b}})</td>
+                    </tr>
+                    <tr class="">
+                      <td>
+                        <span>
+                          <button
+                            class="fit-button fit-button-color-blue fit-button-fill-ghost fit-button-size-medium stars-filter"
+                          >3 Stars</button>
+                        </span>
+                      </td>
+                      <td class="progress-bar-container">
+                        <div
+                          class="fit-progressbar fit-progressbar-bar star-progress-bar"
+                        >
+                          <div class="fit-progressbar-background">
+                            <span
+                              class="progress-fill"
+                              style="width: {{status.bar3}}%;"
+                            ></span>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="star-num">({{status.c}})</td>
+                    </tr>
+                    <tr class="">
+                      <td>
+                        <span>
+                          <button
+                            class="fit-button fit-button-color-blue fit-button-fill-ghost fit-button-size-medium stars-filter"
+                          >2 Stars</button>
+                        </span>
+                      </td>
+                      <td class="progress-bar-container">
+                        <div
+                          class="fit-progressbar fit-progressbar-bar star-progress-bar"
+                        >
+                          <div class="fit-progressbar-background">
+                            <span
+                              class="progress-fill"
+                              style="width: {{status.bar2}}%;"
+                            ></span>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="star-num">({{status.d}})</td>
+                    </tr>
+                    <tr class="">
+                      <td>
+                        <span>
+                          <button
+                            class="fit-button fit-button-color-blue fit-button-fill-ghost fit-button-size-medium stars-filter"
+                          >1 Stars</button>
+                        </span>
+                      </td>
+                      <td class="progress-bar-container">
+                        <div
+                          class="fit-progressbar fit-progressbar-bar star-progress-bar"
+                        >
+                          <div class="fit-progressbar-background">
+                            <span
+                              class="progress-fill"
+                              style="width: {{status.bar1}}%;"
+                            ></span>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="star-num">({{status.e}})</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="col-md-6">
+              </div>
+            </div>
           </div>
 
           <div class="review-list">
-          {{#each product.reviews}}
-            <div class="card">
-	    <div class="card-body">
-	        <div class="row">
-        	    <div class="col-md-2">
-        	        <img src={{this.userImage}} class="img img-rounded img-fluid"/>
-                  <p class="text-center"><a  href="/users/{{this.userId}}"><strong>{{this.userName}}</strong></a></p>
-        	        <p class="text-secondary text-center">{{this.date}}</p>
-        	    </div>
-        	    <div class="col-md-10">
-                  <span ><i class="rating"><strong>{{this.rating}}  </strong></i> 
-                  <i class="text-warning fa fa-star"></i></span>
-        	        <h4>{{this.title}}</h4>
-                  <p>{{this.reviewBody}}</p>
-        	        <p>
-        	          <a class="float-right btn btn-outline-primary ml-2 comment-btn"> <i class="fa fa-comment"></i> Comment</a>
-        	          <a class="float-right btn text-white btn-danger like-btn"> <i class="fa fa-heart"></i> Like</a>  
-        	       </p>
-        	    </div>
-	        </div>
-          <div class="card-header">
-            Comments
-            <input type="hidden" class="review-id" value="{{this.reviewId}}">
-          </div>
-            {{#each this.comments}}
-	        	<div class="card card-inner">
-            	  <div class="card-body">
-            	    <div class="row">
-                    <div class="col-md-10">
-                    	  <p><a href="/users/id"><strong>{{this.comments.userName}}</strong></a></p>
-                    	    <p>{{this.comments.text}}</p>
-                    	    <p>
-                    	    <a class="float-right btn btn-outline-primary ml-2">  <i class="fa fa-reply"></i> Reply</a>
-                    	    <a class="float-right btn text-white btn-danger"> <i class="fa fa-heart"></i> Like</a>
-                          </p>
+            {{#each product.reviews}}
+            
+              <div class="card">
+                <div class="card-body review-blog">
+                    <div class="row">
+                      <div class="col-md-2">
+                        <img src={{this.userImage}} class="img img-rounded img-fluid"/>
+                        <p class="text-center"><a  href="/users/{{this.userId}}"><strong>{{this.userName}}</strong></a></p>
+                        <p class="text-secondary text-center">{{this.date}}</p>
                     </div>
-            	    </div>
+                    <div class="col-md-10">
+                        <span ><i class="rating"><strong>{{this.rating}}  </strong></i> 
+                        <i class="text-warning fa fa-star"></i></span>
+                      <div class="clearfix"></div>
+                          <h4 class="review-id" data-reviewid="{{this._id}}">{{this.title}}</h4>
+                          <p>{{this.reviewBody}}</p>
+                        <p>
+                            {{!-- Added class review-reply as an identifier for the review like button --}}
+                            <a class="float-right btn btn-outline-primary ml-2 comment-btn"> <i class="fa fa-comment"></i> Comment</a>
+                            {{!-- Added class review-like as an identifier for the review like button --}}
+                            <a id = "revlike"  class="float-right btn text-white btn-danger review-like" data-selected="{{this.islike}}" > <i class="fa fa-heart"></i> <span>Like</span></a>
+                            {{!-- id = "revlike" --}}
+
+                        </p>
+                    </div>
+                    <div class="reviews-members-footer">
+                      <div class="total-like" href="#"><i class="glyphicon glyphicon-thumbs-up"></i>{{this.likes.length}}</div>                     
+                    </div>
+                  </div>
+                  <!-- Start of Comments -->
+                <div class="card-header">
+                  Comments
+                  <input type="hidden" class="review-id" value="{{this.reviewId}}">
                 </div>
-            </div>
+                  {{#each this.comments}}
+                  <div class="card card-inner">
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col-md-10">
+                            <p><a href="/users/id"><strong>{{this.comments.userName}}</strong></a></p>
+                            <p>{{this.comments.text}}</p>
+                            <p>
+                            <a class="float-right btn btn-outline-primary ml-2">  <i class="fa fa-reply"></i> Reply</a>
+                            <a class="float-right btn text-white btn-danger"> <i class="fa fa-heart"></i> Like</a>
+                            </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  {{/each}}
+                </div>
+              </div>    
             {{/each}}
-	    </div>
-	  </div>    
-    {{/each}}
           </div>
-        </div>
-        </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+       
 
 <script type="text/javascript">
   $(document).ready(function() { $(".dropdown
@@ -228,10 +386,160 @@
 </script>
 
 <script src="/public/js/jquery.etalage.min.js"></script>
-<script src="/public/js/product.js"></script>
+<script src="/public/js/wishlist.js"></script>
 <script src="/public/js/reviews.js"></script>
 
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<script src="/public/js/addreview.js"></script>
+
+<script src="//code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script src="/public/js/reviewstructure.js"></script>
+
+<script>
+   
+	$(function($) {
+    $(document).on('click', '.box-btn', function(event) {
+    //$(this).find('.glyphicon').toggleClass('red').toggleClass('glyphicon-heart-empty glyphicon-heart');
+    var selected ="false";
+  //Checking if the product is liked
+	  if ( $(this).find('.glyphicon').hasClass('red')){
+		       selected = true;
+    }		  
+	  //Adding productID to the URL
+    var productIDUrl = "/products/likes/"+ $(this).data("productid");	
+		$.ajax({
+		type: "POST",
+		url: productIDUrl,
+		data: {},
+		success: function (data) {
+    //Unlike the product if already liked   
+		if(selected  ==  true){
+           $("#like").find('.glyphicon').addClass('glyphicon-heart-empty');
+           $("#like").find('.glyphicon').removeClass('red glyphicon-heart');
+
+    }
+    else{
+      //Liking the product
+      $("#like").find('.glyphicon').removeClass('glyphicon-heart-empty');
+      $("#like").find('.glyphicon').addClass('red glyphicon-heart');
+    }
+			
+		},
+		error: function (xhr, textStatus, error) {
+			alert("Login to Add Like, Failed to Add Like");
+		},
+		});
+  });
+  
+
+
+//<!-- Adding Review Like -->
+  $(document).on("click", ".review-like" , function() {
+
+      var ID = $(this).closest(".review-blog").find(".review-id");
+      var likeBtn = $(this);
+         
+       /* alert($(this).closest(".review-blog").find(".review-id strong").html());*/
+     
+       var revid= ID.data("reviewid");
+      // var prodid= ID.data("productid");
+
+    //  "/products/likes/"+ $(this).data("productid");
+ 
+      var likereviewUrl = "/products/reviews/likes/"+revid;	
+          
+        // $(this).find('span').text("Liked");
+        // $(this).removeClass("btn-danger").addClass("btn-dark");
+      //    $(this).data("reviewid");
+        $.ajax({
+            type: 'POST',
+            url: likereviewUrl,
+            data: {},
+            success: function (data) {
+                
+                  likeBtn.find('span').text("Liked");
+                  likeBtn.removeClass("btn-danger").addClass("btn-dark");
+                  
+            },
+              error: function (jqXhr, textStatus, errorMessage) {
+              alert("Login to like review");
+            }
+        });
+
+        });
+  //<!-- End of Review Likes -->
+
+  //<!-- Showing Comments Dialogue-->
+  $(document).on("click", ".review-reply" , function() {
+        
+        var commentdialogue = $('#commentDialog').detach();
+        $(this).closest(".review-blog").find(".comment-space").append(commentdialogue);
+        $("#commentDialog").show();  
+        $("#commentTime").html("1 ");      
+          
+  });
+  //<!-- End of Comments Dialogue-->
+  
+  //<!-- Start of Add commnts -->
+   $(document).on("click", ".add-comment" , function() {
+
+    comment = $(this).closest(".comment-area").find(".review-txt-area");
+    commentVal =comment.val();
+    comment.val("");
+        if (commentVal.trim()) {
+      /*$.ajax({
+       type: 'POST',
+       url: add url,
+       data: { myData: 'This is my data.' },
+       success: function (data) {
+        
+        $(this).closest(".review-blog").find(".comment-space").append("<div class='card card-inner'><div class='card-body'><div class='row'><div class='col-md-2'><img src='https://image.ibb.co/jw55Ex/def_face.jpg' class='img img-rounded img-fluid'/><p class='text-secondary text-center'>15 Minutes Ago</p></div><div class='col-md-10'><p><a href='https://maniruzzaman-akash.blogspot.com/p/contact.html'><strong>Maniruzzaman Akash</strong></a></p><p>"+commentVal+"</p><p><a class='float-right btn btn-outline-primary ml-2'>  <i class='fa fa-reply'></i> Reply</a><a class='float-right btn text-white btn-danger review-like'><i class='fa fa-heart'></i> <span>Like</span></a></p></div></div></div></div>");
+        $("#commentDialog").hide();  
+      },
+        error: function (jqXhr, textStatus, errorMessage) {
+          alert(errorMessage);
+      }
+    });*/
+      $(this).closest(".review-blog").find(".comment-space").append("<div class='card card-inner'><div class='card-body'><div class='row'><div class='col-md-2'><img src='https://image.ibb.co/jw55Ex/def_face.jpg' class='img img-rounded img-fluid'/><p class='text-secondary text-center'>15 Minutes Ago</p></div><div class='col-md-10'><p><a href='https://maniruzzaman-akash.blogspot.com/p/contact.html'><strong>Maniruzzaman Akash</strong></a></p><p>"+commentVal+"</p><p><a class='float-right btn btn-outline-primary ml-2'>  <i class='fa fa-reply'></i> Reply</a><a class='float-right btn text-white btn-danger review-like'><i class='fa fa-heart'></i> <span>Like</span></a></p></div></div></div></div>");
+      $("#commentDialog").hide();   
+    }
+    else{
+      alert("Please Enter valid comment");
+    }   
+         
+          
+  });
+   //<!-- End of Add commnts -->
+
+
+  //productIDLikes
+if($("#userID").val() == "true"){
+  $("#like").find('.glyphicon').removeClass('glyphicon-heart-empty');
+  $("#like").find('.glyphicon').addClass('red glyphicon-heart ');
+}
+//reviewIDlikes
+
+
+//Start of checking for liked review on page load 
+$(".review-like").each(function(){
+  if($(this).data("selected") == true){
+
+    $(this).find('span').text("Liked");
+    $(this).removeClass("btn-danger").addClass("btn-dark");
+
+  }
+ 
+  });
+//End of liked review on page load
+
+  
+  /*for(){
+    $(".review-like").find('span').text("Liked");
+    $(".review-like").removeClass("btn-danger").addClass("btn-dark");  
+  }*/
+
+
+}); 
+</script>
+

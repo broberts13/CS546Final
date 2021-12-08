@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const data = require("../data");
 const userData = data.users;
-const reviewData = data.reviews;
+const productData = data.products;
 
 
 router.get("/login", async (req, res) => {
@@ -20,12 +20,34 @@ router.get("/logout", async (req, res) => {
 
 router.get("/:id", async (req, res) => {
   try {
+    req.params.id
     const users = await userData.getUserById(req.params.id);
-    const reviews = await reviewData.getReviewsByField(null, req.params.id, null, null, null, null);
-    res.render("users/profile", { users: users, reviews: reviews, user: req.session.user });
+    const userReviews = await productData.getUserReviews(req.params.id);
+    let wishlistProd = [];
+    if (users.wishList.length != null) {
+      users.wishList.forEach((e) => {
+        wishlistProd.push(e);
+      });
+    }
+
+    const products = await productData.findWishlistProd(wishlistProd);
+
+    res.render("users/profile", {
+      users: users,
+      products: products,
+      reviews: userReviews,
+      user: req.session.user,
+    });
   } catch (e) {
     res.status(404).render("landing/error", { error: e });
   }
+});
+
+
+router.get("/private/:id", async (req, res) => {
+  const users = await userData.getUserById(req.session.user._id.toString());
+
+  return res.render("users/private", { users: users, user: req.session.user });
 });
 
 router.post("/login", async (req, res) => {
@@ -62,54 +84,52 @@ router.post("/signup", async (req, res) => {
   const lastName = req.body.lastName;
   const username = req.body.username;
   const password = req.body.password;
+  const userImage = req.body.imageUpload;
   const email = req.body.email;
   const makeupLevel = req.body.makeupLevel;
 
-
-  if (!firstName) {
-    res.status(400).render("users/signup", { title: "Sign Up", error: "You must provide a first name", post: formBody });
-  }
-  else if (!lastName) {
-    res.status(400).render("users/signup", { title: "Sign Up", error: "You must provide a last name", post: formBody });
-  }
-  else if (!username) {
-    res.status(400).render("users/signup", { title: "Sign Up", error: "You must provide a username", post: formBody });
-  }
-  else if (!password) {
-    res.status(400).render("users/signup", { title: "Sign Up", error: "You must provide password", post: formBody });
-  }
-  else if (!email) {
-    res.status(400).render("users/signup", { title: "Sign Up", error: "You must provide an email", post: formBody });
-  }
-
-  else {
-    let userAdded;
-    try {
-      userAdded = await userData.createUser(
+  try {
+    if (!firstName) {
+      res.status(400).render("users/signup",{title: "Sign Up", error: "You must provide a first name", post: formBody });
+    }
+    else if (!lastName) {
+      res.status(400).render("users/signup",{title: "Sign Up",  error: "You must provide a last name" , post: formBody});
+    }
+    else if (!username) {
+      res.status(400).render("users/signup",{title: "Sign Up", error: "You must provide a username" , post: formBody});
+    }
+    else if (!password) {
+      res.status(400).render("users/signup",{title: "Sign Up", error: "You must provide password" , post: formBody});
+    }
+    else if (!email) {
+      res.status(400).render("users/signup",{title: "Sign Up", error: "You must provide an email" , post: formBody});
+    }
+    
+    const userAdded = await userData.createUser(
         username,
         firstName,
         lastName,
+        userImage,
         password,
         email,
         makeupLevel
       );
       req.session.user = userAdded;
-    } catch (e) {
-      res.status(400).render("users/signup", { title: "Sign Up", error: "Error: " + e });
-    }
-    if (!userAdded) {
-      res.status(500).render("users/signup", { title: "Sign Up", error: "Error: Internal Server Error" });
+
+    if(!userAdded){
+      res.status(500).render("users/signup", {title: "Sign Up", error: "Error: Internal Server Error"});
     }
     else if (userAdded) {
       res.render("users/login");
       return;
     }
-    else {
-      res.status(500).render("users/signup", { title: "Sign Up", error: "Error: Internal Server Error" });
-    }
-
+    else{
+      res.status(500).render("users/signup", {title: "Sign Up", error: "Error: Internal Server Error"});
+    }  
+  } 
+  catch(e) {
+    res.status(400).render("users/signup", {title: "Sign Up", error: "Error: " + e});
   }
-
 });
 
 router.post("/wishlist/:prodId", async (req, res) => {
@@ -124,10 +144,22 @@ router.post("/wishlist/:prodId", async (req, res) => {
   }
 });
 
+router.post("/wishlist/remove/:prodId", async (req, res) => {
+  try {
+    await userData.RemoveWishList(
+      req.session.user._id.toString(),
+      req.params.prodId
+    );
+    return res.json("Success");
+  } catch (e) {
+    return res.status(404).send({ error: e });
+  }
+});
 
-router.post("/private", async (req, res) => {
+//router.post("/profile", async (req, res) => {
+router.post("/private/:id", async (req, res) => {
   const {
-    userName,
+    username,
     userImage,
     firstName,
     lastName,
@@ -135,36 +167,32 @@ router.post("/private", async (req, res) => {
     email,
     makeupLevel,
   } = req.body;
-  if (!userName) {
-    res.status(400).json({ error: "You must provide User name" });
-    return;
-  }
-  // if (!userImage) {
-  //   res.status(400).json({ error: "You must provide User picture" });
-  //   return;
-  // }
-  if (!firstName) {
-    res.status(400).json({ error: "You must provide User's firstName" });
-    return;
-  }
-  if (!lastName) {
-    res.status(400).json({ error: "You must provide User's lastName" });
-    return;
-  }
 
-  if (!email) {
-    res.status(400).json({ error: "You must provide email Id" });
-    return;
-  }
-  if (!makeupLevel) {
-    res.status(400).json({ error: "You must provide makeup level" });
-    return;
-  }
+  const users = await userData.getUserById(req.session.user._id.toString());
 
   try {
+  if (!username) {
+    throw "You must provide User name";
+  }
+    // if (!userImage) {
+    //   res.status(400).json({ error: "You must provide User picture" });
+    //   return;
+    // }
+  else if (!firstName) {
+    throw "You must provide User's firstName";
+  }
+  else if (!lastName) {
+    throw "You must provide User's lastName";
+  }
+  else if (!email) {
+    throw "You must provide email Id";
+  }
+  else if (!makeupLevel) {
+    throw "You must provide makeup level";
+  } 
     const user = await userData.updateUser(
       req.session.user._id,
-      userName,
+      username,
       userImage,
       firstName,
       lastName,
@@ -173,14 +201,13 @@ router.post("/private", async (req, res) => {
       makeupLevel
     );
     req.session.user = user;
-    res.redirect("/users");
+    res.render("users/private", { users: user, success: "Profile updated successfully", user: req.session.user });
   } catch (e) {
-    res.status(400).send({ error: e.message });
+    res.status(400).render("users/private", { users: users, error: e, user: req.session.user });
   }
-});
+});  
 
-
-
+/*
 router.put("/private", async (req, res) => {
   const {
     userName,
@@ -236,11 +263,14 @@ router.put("/private", async (req, res) => {
     res.status(404).send({ error: e });
   }
 });
-
-router.delete("/:id", async (req, res) => {
+*/
+router.post("/delete/:id", async (req, res) => {
   try {
-    const userId = await userData.remove(req.params.id);
+    const user = await userData.remove(req.params.id.toString());
     res.json({ userId: userId, deleted: true });
+
+    req.session.destroy();
+    res.redirect("/login");
   } catch (e) {
     res.status(404).send({ error: e });
   }

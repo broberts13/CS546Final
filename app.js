@@ -28,6 +28,13 @@ app.use(
   })
 );
 
+app.use("/login", (req, res, next) => {
+  if(req.session.user != null) {
+    return res.redirect("/");
+  }
+  next();
+});
+
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.engine("handlebars", exphbs());
 app.set("view engine", "handlebars");

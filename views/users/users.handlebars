@@ -1,0 +1,281 @@
+<div class="container rounded bg-white mt-5 mb-5">
+
+  <div class="row">
+
+    <div class="col1">
+      <form id="form-user-edit" action="/users/profile" method="post">
+        <div class="col-md-3 border-right">
+          <div
+            class="d-flex flex-column align-items-center text-center p-3 py-5"
+          ><img
+              class="rounded-circle mt-5"
+              width="150px"
+              src={{users.userImage}}
+            /><br /><span class="font-weight-bold"><strong
+              >{{users.firstName}}:</strong></span><span
+              class="text-black-50"
+            >{{users.email}}</span><span> </span></div>
+
+          <br />
+
+          <input
+            id="imageUpload"
+            name="imageUpload"
+            accept="image/*"
+            class="form-css"
+            type="file"
+            id="formFileMultiple"
+          /><br />
+
+        </div>
+        {{! <a href="/">sign up here</a> }}
+        <div class="col-md-5 border-right">
+          <div class="p-3 py-5">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <br />
+
+              <h3 class="text-centre">Profile Settings</h3>
+
+              <br />
+              <br />
+            </div>
+            <div class="row mt-2">
+              <div class="col-md-6"><label class="labels">Name</label><input
+                  type="text"
+                  id="firstName"
+                  name="firstName"
+                  class="form-control"
+                  placeholder="first name"
+                  value={{users.firstName}}
+                /></div>
+              <div class="col-md-6"><label class="labels">Surname</label><input
+                  type="text"
+                  id="lastName"
+                  name="lastName"
+                  class="form-control"
+                  placeholder="last name"
+                  value={{users.lastName}}
+                /></div>
+            </div>
+            <div class="row mt-3">
+              <div class="col-md-12"><label
+                  class="labels"
+                >UserName</label><input
+                  type="text"
+                  id="userName"
+                  name="userName"
+                  class="form-control"
+                  placeholder="enter UserName"
+                  value={{users.userName}}
+                /></div>
+              <div class="col-md-12"><label
+                  class="labels"
+                >Password</label><input
+                  type="text"
+                  id="password"
+                  name="password"
+                  class="form-control"
+                  placeholder="enter New Password"
+                  value={{users.Password}}
+                /></div>
+              <div class="col-md-12"><label class="labels">Email ID</label><input
+                  type="text"
+                  id="email"
+                  name="email"
+                  class="form-control"
+                  placeholder="enter email id"
+                  value={{users.email}}
+                /></div>
+              <div class="col-md-12"><label class="labels">Makeup Level</label><input
+                  type="text"
+                  id="makeupLevel"
+                  name="makeupLevel"
+                  class="form-control"
+                  placeholder="enter makeup level"
+                  value={{users.makeupLevel}}
+                /></div>
+
+            </div>
+            {{! <div class="row mt-3">
+                    <div class="col-md-6"><label class="labels">Country</label><input type="text" class="form-control" placeholder="country" value=""></div>
+                    <div class="col-md-6"><label class="labels">State/Region</label><input type="text" class="form-control" value="" placeholder="state"></div>
+                </div> }}
+            <br />
+            <br />
+            <div class="mt-5 text-center"><button
+                class="btn btn-primary profile-button"
+                type="submit"
+              >Save Profile</button></div>
+
+            <br />
+
+          </div>
+
+        </div>
+      </form>
+
+
+      <div class="col-md-4">
+            <div class="p-3 py-5">
+              <form
+          id="form-user-delete"
+          name="form-user-delete"
+          method="post"
+          action="/users/delete/{{user._id}}"
+        >
+          <button class="btn btn-primary profile-button" type="submit">Delete
+            Profile</button>
+        </form>
+              </div>
+        </div>
+    
+    
+    
+    
+    </div>
+  </div>
+</div>
+
+{{! start of wishlist }}
+<div class="main">
+
+  <div class="shop_top">
+    <div class="container">
+      <h3 class="wish-title1">My wishlist:</h3>
+      <div class="row shop_box-top">
+        {{#each products}}
+          <div class="col-md-3 shop_box" style="margin-top: 30px;">
+            <a href="/products/{{this._id}}">
+              <img
+                src="{{this.productPicture}}"
+                class="img-responsive"
+                alt=""
+              />
+              <span class="new-box">
+                <span class="new-label">New</span>
+              </span>
+              <span class="sale-box">
+                <span class="sale-label">Sale!</span>
+              </span>
+              <div class="shop_desc">
+                <h3><a href="#">{{this.productName}}</a></h3>
+                <p>{{this.brand}}</p>
+                <span class="reducedfrom">$66.00</span>
+                <span class="actual">${{this.price}}</span><br />
+                <ul class="buttons">
+                  <li><a
+                      class="remove"
+                      href="/users/wishlist/remove/{{this._id}}"
+                    >Remove From WishList</a></li>
+                  <div class="clear"> </div>
+                </ul>
+              </div>
+            </a></div>
+        {{/each}}
+      </div>
+    </div>
+  </div>
+</div>
+{{! end of wishlist }}
+
+<div class="container">
+  <div class="desc">
+   
+    <div class="container">
+      <div class="review-list">
+
+        {{#each userReviews}}
+ <h3 class="wish-title1">My Reviews:</h3>
+          <div class="card">
+            <div class="card-body review-blog">
+              <div class="row">
+                <div class="col-md-2">
+                  <img
+                    src={{this.userImage}}
+                    class="img img-rounded img-fluid"
+                  />
+                  <p class="text-secondary text-center">{{this.date}}</p>
+                </div>
+                <div class="col-md-10">
+                  <p>
+                    <a
+                      class="float-left review-username"
+                      href="https://maniruzzaman-akash.blogspot.com/p/contact.html"
+                    ><strong>{{this.userName}}</strong></a>
+                    <span class="float-right"><i
+                        class="text-warning fa fa-star"
+                      ></i></span>
+                    <span class="float-right"><i
+                        class="text-warning fa fa-star"
+                      ></i></span>
+                    <span class="float-right"><i
+                        class="text-warning fa fa-star"
+                      ></i></span>
+                    <span class="float-right"><i class="rating"><strong
+                        >{{this.rating}} </strong></i>
+                      <i class="text-warning fa fa-star"></i></span>
+
+                  </p>
+                  <div class="clearfix"></div>
+                  <p
+                    class="review-id"
+                    data-reviewid="{{this._id}}"
+                  >{{this.title}}</p>
+                  <p>{{this.reviewBody}}</p>
+                  <p>
+                    {{! Added class review-reply as an identifier for the review like button }}
+                    <a
+                      class="float-right btn btn-outline-primary ml-2 review-reply"
+                      href="/products/{{this.productId}}"
+                    >
+                      <i class="fa fa-reply"></i>Product You Reviewd
+                    </a>
+                    {{! Added class review-like as an identifier for the review like button }}
+                    {{! id = "revlike" }}
+                  </p>
+                </div>
+                <div class="reviews-members-footer">
+                  <div class="total-like" href="#"><i
+                      class="glyphicon glyphicon-thumbs-up"
+                    ></i>{{this.likes.length}}</div>
+
+                </div>
+              </div>
+
+            </div>
+          </div>
+        {{/each}}
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="/public/js/users.js"></script>
+<script>
+
+  $(document).on("click", ".remove" , function() { event.preventDefault();
+  $.ajax({ type: "POST", url: this.href, data: {}, success: function (data) {
+  alert("Removed from wishlist"); window.location.reload(); }, error: function
+  (xhr, textStatus, error) { alert("To save your product to wishlist, Login first"); }, }); });
+
+</script>
+
+<link rel="stylesheet" href="css/etalage.css" />
+
+<script src="/public/js/jquery.etalage.min.js"></script>
+<script src="/public/js/wishlist.js"></script>
+<script src="/public/js/reviews.js"></script>
+
+<link
+  href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"
+  rel="stylesheet"
+  id="bootstrap-css"
+/>
+<script
+  src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"
+></script>
+
+<script src="//code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script src="/public/js/reviewstructure.js"></script>

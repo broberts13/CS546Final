@@ -38,7 +38,7 @@ body a {
 }
 .logo {
   float: left;
-  margin-right: 2%;
+  margin-right: 0%;
 }
 .menu {
   float: left;
@@ -2854,4 +2854,63 @@ image-tools.show-on-hover {
 }
 .red-color {
   color: red;
+}
+
+.box-btn {
+  float: left;
+  background: transparent;
+  font-size: 53px;
+  color: #4d4e56;
+  font-weight: 300;
+  cursor: pointer;
+  border-radius: 2px;
+  line-height: 0.5;
+  border: none;
+  outline: none;
+}
+.glyphicon {
+  transition: color 0.3s linear;
+}
+.box-btn .red {
+  color: red;
+}
+
+/* upload pic box */
+.form-css {
+  display: block;
+  width: 100%;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+/* total likes of reviews */
+
+.total-like {
+  border: 1px solid;
+  border-radius: 50px;
+  display: inline-block;
+  font-weight: 500;
+  height: 34px;
+  line-height: 33px;
+  padding: 0 13px;
+  vertical-align: top;
+  color: blue;
+}
+.reviews-members-footer {
+  margin-left: 30px;
+}
+
+
+
+.wish-title1 {
+  margin-left: 1em;
+  color: rebeccapurple;
+  font-weight: bold;
 }

@@ -21,7 +21,28 @@ router.get("/add", async (req, res) => {
 router.get("/:id", async (req, res) => {
   try {
     const product = await productData.getProductById(req.params.id);
-    res.render("product/single", { product: product, user: req.session.user });
+    const progressbar = await productData.progressbar(req.params.id);
+    let flag = false;
+    let flag1 = false;
+    if (req.session.user) {
+      if (product.likes.includes(req.session.user._id)) {
+        flag = true;
+      }
+      product.reviews.forEach((e) => {
+        if (e.likes.includes(req.session.user._id)) {
+          e.islike = true;
+        } else {
+          e.islike = false;
+        }
+      });
+    }
+    res.render("product/single", {
+      product: product,
+      status: progressbar,
+      user: req.session.user,
+      flag: flag,
+      flag1: flag1,
+    });
   } catch (e) {
     res.status(404).json({ error: "Product not found" });
   }
@@ -186,6 +207,30 @@ router.post("/review/:prodId", async (req, res) => {
       review._id,
       reviewBody,
       rating
+    );
+    return res.json("Success");
+  } catch (e) {
+    return res.status(404).send({ error: e });
+  }
+});
+
+router.post("/likes/:prodId", async (req, res) => {
+  try {
+    await productData.addToLikes(
+      req.session.user._id.toString(),
+      req.params.prodId
+    );
+    return res.json("Success");
+  } catch (e) {
+    return res.status(404).send({ error: e });
+  }
+});
+
+router.post("/reviews/likes/:revId", async (req, res) => {
+  try {
+    await productData.addToReviewLikes(
+      req.session.user._id.toString(),
+      req.params.revId
     );
     return res.json("Success");
   } catch (e) {

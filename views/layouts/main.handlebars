@@ -14,6 +14,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+
 <script src="/public/js/jquery.min.js"></script>
 {{!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> --}}
 <!--<script src="public/js/jquery.easydropdown.js"></script>-->
@@ -84,6 +85,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					});
 				</script>
 
+
 <!--end slider -->
 <script type="text/javascript">
         $(document).ready(function() {
@@ -129,10 +131,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						<a href="/"><img src="public/images/logo.png" width = "75" height = "50" alt=""/></a>
 					 </div>
 					 <div class="menu">
-						  <a class="toggleMenu" href="#"><img src="public/images/nav.png" alt="" /></a>
+						  <a class="toggleMenu" href="#"><img  src="public/images/nav.png" alt="" /></a>
+						
 						    <ul class="nav" id="nav">
 								<li><a href="/">Home</a></li>
 						    	<li><a href="/products">Products</a></li>
+
 								{{#if user}}
 						    	<li><a href="/users/{{user._id}}">Profile</a></li>
 								{{else}}
