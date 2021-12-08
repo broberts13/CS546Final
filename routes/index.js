@@ -68,6 +68,10 @@ const constructorMethod = (app) => {
     return res.render("users/login", { error: req.query.error });
   });
 
+  app.get("/signup", (req, res) => {
+    return res.render("users/signup", { user: req.session.user });
+  });
+
   app.post("/login", async (req, res) => {
     const { username, password } = req.body;
     if (!username) {
@@ -85,10 +89,6 @@ const constructorMethod = (app) => {
     } catch (e) {
       res.render("users/login", { user: req.session.user, error: e });
     }
-  });
-
-  app.get("/signup", (req, res) => {
-    return res.render("users/signup", { user: req.session.user });
   });
 
   app.use("*", (req, res) => {

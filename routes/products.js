@@ -39,8 +39,6 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-
-
 router.get("/", async (req, res) => {
   try {
     const productList = await productData.getAllProducts();
@@ -50,6 +48,17 @@ router.get("/", async (req, res) => {
     });
   } catch (e) {
     res.status(404).send({ error: e, user: req.session.user });
+  }
+});
+
+router.post("/search", async (req, res) => {
+  try {
+    let searchTerm = req.body;
+
+    const productList = await productData.searchProducts(searchTerm);
+    res.render("product/products", { products: productList, user: req.session.user });
+  } catch (e) {
+    res.status(404).send({ error: e, user: req.session.user });;
   }
 });
 
