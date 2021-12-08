@@ -21,7 +21,7 @@
         };
         $.ajax({
           type: "POST",
-          url: "/products",
+          url: "/products", //goes to /admin instead?
           data: newProd,
           success: function (response) {
             window.location.href = "/products";

@@ -66,6 +66,19 @@ router.post("/addProd", async (req, res) => {
 
 });
 
+router.post("/deletePending", async (req, res) => {
+  try {
+    const pending = req.body;
+    if(!pending){
+      throw "Please enter the id of the pending request."
+    }
+    const prodId = await pendingData.deletePending(pending.toString());
+    res.redirect("/admin");
+  } catch (e) {
+    res.redirect("/admin").send(e);
+  }
+});
+
 router.post("/delete", async (req, res) => {
   try {
     const {

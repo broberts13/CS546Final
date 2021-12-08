@@ -11,7 +11,7 @@
                         <div id='requestList'>
                                 <div>
                                         <br>
-                                        <h3 class="text-centre">Adding Products Requests</h3>
+                                        <h3 class="text-centre">Pending Products Requests</h3>
                                         <br>
                                         <br>
                                         {{#each pending}}
@@ -81,6 +81,27 @@
                         </div>
                 </form>
         </div>
+        <form action="/admin/deletePending" method="post" id="deletePendingForm">
+                <div>
+                        <div>
+                                <br>
+                                <h3 class="text-centre">Delete a Request</h3>
+                                <br>
+                                <br>
+                        </div>
+                        <div class="row mt-3">
+                                <div class="col-md-12"><label class="labels">Pending Product Id</label><input type="text"
+                                                class="form-control" placeholder="enter pending product id to be deleted"
+                                                name='pendingId' id='pendingId'>
+
+                                </div id="container">
+                        </div>
+                        <br>
+                        <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="submit"
+                                        id='deletePendingIdButton'>delete
+                                </button></div>
+                        <br>
+        </form>
 
         <br>
         <form action="/admin/delete" method="post" id="deleteProductForm">
