@@ -4,32 +4,38 @@
       <div class="row">
         <div class="col-md-9 single_left">
           <div class="single_image">
-            <ul id="etalage">
-              <li>
-                <a href="#">
-                  <img
-                    class="etalage_thumb_image"
-                    src="{{product.productPicture}}"
-                    alt="Product"
-                  />
-                  <img
-                    class="etalage_source_image"
-                    src="{{product.productPicture}}"
-                    alt="Product"
-                  />
-                </a>
-              </li>
-            </ul>
-          </div>
+            {{!-- start product picture --}}
+					     <ul id="etalage">
+							<li>
+								<a href="#">
+									<img class="etalage_thumb_image" src="{{product.productPicture}}" />
+									<img class="etalage_source_image" src="{{product.productPicture}}" />
+								</a>
+							</li>
+							<li>
+								<img class="etalage_thumb_image" src="{{product.productPicture}}" />
+								<img class="etalage_source_image" src="{{product.productPicture}}" />
+							</li>
+							<li>
+								<img class="etalage_thumb_image" src="{{product.productPicture}}" />
+								<img class="etalage_source_image" src="{{product.productPicture}}" />
+							</li>
+							<li>
+								<img class="etalage_thumb_image" src="{{product.productPicture}}" />
+								<img class="etalage_source_image" src="{{product.productPicture}}" />
+							</li>
+						
+						</ul>
+					    </div>
           <!-- end product_slider -->
+         {{!-- start product description  --}}
           <div class="single_right">
             <h3>{{product.productName}}</h3>
        
             <p class="m_10"><strong>Brand:</strong>{{product.brand}}</p>
             
             <p class="m_10"><strong>Category</strong><br>{{product.category}}</p>
-            <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+            
 
 
 		<button id="like" type="submit" class="box-btn" data-productid="{{product._id}}"><span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span></button>
@@ -57,6 +63,8 @@
               <br>
               {{/each}}
           </div>
+
+        
           <div class="clear"> </div>
         </div>
         <div class="col-md-3">
@@ -89,68 +97,70 @@
           </div>
         </div>
       </div>
+      {{!-- end of product description --}}
       
-
-<div class="container">
-    <div class="row">
-    <h2>Add Review</h2>
-    <table width="100%" border="0">
-      <div class="col-md-9 col-md-offset-0">
-        <tr><td width="77%">
-        <div class="">
-          <form id="addreview" class="form-horizontal" action="/products/review/{{product._id}}" method="post">
-          <fieldset>
-    
-            <!-- Name input-->
-            <div class="form-group">
-              <label class="col-md-3 control-label" for="title">Review Title</label>
-              <div class="col-md-9">
-                <input id="title" name="title" type="text" placeholder="Title" class="form-control">
-              </div>
-            </div>
-    
+      {{!--start add review container --}}
+        <div class="container">
+            <div class="row">
+            <h2>Add Review</h2>
+            <table width="100%" border="0">
+              <div class="col-md-9 col-md-offset-0">
+                <tr><td width="77%">
+                <div class="">
+                  <form id="addreview" class="form-horizontal" action="/products/review/{{product._id}}" method="post">
+                  <fieldset>
             
-            <!-- Message body -->
-            <div class="form-group">
-              <label class="col-md-3 control-label" for="review">Your Review</label>
-              <div class="col-md-9">
-                <textarea class="form-control" id="reviewBody" name="reviewBody" placeholder="Please enter your review here..." rows="5"></textarea>
-              </div>
-            </div>
+                    <!-- Name input-->
+                    <div class="form-group">
+                      <label class="col-md-3 control-label" for="title">Review Title</label>
+                      <div class="col-md-9">
+                        <input id="title" name="title" type="text" placeholder="Title" class="form-control">
+                      </div>
+                    </div>
+            
+                    
+                    <!-- Message body -->
+                    <div class="form-group">
+                      <label class="col-md-3 control-label" for="review">Your Review</label>
+                      <div class="col-md-9">
+                        <textarea class="form-control" id="reviewBody" name="reviewBody" placeholder="Please enter your review here..." rows="5"></textarea>
+                      </div>
+                    </div>
 
 
-            <!-- Rating -->
-            <div class="form-group">
-              <label class="col-md-3 control-label" for="review">Your rating</label>
-              <div class="col-md-9">
-                <input id="rating" name=rating value="0" type="number" class="rating" min=0 max=5 step=1 data-size="xs" >
-              </div>
+                    <!-- Rating -->
+                    <div class="form-group">
+                      <label class="col-md-3 control-label" for="review">Your rating</label>
+                      <div class="col-md-9">
+                        <input id="rating" name=rating value="0" type="number" class="rating" min=0 max=5 step=1 data-size="xs" >
+                      </div>
+                    </div>
+            </td>
+            <td align="center" valign="top" width="23%">
+                    <!-- Form actions -->
+                    <div class="form-group">
+                      <div class="col-md-12 text-center">
+                        <button name="btn-addreview" type="submit" class="btn btn-primary btn-md">Submit</button>
+                        <button type="reset" class="btn btn-default btn-md">Clear</button>
+                      </div>
+                    </div>
+                  </fieldset>
+                  </form>
+                </div>
             </div>
-    </td>
-    <td align="center" valign="top" width="23%">
-            <!-- Form actions -->
-            <div class="form-group">
-              <div class="col-md-12 text-center">
-                <button name="btn-addreview" type="submit" class="btn btn-primary btn-md">Submit</button>
-                <button type="reset" class="btn btn-default btn-md">Clear</button>
-              </div>
-            </div>
-          </fieldset>
-          </form>
+            </td>
+            </tr>
+            </table>
         </div>
-    </div>
-    </td>
-    </tr>
-    </table>
-</div>
-
-<br>
+      {{!-- end add review container --}}
+<br>  
 <br>
 
-
+  
       <div class="desc">
         <div class="container">
           <div id="reviews" class="review-section">
+            {{!-- start review progress-bar-container --}}  
             <div class="d-flex align-items-center justify-content-between mb-4">
               <h4 class="m-0">{{product.reviews.length}}Reviews</h4>
               <select
@@ -325,7 +335,8 @@
               </div>
             </div>
           </div>
-
+          {{!-- end review progress-bar-container --}}
+          {{!-- start review lists --}}
           <div class="review-list">
           {{#each product.reviews}}
           
@@ -407,9 +418,9 @@
                                 </div>
                             </div>
                               
-                        </div>
+            </div>
                     
-    </div>
+  </div>
 
   <!-- End of Commnt Dialog Box-->
 
@@ -418,13 +429,15 @@
 
             </div>
             <!-- End of Comments -->   
-	    </div>
-	</div>
+	         </div>
+	        </div>
           
           {{/each}}
+          {{!-- end of review list --}}
           </div>
         </div>
       </div>
+  
       <div class="row">
         <h4 class="m_11">Related Products</h4>
         <div class="col-md-4 product1">
@@ -473,50 +486,17 @@
     </div>
   </div>
 </div>
+{{!-- javascript code, ajax code, for review like, product like,comments --}}
 
-<script type="text/javascript">
-  $(document).ready(function() { $(".dropdown
-  img.flag").addClass("flagvisibility"); $(".dropdown dt a").click(function() {
-  $(".dropdown dd ul").toggle(); }); $(".dropdown dd ul li a").click(function()
-  { var text = $(this).html(); $(".dropdown dt a span").html(text); $(".dropdown
-  dd ul").hide(); $("#result").html("Selected value is: " +
-  getSelectedValue("sample")); }); function getSelectedValue(id) { return $("#"
-  + id).find("dt a span.value").html(); } $(document).bind('click', function(e)
-  { var $clicked = $(e.target); if (! $clicked.parents().hasClass("dropdown"))
-  $(".dropdown dd ul").hide(); }); $("#flagSwitcher").click(function() {
-  $(".dropdown img.flag").toggleClass("flagvisibility"); }); });
-</script>
-<!----details-product-slider--->
-				<!-- Include the Etalage files -->
-<link rel="stylesheet" href="css/etalage.css" />
-<script src="js/jquery.etalage.min.js"></script>
-<!-- Include the Etalage files -->
-<script>
-  jQuery(document).ready(function($){ $('#etalage').etalage({ thumb_image_width:
-  300, thumb_image_height: 400, show_hint: true, click_callback:
-  function(image_anchor, instance_id){ alert('Callbackexample:\\\\\\\\\\\\\\\nYou clicked on an image with the anchor:
-  "'+image_anchor+'"\n(in Etalage instance: "'+instance_id+'")'); } }); // This is for the dropdown list example: $('.dropdownlist').change(function(){
-  etalage_show( $(this).find('option:selected').attr('class') ); }); });
-</script>
 
-<script src="/public/js/jquery.etalage.min.js"></script>
-<script src="/public/js/wishlist.js"></script>
-<script src="/public/js/reviews.js"></script>
-
-<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-
-<script src="//code.jquery.com/jquery-3.6.0.min.js"></script>
-
-<script src="/public/js/reviewstructure.js"></script>
 
 <script>
-   
+//   Adding product Like
 	$(function($) {
-    $(document).on('click', '.box-btn', function(event) {
-    //$(this).find('.glyphicon').toggleClass('red').toggleClass('glyphicon-heart-empty glyphicon-heart');
+     $(document).on('click', '.box-btn', function(event) {
+    
     var selected ="false";
-  //Checking if the product is liked
+   //Checking if the product is liked
 	  if ( $(this).find('.glyphicon').hasClass('red')){
 		       selected = true;
     }		  
@@ -545,11 +525,6 @@
 		},
 		});
 
-  
-
-
-
-   	
   });
   
 
@@ -558,20 +533,10 @@
   $(document).on("click", ".review-like" , function() {
 
       var ID = $(this).closest(".review-blog").find(".review-id");
-      var likeBtn = $(this);
-         
-       /* alert($(this).closest(".review-blog").find(".review-id strong").html());*/
-     
-       var revid= ID.data("reviewid");
-      // var prodid= ID.data("productid");
-
-    //  "/products/likes/"+ $(this).data("productid");
- 
+      var likeBtn = $(this);     
+      var revid= ID.data("reviewid");
       var likereviewUrl = "/products/reviews/likes/"+revid;	
           
-        // $(this).find('span').text("Liked");
-        // $(this).removeClass("btn-danger").addClass("btn-dark");
-      //    $(this).data("reviewid");
         $.ajax({
             type: 'POST',
             url: likereviewUrl,
@@ -594,9 +559,7 @@
   <!-- Showing Comments Dialogue-->
   $(document).on("click", ".review-reply" , function() {
     
-    if($("#curUser").val()){
-
-        
+    if($("#curUser").val()){        
     var commentdialogue = $('#commentDialog').detach();
     $(this).closest(".review-blog").find(".comment-space").append(commentdialogue);
     $("#commentDialog").show();  
@@ -650,13 +613,7 @@
    <!-- End of Add commnts -->
 
 
-
-
-
-
-
-
-  //productIDLikes
+//productIDLikes
 if($("#userID").val() == "true"){
   $("#like").find('.glyphicon').removeClass('glyphicon-heart-empty');
   $("#like").find('.glyphicon').addClass('red glyphicon-heart ');
@@ -667,10 +624,8 @@ if($("#userID").val() == "true"){
 //Start of checking for liked review on page load 
 $(".review-like").each(function(){
   if($(this).data("selected") == true){
-
     $(this).find('span').text("Liked");
     $(this).removeClass("btn-danger").addClass("btn-dark");
-
   }
  
   });
@@ -678,12 +633,69 @@ $(".review-like").each(function(){
 
  
 
-  
-
-
 }); 
 
-
-
 </script>
+<script type="text/javascript">
+        $(document).ready(function() {
+            $(".dropdown img.flag").addClass("flagvisibility");
 
+            $(".dropdown dt a").click(function() {
+                $(".dropdown dd ul").toggle();
+            });
+                        
+            $(".dropdown dd ul li a").click(function() {
+                var text = $(this).html();
+                $(".dropdown dt a span").html(text);
+                $(".dropdown dd ul").hide();
+                $("#result").html("Selected value is: " + getSelectedValue("sample"));
+            });
+                        
+            function getSelectedValue(id) {
+                return $("#" + id).find("dt a span.value").html();
+            }
+
+            $(document).bind('click', function(e) {
+                var $clicked = $(e.target);
+                if (! $clicked.parents().hasClass("dropdown"))
+                    $(".dropdown dd ul").hide();
+            });
+
+
+            $("#flagSwitcher").click(function() {
+                $(".dropdown img.flag").toggleClass("flagvisibility");
+            });
+        });
+   </script>
+<link rel="stylesheet" href="css/etalage.css" />
+<script src="js/jquery.etalage.min.js"></script>
+<script src="/public/js/wishlist.js"></script>
+<script src="/public/js/reviews.js"></script>
+
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+<script src="//code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script src="/public/js/reviewstructure.js"></script> 
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script>
+						jQuery(document).ready(function($){
+			
+							$('#etalage').etalage({
+								thumb_image_width: 300,
+								thumb_image_height: 400,
+								
+								show_hint: true,
+								click_callback: function(image_anchor, instance_id){
+									alert('Callback example:\nYou clicked on an image with the anchor: "'+image_anchor+'"\n(in Etalage instance: "'+instance_id+'")');
+								}
+							});
+							// This is for the dropdown list example:
+							$('.dropdownlist').change(function(){
+								etalage_show( $(this).find('option:selected').attr('class') );
+							});
+
+					});
+				</script>

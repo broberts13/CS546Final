@@ -296,7 +296,7 @@ async function addToreviews(userId, prodId, title, reviewBody, rating) {
       throw "Reviews text must be a valid string.";
     if (!validate.validnum(rating) || rating > 5 || rating < 0)
       throw "rating should be between 0-5";
-    rating = parseFloat(rating).toFixed( 2 );
+    rating = parseFloat(rating);
     const prodCollection = await products();
     // const prod = await getProductById(prodId);
     const addreview = {
@@ -332,6 +332,7 @@ async function addToreviews(userId, prodId, title, reviewBody, rating) {
     if (product.reviews.length != 0) {
       overallRating = overallRating / product.reviews.length;
     }
+    overallRating= overallRating.toFixed( 2 );
     const ratingUpdateInfo = await prodCollection.updateOne(
       { _id: prodId },
       { $set: { overallRating: overallRating } }

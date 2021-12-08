@@ -33,4 +33,6 @@
       alert("FILL ALL REQUIRED DETAILS TO POST REVIEW");
     }
   });
+
+
 })(window.jQuery);
