@@ -11,7 +11,7 @@
       },
       error: function (xhr, textStatus, error) {
         alert("To save your product to wishlist, Login first");
-        window.location.href = "/login";
+        window.location.href = "/users/login";
       },
     });
   });

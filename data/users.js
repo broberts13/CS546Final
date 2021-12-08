@@ -4,7 +4,7 @@ const bcrypt = require("bcrypt");
 const saltRounds = 16;
 const validate = require("./validation");
 const { ObjectId } = require("mongodb");
-const { getProductById } = require("./products");
+//const { getProductById } = require("./products");
 
 async function getUsers() {
   const userCollection = await users();
@@ -28,9 +28,9 @@ async function getUserById(id) {
 
 async function login(username, password) {
   if (!validate.validString(username))
-    throw "User name must be a valid string.";
+    throw "Username must be a valid string.";
   if (!validate.validString(password))
-    throw "User name must be a valid string.";
+    throw "Username must be a valid string.";
   const userCollection = await users();
   const user = await userCollection.findOne({
     userName: username.toLowerCase(),
@@ -43,30 +43,34 @@ async function login(username, password) {
   } catch (error) {
     throw error.message;
   }
-  if (!flag) throw "User Name or Password doesnot match";
+  if (!flag) throw "Usern Name or Password does not match";
   return user;
 }
 
 async function createUser(
   userName,
-  userImage,
   firstName,
   lastName,
+  userImage,
   password,
   email,
   makeupLevel
 ) {
+
+  userName = userName.toLowerCase();
+
   if (!validate.validString(userName))
     throw "user name must be a valid string.";
-  if (!validate.validString(userImage)) throw "User picture path Invalid";
   if (!validate.validString(firstName))
     throw "First name must be a valid string.";
   if (!validate.validString(lastName))
     throw "Last name Category must be a valid string.";
-  if (!validate.validString(password)) throw "Password must be a valid string.";
-  if (!validate.validEmail(email)) throw "invalid Email";
-  if (!validate.validString(makeupLevel))
-    throw "makeupLevel must be a valid string";
+  if (!validate.validString(password))
+    throw "Password must be a valid string.";
+  if (!validate.validEmail(email)) 
+    throw "invalid Email";
+  if (!validate.validString(userImage)) 
+    userImage = "/public/uploads/profile.jpg";
 
   var regexuser = /^[a-zA-Z0-9]{4,}$/;
 
@@ -78,10 +82,10 @@ async function createUser(
   }
   const userCollection = await users();
   const existUser = await userCollection.findOne({
-    userName: userName.toLowerCase(),
+    userName: userName,
   });
   if (existUser) {
-    throw "Username alerady Exists";
+    throw "Username already Exists";
   }
   const hash = await bcrypt.hash(password, saltRounds);
 
@@ -92,7 +96,7 @@ async function createUser(
     lastName: lastName.trim(),
     password: hash,
     email: email.trim(),
-    makeupLevel: makeupLevel.trim(),
+    makeupLevel: makeupLevel,
     wishList: [],
   };
 
@@ -201,6 +205,7 @@ async function remove(id) {
 async function addToWishList(userId, prodId) {
   const userCollection = await users();
   const user = await getUserById(userId);
+  const product = await getProductById(prodId);
   let flag = false;
   user.wishList.forEach((e) => {
     if (e == prodId) {
@@ -212,7 +217,7 @@ async function addToWishList(userId, prodId) {
   if (!flag) {
     const updatedInfo = await userCollection.updateOne(
       { _id: userId },
-      { $push: { wishList: prodId } }
+      { $push: { wishList: {prodId:prodId, prodName: product.productName }} }
     );
     if (updatedInfo.modifiedCount === 0) {
       throw "Could not add to wishlist";

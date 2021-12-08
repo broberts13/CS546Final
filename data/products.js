@@ -116,13 +116,15 @@ async function getProductById(id) {
   return prod;
 }
 
+
 async function createProduct(
   productName,
   productPicture,
   productLinks,
   brand,
   price,
-  category
+  category,
+  status = "pending",
 ) {
   if (!validate.validString(productName))
     throw "Product name must be a valid string.";
@@ -145,7 +147,6 @@ async function createProduct(
         throw "Product external link must be a valid link.";
     }
   }
-
   const prodCollection = await products();
   const newProd = {
     productName: productName.trim(),
@@ -157,6 +158,7 @@ async function createProduct(
     overallRating: 0,
     likes: [],
     reviews: [],
+    status: status,
   };
 
   const insertInfo = await prodCollection.insertOne(newProd);
@@ -166,6 +168,14 @@ async function createProduct(
 
   return await getProductById(id);
 }
+async function getProductByStatus(id){
+  const pendingCollection = await products();
+  const prod = await pendingCollection.find({id}).toArray();
+
+  return await prod.name;
+}
+
+
 
 async function updateProduct(
   id,
@@ -174,7 +184,8 @@ async function updateProduct(
   productLinks,
   brand,
   price,
-  category
+  category,
+  status,
 ) {
   if (!validate.validString(id)) throw "Product id must be a valid string.";
   if (!validate.validString(productPicture))
@@ -211,6 +222,7 @@ async function updateProduct(
     overallRating: prod.overallRating,
     likes: prod.likes,
     reviews: prod.reviews,
+    status:prod.status,
   };
 
   id = ObjectId(id);
@@ -226,21 +238,33 @@ async function updateProduct(
   return await getProductById(id.toString());
 }
 
-async function remove(id) {
-  if (!validate.validString(id)) throw "Product id must be a valid string.";
-
-  const delprod = await getProductById(id);
-  if (delprod == null) throw "Product Not found";
+async function searchProducts(searchTerm) {
   const prodCollection = await products();
-  id = ObjectId(id);
-  const deletionInfo = await prodCollection.deleteOne({ _id: id });
 
-  if (deletionInfo.deletedCount === 0) {
-    throw `Could not delete Product with id of ${id}`;
-  }
+  prodCollection.createIndex( { productName: "text", brand: "text", category: "text" } )
 
-  return `${delprod._id}`;
+  keyword = searchTerm.search;
+  const prod = await prodCollection.find({ $text: { $search: keyword} }).toArray(); //,{ score: { $meta: "textScore" } }).sort( { score: { $meta: "textScore" } } )
+
+  // Convert _id field to string before returning
+  return prod.map(validate.convertObjId);
 }
+
+// async function remove(id) {
+//   if (!validate.validString(id)) throw "Product id must be a valid string.";
+
+//   const delprod = await getProductById(id);
+//   if (delprod == null) throw "Product Not found";
+//   const prodCollection = await products();
+//   id = ObjectId(id);
+//   const deletionInfo = await prodCollection.deleteOne({ _id: id });
+
+//   if (deletionInfo.deletedCount === 0) {
+//     throw `Could not delete Product with id of ${id}`;
+//   }
+
+//   return `${delprod._id}`;
+// }
 
 //REVIEWS
 
@@ -307,10 +331,11 @@ async function addToreviews(userId, prodId, title, reviewBody, rating) {
       userImage: user.userImage,
       date: date,
       title: title,
+      reviewId: reviewId,
       reviewBody: reviewBody,
       rating: rating,
       likes: [],
-      Comments: [],
+      comments: [],
     };
     prodId = ObjectId(prodId);
     const updatedInfo = await prodCollection.updateOne(
@@ -451,7 +476,6 @@ module.exports = {
   getProductById,
   createProduct,
   updateProduct,
-  remove,
   addToreviews,
   progressbar,
   addToLikes,
@@ -460,4 +484,5 @@ module.exports = {
   findWishlistProd,
   getUserReviews,
   postComment,
+  searchProducts,
 };
