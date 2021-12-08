@@ -444,6 +444,17 @@ async function postComment(userId,revId,commentBody) {
       throw "Could not modify review";
     }
 }
+async function searchProducts(searchTerm) {
+  const prodCollection = await products();
+
+  prodCollection.createIndex( { productName: "text", brand: "text", category: "text" } )
+
+  keyword = searchTerm.search;
+  const prod = await prodCollection.find({ $text: { $search: keyword} }).toArray(); //,{ score: { $meta: "textScore" } }).sort( { score: { $meta: "textScore" } } )
+
+  // Convert _id field to string before returning
+  return prod.map(validate.convertObjId);
+}
   
 
 module.exports = {
@@ -460,4 +471,5 @@ module.exports = {
   findWishlistProd,
   getUserReviews,
   postComment,
+  searchProducts,
 };
