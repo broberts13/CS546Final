@@ -4,10 +4,16 @@
     <div class="container">
       <div class="col-md-6">
         <div class="login-page">
-          <h4 class="title">Don't Have an Account?</h4>
-          <p>Not a member? Click the link below to sign-up and join a community of makeup lovers just like you! With an account, you have the power to save products to a wishlist and write reviews. We're excited to have you!</p>
+          <h4 class="title">New Customers</h4>
+          <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
+            nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat
+            volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation
+            ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo
+            consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate
+            velit esse molestie consequat, vel illum dolore eu feugiat nulla
+            facilisis</p>
           <div class="button1">
-            <a href="/users/signup"><input
+            <a href="/signup"><input
                 type="submit"
                 name="Submit"
                 value="Create an Account"
@@ -18,12 +24,12 @@
       </div>
       <div class="col-md-6">
         <div class="login-title">
-          <h4 class="title">Returning Users</h4>
+          <h4 class="title">Registered Customers</h4>
           <div id="loginbox" class="loginbox">
-            <form action="/users/login" method="POST" name="login" id="login-form">
+            <form action="/login" method="post" name="login" id="login-form">
               <fieldset class="input">
                 <p id="login-form-username">
-                  <label for="modlgn_username">Username</label>
+                  <label for="modlgn_username">UserName</label>
                   <input
                     id="modlgn_username"
                     type="text"
@@ -45,6 +51,7 @@
                   />
                 </p>
                 <div class="remember">
+
                   <p id="err" class="err"> {{#if error}}
                       {{error}}
                     {{/if}}</p>
@@ -63,7 +70,6 @@
                 </div>
               </fieldset>
             </form>
-            <p class= "Error">{{error}}</p>
           </div>
         </div>
         <div class="clear"></div>

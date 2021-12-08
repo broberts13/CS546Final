@@ -6,6 +6,80 @@
           <div class="single_image">
             <ul id="etalage">
               <li>
+                <a href="#">
+                  <img
+                    class="etalage_thumb_image"
+                    src="{{product.productPicture}}"
+                    alt="Product"
+                  />
+                  <img
+                    class="etalage_source_image"
+                    src="{{product.productPicture}}"
+                    alt="Product"
+                  />
+                </a>
+              </li>
+              <li>
+                <img
+                  class="etalage_thumb_image"
+                  src="{{product.productPicture}}"
+                  alt="Product"
+                />
+                <img
+                  class="etalage_source_image"
+                  src="{{product.productPicture}}"
+                  alt="Product"
+                />
+              </li>
+              <li>
+                <img
+                  class="etalage_thumb_image"
+                  src="{{product.productPicture}}"
+                  alt="Product"
+                />
+                <img
+                  class="etalage_source_image"
+                  src="{{product.productPicture}}"
+                  alt="Product"
+                />
+              </li>
+              <li>
+                <img
+                  class="etalage_thumb_image"
+                  src="{{product.productPicture}}"
+                  alt="Product"
+                />
+                <img
+                  class="etalage_source_image"
+                  src="{{product.productPicture}}"
+                  alt="Product"
+                />
+              </li>
+              <li>
+                <img
+                  class="etalage_thumb_image"
+                  src="{{product.productPicture}}"
+                  alt="Product"
+                />
+                <img
+                  class="etalage_source_image"
+                  src="{{product.productPicture}}"
+                  alt="Product"
+                />
+              </li>
+              <li>
+                <img
+                  class="etalage_thumb_image"
+                  src="{{product.productPicture}}"
+                  alt="Product"
+                />
+                <img
+                  class="etalage_source_image"
+                  src="{{product.productPicture}}"
+                  alt="Product"
+                />
+              </li>
+              <li>
                 <img
                   class="etalage_thumb_image"
                   src="{{product.productPicture}}"
@@ -22,14 +96,15 @@
           <!-- end product_slider -->
           <div class="single_right">
             <h3>{{product.productName}}</h3>
+       
             <p class="m_10"><strong>Brand:</strong>{{product.brand}}</p>
+            
             <p class="m_10"><strong>Category</strong><br>{{product.category}}</p>
-            <p class="m_10"><strong>Rating</strong><br>{{product.overallRating}}</p>
-
             <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
-		        <button id="like" type="submit" class="box-btn" data-productid="{{product._id}}"><span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span></button>
+
+		<button id="like" type="submit" class="box-btn" data-productid="{{product._id}}"><span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span></button>
             <br>				    	
 
             <input type="hidden" id="userID" value="{{flag}}">
@@ -45,20 +120,84 @@
                   id="btn-whishlist"
                   href="/users/wishlist/{{product._id}}"
                 > Add to wishlist</a></li>
-            </ul>    
+            </ul>
+            
+            
+            <div class="social_buttons">
+              <h4>{{product.reviews.length}} Reviews</h4>
+              <button
+                type="button"
+                class="btn1 btn1-default1 btn1-twitter"
+                onclick=""
+              >
+                <i class="icon-twitter"></i>
+                Tweet
+              </button>
+              <button
+                type="button"
+                class="btn1 btn1-default1 btn1-facebook"
+                onclick=""
+              >
+                <i class="icon-facebook"></i>
+                Share
+              </button>
+              <button
+                type="button"
+                class="btn1 btn1-default1 btn1-google"
+                onclick=""
+              >
+                <i class="icon-google"></i>
+                Google+
+              </button>
+              <button
+                type="button"
+                class="btn1 btn1-default1 btn1-pinterest"
+                onclick=""
+              >
+                <i class="icon-pinterest"></i>
+                Pinterest
+              </button>
+             
+            </div>
+             <br>
+              <p><strong>Links to buy this product:</strong></p>
+              {{#each product.productLinks}}
+              
+              <a href="{{this}}">Buy here</a>
+              <br>
+              {{/each}}
           </div>
           <div class="clear"> </div>
         </div>
+        <div class="col-md-3">
+          <div class="box-info-product">
+            <p class="price2">${{product.price}}</p>
+            <ul class="prosuct-qty">
+              
+              
+                <label><strong><strong>Average rating: {{product.overallRating}}<span class="float-right"><i
+                        class="text-warning fa fa-star"
+                      ></i></span>
+                    <span class="float-right"><i
+                        class="text-warning fa fa-star"
+                      ></i></span>
+                    <span class="float-right"><i
+                        class="text-warning fa fa-star"
+                      ></i></span>
+                    <span class="float-right"><i class="rating"><strong
+                        >{{this.rating}} </strong></i>
+                      <i class="text-warning fa fa-star"></i></span></strong></strong></label>
+               
+              
             </ul>
             <form>
             <button type="button" name="Submit" class="exclusive">
               <a href="{{product.productLinks.[0]}}"><span>Let's Buy</span></a>
             </button>
-            </form>      
+            </form>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-</div>
       
 
 <div class="container">
@@ -116,6 +255,8 @@
 
 <br>
 <br>
+
+
       <div class="desc">
         <div class="container">
           <div id="reviews" class="review-section">
@@ -126,8 +267,8 @@
                 data-select2-id="1"
                 tabindex="-1"
                 aria-hidden="true"
-                >
-                <option data-select2-id="3">Most Liked</option>
+              >
+                <option data-select2-id="3">Most Relevant</option>
                 <option>Most Recent</option>
               </select>
               <span
@@ -150,8 +291,19 @@
                       id="select2-qd66-container"
                       role="textbox"
                       aria-readonly="true"
-                      title="Most Relevant"
-                    ></span>
+                      title="Overall rating"
+                    ><strong>Average rating: {{product.overallRating}}    <span class="float-right"><i
+                        class="text-warning fa fa-star"
+                      ></i></span>
+                    <span class="float-right"><i
+                        class="text-warning fa fa-star"
+                      ></i></span>
+                    <span class="float-right"><i
+                        class="text-warning fa fa-star"
+                      ></i></span>
+                    <span class="float-right"><i class="rating"><strong
+                        >{{this.rating}} </strong></i>
+                      <i class="text-warning fa fa-star"></i></span></strong></span>
                     <span
                       class="select2-selection__arrow"
                       role="presentation"
@@ -284,34 +436,38 @@
           </div>
 
           <div class="review-list">
-            {{#each product.reviews}}
-            
-              <div class="card">
-                <div class="card-body review-blog">
-                    <div class="row">
-                      <div class="col-md-2">
-                        <img src={{this.userImage}} class="img img-rounded img-fluid"/>
-                        <p class="text-center"><a  href="/users/{{this.userId}}"><strong>{{this.userName}}</strong></a></p>
-                        <p class="text-secondary text-center">{{this.date}}</p>
-                    </div>
-                    <div class="col-md-10">
-                        <span ><i class="rating"><strong>{{this.rating}}  </strong></i> 
-                        <i class="text-warning fa fa-star"></i></span>
-                      <div class="clearfix"></div>
-                          <h4 class="review-id" data-reviewid="{{this._id}}">{{this.title}}</h4>
-                          <p>{{this.reviewBody}}</p>
-                        <p>
-                            {{!-- Added class review-reply as an identifier for the review like button --}}
-                            <a class="float-right btn btn-outline-primary ml-2 comment-btn"> <i class="fa fa-comment"></i> Comment</a>
-                            {{!-- Added class review-like as an identifier for the review like button --}}
-                            <a id = "revlike"  class="float-right btn text-white btn-danger review-like" data-selected="{{this.islike}}" > <i class="fa fa-heart"></i> <span>Like</span></a>
-                            {{!-- id = "revlike" --}}
+          {{#each product.reviews}}
+          
+         <div class="card">
+	        <div class="card-body review-blog">
+	            <div class="row">
+        	      <div class="col-md-2">
+        	        <img src={{this.userImage}} class="img img-rounded img-fluid" alt="Reviewing User"/>
+        	        <p class="text-secondary text-center">{{this.date}}</p>
+        	    </div>
+        	    <div class="col-md-10">
+        	        <p>
+        	            <a class="float-left review-username" href="#"><strong>{{this.userName}}</strong></a>
+                      <span class="float-right"><i class="text-warning fa fa-star"></i></span>
+                      <span class="float-right"><i class="text-warning fa fa-star"></i></span>
+        	            <span class="float-right"><i class="text-warning fa fa-star"></i></span>
+        	            <span class="float-right" ><i class="rating"><strong>{{this.rating}} </strong></i> <i class="text-warning fa fa-star"></i></span>              
 
-                        </p>
-                    </div>
-                    <div class="reviews-members-footer">
-                      <div class="total-like" href="#"><i class="glyphicon glyphicon-thumbs-up"></i>{{this.likes.length}}</div>                     
-                      <div class="total-like" href="#"><i class="glyphicon glyphicon-comment"></i> {{this.Comments.length}}</div> 
+        	   </p>
+        	       <div class="clearfix"></div>
+                    <p class="review-id" data-userid="{{user.userName}}" data-reviewid="{{this._id}}">{{this.title}}</p>
+                    <p>{{this.reviewBody}}</p>
+        	        <p>
+                      {{!-- Added class review-reply as an identifier for the review like button --}}
+        	            <a class="float-right btn btn-outline-primary ml-2 review-reply"> <i class="fa fa-reply"></i> Comment</a>
+                      {{!-- Added class review-like as an identifier for the review like button --}}
+        	            <a id = "revlike"  class="float-right btn text-white btn-danger review-like" data-selected="{{this.islike}}" > <i class="fa fa-heart"></i> <span>Like</span></a>
+        	      {{!-- id = "revlike" --}}
+                 </p>
+        	    </div>
+              <div class="reviews-members-footer">
+                                    <div class="total-like" href="#"><i class="glyphicon glyphicon-thumbs-up"></i> {{this.likes.length}}</div>
+                                    <div class="total-like" href="#"><i class="glyphicon glyphicon-comment"></i> {{this.Comments.length}}</div> 
                                     
               </div>
 	        </div>
@@ -328,10 +484,15 @@
                     	    </div>
                     	    <div class="col-md-10">
                     	        <p><a href="#"><strong id="userName">{{this.userName}}</strong></a></p>
-                    	        <p>{{this.commentBody}}</p> 
+                    	        <p>{{this.commentBody}}</p>
+                    	        <p>
+                
+                                  </p>
                     	    </div>
-            	        </div> 
+            	        </div>
+                         
             	    </div>
+              
 	            </div>
                  {{/each}}
 <!-- Start of Comment Dialog box-->
@@ -361,6 +522,9 @@
 
   <!-- End of Commnt Dialog Box-->
 
+
+
+
             </div>
             <!-- End of Comments -->   
 	    </div>
@@ -370,10 +534,54 @@
           </div>
         </div>
       </div>
+      <div class="row">
+        <h4 class="m_11">Related Products</h4>
+        <div class="col-md-4 product1">
+          <img src="/public/uploads/fe1.jpg" class="img-responsive" alt="product" />
+          <div class="shop_desc"><a href="/products">
+            </a><h3><a href="/products"></a><a href="#">aliquam volutp</a></h3>
+            <p>Lorem ipsum consectetuer adipiscing </p>
+            <span class="reducedfrom">$66.00</span>
+            <span class="actual">$12.00</span><br />
+            <ul class="buttons">
+              <li class="cart"><a href="#">Add To Cart</a></li>
+              <li class="shop_btn"><a href="#">Read More</a></li>
+              <div class="clear"> </div>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-4 product1">
+          <img src="/public/uploads/f1.jpg" class="img-responsive" alt="product" />
+          <div class="shop_desc"><a href="/products">
+            </a><h3><a href="/products"></a><a href="#">aliquam volutp</a></h3>
+            <p>Lorem ipsum consectetuer adipiscing </p>
+            <span class="reducedfrom">$66.00</span>
+            <span class="actual">$12.00</span><br />
+            <ul class="buttons">
+              <li class="cart"><a href="#">Add To Cart</a></li>
+              <li class="shop_btn"><a href="#">Read More</a></li>
+              <div class="clear"> </div>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <img src="/public/uploads/fm1.jpg" class="img-responsive" alt="product" />
+          <div class="shop_desc"><a href="/products">
+            </a><h3><a href="/products"></a><a href="#">aliquam volutp</a></h3>
+            <p>Lorem ipsum consectetuer adipiscing </p>
+            <span class="reducedfrom">$66.00</span>
+            <span class="actual">$12.00</span><br />
+            <ul class="buttons">
+              <li class="cart"><a href="#">Add To Cart</a></li>
+              <li class="shop_btn"><a href="#">Read More</a></li>
+              <div class="clear"> </div>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
-       
 
 <script type="text/javascript">
   $(document).ready(function() { $(".dropdown
@@ -445,11 +653,17 @@
 			alert("Login to Add Like, Failed to Add Like");
 		},
 		});
+
+  
+
+
+
+   	
   });
   
 
 
-//<!-- Adding Review Like -->
+  <!-- Adding Review Like -->
   $(document).on("click", ".review-like" , function() {
 
       var ID = $(this).closest(".review-blog").find(".review-id");
@@ -484,9 +698,9 @@
         });
 
         });
-  //<!-- End of Review Likes -->
+  <!-- End of Review Likes -->
 
-  //<!-- Showing Comments Dialogue-->
+  <!-- Showing Comments Dialogue-->
   $(document).on("click", ".review-reply" , function() {
     
     if($("#curUser").val()){
@@ -505,9 +719,9 @@
       window.location.href = "/login";
     }     
   });
-  //<!-- End of Comments Dialogue-->
+  <!-- End of Comments Dialogue-->
   
-  //<!-- Start of Add commnts -->
+  <!-- Start of Add commnts -->
    $(document).on("click", ".add-comment" , function() {
 
       var ID = $(this).closest(".review-blog").find(".review-id");
@@ -542,7 +756,13 @@
          
           
   });
-   //<!-- End of Add commnts -->
+   <!-- End of Add commnts -->
+
+
+
+
+
+
 
 
   //productIDLikes
