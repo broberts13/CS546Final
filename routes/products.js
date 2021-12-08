@@ -2,6 +2,12 @@ const express = require("express");
 const router = express.Router();
 const data = require("../data");
 const productData = data.products;
+const pendingData = require("../data/pending");
+
+router.get("/add", async (req, res) => {
+  //if not user redirect to login
+  return res.render("product/add", {user: req.session.user }); 
+});
 
 router.get("/:id", async (req, res) => {
   try {
@@ -42,6 +48,17 @@ router.get("/", async (req, res) => {
     });
   } catch (e) {
     res.status(404).send({ error: e, user: req.session.user });
+  }
+});
+
+router.post("/search", async (req, res) => {
+  try {
+    let searchTerm = req.body;
+
+    const productList = await productData.searchProducts(searchTerm);
+    res.render("product/products", { products: productList, user: req.session.user });
+  } catch (e) {
+    res.status(404).send({ error: e, user: req.session.user });;
   }
 });
 
@@ -86,6 +103,31 @@ router.post("/", async (req, res) => {
   } catch (e) {
     res.status(400).send({ error: e });
   }
+});
+
+router.post("/add", async (req, res) => {
+  let formBody = req.body;
+  productName = req.body.newProdName
+  productBrand = req.body.newProdBrand
+
+  if (!productName) {
+    res.status(400).render("product/add", { prod: formBody, error: "You must provide product name.",user: req.session.user });
+    return;
+  }
+  if (!productBrand) {
+    res.status(400).render("product/add",{ prod: formBody, error: "You must provide the brand of the product.",user: req.session.user });
+    return;
+  }
+
+  let success = "You're request has been submitted for review successfully!"
+
+  try {
+    const pending = await pendingData.createPending(productName, productBrand);
+    res.render("product/add", {success: success});
+  } catch (e) {
+    res.status(400).render("product/add", { error: e, prod: formBody});
+  }
+  
 });
 
 router.put("/:id", async (req, res) => {

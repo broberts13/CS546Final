@@ -115,37 +115,31 @@
 
         </div>
       </form>
-
-
       <div class="col-md-4">
-            <div class="p-3 py-5">
+        <div class="p-3 py-5">
               <form
-          id="form-user-delete"
-          name="form-user-delete"
-          method="post"
-          action="/users/delete/{{user._id}}"
-        ><label for="del">Delete profile, Once you delete you cant undo it</label>
-          <button  id="del" class="redbtn" class="btn btn-primary profile-button" type="submit">Delete
-            Profile</button>
-        </form>
-        <br>
-        <br>
-        <br>
-        <label for="wishl">Go to WishList</label><br>
-        <button id="wishl" onclick="window.location.href='#wish'" class="btn btn-primary profile-button" type="submit">My WishList</button>
-        <br>
-        <br>
-        <br>
-        <label for="revl">Go to Review List</label><br>
-         <button id="revl" onclick="window.location.href='#rev'" class="btn btn-primary profile-button" type="submit">My Reviews</button>
-              </div>
+                  id="form-user-delete"
+                  name="form-user-delete"
+                  method="post"
+                  action="/users/delete/{{user._id}}"
+              ><label for="del">Delete profile, Once you delete you cant undo it</label>
+              <button  id="del" class="redbtn" class="btn btn-primary profile-button" type="submit">Delete
+                Profile</button>
+              </form>
+              <br>
+              <br>
+              <br>
+                <!--
+                <label for="wishl">Go to WishList</label><br>
+                <button id="wishl" onclick="window.location.href='#wish'" class="btn btn-primary profile-button" type="submit">My WishList</button>
+                <br>
+                <br>
+                <br>
+                <label for="revl">Go to Review List</label><br>
+                <button id="revl" onclick="window.location.href='#rev'" class="btn btn-primary profile-button" type="submit">My Reviews</button>
+               -->
         </div>
-    
-   
-   
-    
- 
-    
+      </div>
     </div>
   </div>
 </div>
@@ -172,16 +166,9 @@
                 class="img-responsive"
                 alt="product"
               />
-              <span class="new-box">
-                <span class="new-label">New</span>
-              </span>
-              <span class="sale-box">
-                <span class="sale-label">Sale!</span>
-              </span>
               <div class="shop_desc">
                 <h3><a href="#">{{this.productName}}</a></h3>
                 <p>{{this.brand}}</p>
-                <span class="reducedfrom">$66.00</span>
                 <span class="actual">${{this.price}}</span><br />
                 <ul class="buttons">
                   <li><a
