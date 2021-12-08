@@ -26,7 +26,7 @@
                         </div>
                 </form>
                 <br>
-                <form action="/products/" method="post">
+                <form id="createprod" action="/products/" method="post">
                         <div>
                                 <div>
                                         <br>
@@ -36,32 +36,38 @@
                                 </div>
                                 <div class="row mt-3">
                                         <div class="col-md-12"><label class="labels">Product Name</label><input
-                                                        type="text" class="form-control"
+                                                        type="text" class="form-control" id="productName"
                                                         placeholder="enter product name" name='productName'>
 
                                         </div id="container">
                                         <div class="col-md-12"><label class="labels">Product
-                                                        Picture</label><input type="text" class="form-control"
-                                                        placeholder="enter product picture url" name='productPicture'>
+                                                        Picture</label><input
+                                        id="imageUpload"
+                                        name="imageUpload"
+                                        accept="image/*"
+                                        class="form-css"
+                                        type="file"
+                                        />
                                         </div>
+                                        
                                         <div class="col-md-12">
                                                 <label class="labels">Product Links</label><input type="text"
                                                         class="form-control" placeholder="enter product links"
-                                                        name='productLinks[0]'>
+                                                        id="productLinks" name='productLinks[0]'>
                                                 {{!-- <button id="newsectionbtn">add more</button> --}}
 
                                         </div>
-                                        <div class="col-md-12"><label class="labels">Brand</label><input type="text"
+                                        <div class="col-md-12"><label  class="labels">Brand</label><input id="brand" type="text"
                                                         class="form-control" placeholder="enter brand" name='brand'>
                                         </div>
-                                        <div class="col-md-12"><label class="labels">Price</label><input type="text"
+                                        <div class="col-md-12"><label class="labels">Price</label><input type="text" id="price"
                                                         class="form-control" placeholder="enter price" name='price'>
                                         </div>
-                                        <div class="col-md-12"><label class="labels">Category</label><input type="text"
+                                        <div class="col-md-12"><label class="labels">Category</label><input type="text" id="category"
                                                         class="form-control" placeholder="enter category"
                                                         name='category'></div>
                                         <div class="col-md-12"><label class="labels">Pending Product Id (to be deleted)</label><input type="text"
-                                                        class="form-control" placeholder="enter category"
+                                                        class="form-control" id="pendingid" placeholder="enter category"
                                                         name='pendingId'></div>
 
 
