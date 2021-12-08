@@ -5,27 +5,80 @@
         <div class="col-md-9 single_left">
           <div class="single_image">
             {{!-- start product picture --}}
-					     <ul id="etalage">
-							<li>
-								<a href="#">
-									<img class="etalage_thumb_image" src="{{product.productPicture}}" />
-									<img class="etalage_source_image" src="{{product.productPicture}}" />
-								</a>
-							</li>
-							<li>
-								<img class="etalage_thumb_image" src="{{product.productPicture}}" />
-								<img class="etalage_source_image" src="{{product.productPicture}}" />
-							</li>
-							<li>
-								<img class="etalage_thumb_image" src="{{product.productPicture}}" />
-								<img class="etalage_source_image" src="{{product.productPicture}}" />
-							</li>
-							<li>
-								<img class="etalage_thumb_image" src="{{product.productPicture}}" />
-								<img class="etalage_source_image" src="{{product.productPicture}}" />
-							</li>
-						
-						</ul>
+					      <ul id="etalage">
+              <li>
+                <a href="optionallink.html">
+                  <img
+                    class="etalage_thumb_image"
+                    src="{{product.productPicture}}"
+                  />
+                  <img
+                    class="etalage_source_image"
+                    src="{{product.productPicture}}"
+                  />
+                </a>
+              </li>
+              <li>
+                <img
+                  class="etalage_thumb_image"
+                  src="{{product.productPicture}}"
+                />
+                <img
+                  class="etalage_source_image"
+                  src="{{product.productPicture}}"
+                />
+              </li>
+              <li>
+                <img
+                  class="etalage_thumb_image"
+                  src="{{product.productPicture}}"
+                />
+                <img
+                  class="etalage_source_image"
+                  src="{{product.productPicture}}"
+                />
+              </li>
+              <li>
+                <img
+                  class="etalage_thumb_image"
+                  src="{{product.productPicture}}"
+                />
+                <img
+                  class="etalage_source_image"
+                  src="{{product.productPicture}}"
+                />
+              </li>
+              <li>
+                <img
+                  class="etalage_thumb_image"
+                  src="{{product.productPicture}}"
+                />
+                <img
+                  class="etalage_source_image"
+                  src="{{product.productPicture}}"
+                />
+              </li>
+              <li>
+                <img
+                  class="etalage_thumb_image"
+                  src="{{product.productPicture}}"
+                />
+                <img
+                  class="etalage_source_image"
+                  src="{{product.productPicture}}"
+                />
+              </li>
+              <li>
+                <img
+                  class="etalage_thumb_image"
+                  src="{{product.productPicture}}"
+                />
+                <img
+                  class="etalage_source_image"
+                  src="{{product.productPicture}}"
+                />
+              </li>
+            </ul>
 					    </div>
           <!-- end product_slider -->
          {{!-- start product description  --}}
@@ -566,7 +619,7 @@
     $("#commentTime").html("Now");
     $("#userName").html("{{user.userName}}");
     $("#userImg").attr('src','{{user.userImage}}');
-      
+       $("#cmntbody").focus();
       }
       else{
         alert("Login to Comment on Reviews");
@@ -667,8 +720,7 @@ $(".review-like").each(function(){
             });
         });
    </script>
-<link rel="stylesheet" href="/public/css/etalage.css" />
-<script src="/public/js/jquery.etalage.min.js"></script>
+
 <script src="/public/js/wishlist.js"></script>
 <script src="/public/js/reviews.js"></script>
 
