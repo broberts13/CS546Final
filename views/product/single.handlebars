@@ -40,7 +40,7 @@
             <input type ="hidden"  id="curUser" value="{{user._id}}">
             <div class="btn_form">
               <form>
-                <label for="box-btn">Like</label>
+                <label for="box-btn"> Like</label>
               </form>
             </div>
             <ul class="add-to-links">
@@ -63,9 +63,10 @@
           <div class="box-info-product">
             <p class="price2">${{product.price}}</p>
             <ul class="prosuct-qty">
+               <label><strong>Likes: {{product.likes.length}}</strong><span class="float-right"></span></label><br>
+               <br>
               
-              
-                <label><strong><strong>Average rating: {{product.overallRating}}<span class="float-right"><i
+                <label><strong>Average rating: {{product.overallRating}} </strong><span class="float-right"><i
                         class="text-warning fa fa-star"
                       ></i></span>
                     <span class="float-right"><i

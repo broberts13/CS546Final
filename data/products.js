@@ -296,7 +296,7 @@ async function addToreviews(userId, prodId, title, reviewBody, rating) {
       throw "Reviews text must be a valid string.";
     if (!validate.validnum(rating) || rating > 5 || rating < 0)
       throw "rating should be between 0-5";
-    rating = parseFloat(rating);
+    rating = parseFloat(rating).toFixed( 2 );
     const prodCollection = await products();
     // const prod = await getProductById(prodId);
     const addreview = {
