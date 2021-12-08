@@ -1,0 +1,35 @@
+<div class="container rounded bg-white mt-5 mb-5">
+	<div class="row">
+		<div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5"
+				width="150px" src="/public/uploads/thread-lock.jpg"><br><span
+				class="font-weight-bold"><strong>{{users.firstName}}</strong></span>Admin<br>
+			<span class="text-black-50">{{users.email}}</span><span> </span>
+		</div>
+		{{!-- <div class="main">
+			<div class="shop_top">
+				<div class="container">
+					<div class="col-md-6">
+						<div class="login-page"> --}}
+							<h4 class="title">Administrator Account</h4>
+							<form action="/admin" method="post" name="adminlogin" id="login-form">
+								<fieldset class="input">
+									<p id="login-form-username">
+										<label for="modlgn_username">Username</label>
+										<input id="modlgn_username" type="text" name="username" class="inputbox"
+											size="18" autocomplete="off" />
+									</p>
+									<p id="login-form-password">
+										<label for="modlgn_passwd">Password</label>
+										<input id="modlgn_passwd" type="password" name="password" class="inputbox"
+											size="18" autocomplete="off" />
+									</p>
+									<div class="remember">
+										<p id="login-form-remember">
+										</p>
+										<input type="submit" name="Submit" class="button" value="Login" />
+										<div class="clear"></div>
+									</div>
+								</fieldset>
+							</form>
+						</div>
+					</div>
