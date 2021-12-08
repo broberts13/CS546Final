@@ -238,4 +238,25 @@ router.post("/reviews/likes/:revId", async (req, res) => {
   }
 });
 
+
+router.post("/reviews/comment/:revId", async (req, res) => {
+  const {commentBody} = req.body;
+  if (!commentBody) {
+    res.status(400).json({ error: "You must provide review before adding" });
+    return;
+  }
+
+  try {
+    await productData.postComment(
+      req.session.user._id.toString(),
+      req.params.revId,
+      commentBody
+    );
+    return res.json("Success");
+  } catch (e) {
+    return res.status(404).send({ error: e });
+  }
+});
+
+
 module.exports = router;

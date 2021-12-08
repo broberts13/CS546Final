@@ -9,10 +9,12 @@
                 <img
                   class="etalage_thumb_image"
                   src="{{product.productPicture}}"
+                  alt="Product"
                 />
                 <img
                   class="etalage_source_image"
                   src="{{product.productPicture}}"
+                  alt="Product"
                 />
               </li>
             </ul>
@@ -32,6 +34,7 @@
 
             <input type="hidden" id="userID" value="{{flag}}">
             <input type="hidden" id="revlikeID" value="{{flag1}}">
+            <input type ="hidden"  id="curUser" value="{{user._id}}">
             <div class="btn_form">
               <form>
                 <label for="box-btn">Like</label>
@@ -46,31 +49,13 @@
           </div>
           <div class="clear"> </div>
         </div>
-            <div class="col-md-3">
-              <div class="box-info-product">
-                <p class="price2">${{product.price}}</p>
-                <p><strong>Links to buy this product:</strong></p>
-                  {{#each product.productLinks}}
-                  
-                  <a href="{{this}}">Buy here</a>
-                  <br>
-                  {{/each}}
-                </div>
-              </div>
-            </div>
-<!--
-              <span>Reviews:</span>
-              <select>
-                <option>{{product.reviews.length}}</option>
-               
-              </select>
             </ul>
             <form>
             <button type="button" name="Submit" class="exclusive">
               <a href="{{product.productLinks.[0]}}"><span>Let's Buy</span></a>
             </button>
             </form>      
--->   </div>
+      </div>
     </div>
   </div>
 </div>
@@ -135,7 +120,7 @@
         <div class="container">
           <div id="reviews" class="review-section">
             <div class="d-flex align-items-center justify-content-between mb-4">
-              <h4 class="m-0">{{product.reviews.length}} Reviews</h4>
+              <h4 class="m-0">{{product.reviews.length}}Reviews</h4>
               <select
                 class="custom-select custom-select-sm border-0 shadow-sm ml-2 select2-hidden-accessible"
                 data-select2-id="1"
@@ -326,32 +311,62 @@
                     </div>
                     <div class="reviews-members-footer">
                       <div class="total-like" href="#"><i class="glyphicon glyphicon-thumbs-up"></i>{{this.likes.length}}</div>                     
-                    </div>
-                  </div>
-                  <!-- Start of Comments -->
-                <div class="card-header">
-                  Comments
-                  <input type="hidden" class="review-id" value="{{this.reviewId}}">
-                </div>
-                  {{#each this.comments}}
-                  <div class="card card-inner">
-                    <div class="card-body">
-                      <div class="row">
-                        <div class="col-md-10">
-                            <p><a href="/users/id"><strong>{{this.comments.userName}}</strong></a></p>
-                            <p>{{this.comments.text}}</p>
-                            <p>
-                            <a class="float-right btn btn-outline-primary ml-2">  <i class="fa fa-reply"></i> Reply</a>
-                            <a class="float-right btn text-white btn-danger"> <i class="fa fa-heart"></i> Like</a>
-                            </p>
+                      <div class="total-like" href="#"><i class="glyphicon glyphicon-comment"></i> {{this.Comments.length}}</div> 
+                                    
+              </div>
+	        </div>
+            <!-- Start of Comments -->
+           <div class="comment-space">
+            <br>
+            {{#each this.Comments}}
+	        	<div class="card card-inner">
+            	    <div class="card-body">
+            	        <div class="row">
+                    	    <div class="col-md-2">
+                    	        <img  src="{{this.userImage}}" class="img img-rounded img-fluid" alt="Commenting User" />
+                    	        <p  class="text-secondary text-center">{{this.date}}</p>
+                    	    </div>
+                    	    <div class="col-md-10">
+                    	        <p><a href="#"><strong id="userName">{{this.userName}}</strong></a></p>
+                    	        <p>{{this.commentBody}}</p> 
+                    	    </div>
+            	        </div> 
+            	    </div>
+	            </div>
+                 {{/each}}
+<!-- Start of Comment Dialog box-->
+<div class="card card-inner" id="commentDialog" style="display:none">
+          <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-2">
+                                  <!-- Todo Add server side script to show photo -->
+                                    <img id="userImg" src="https://image.ibb.co/jw55Ex/def_face.jpg" class="img img-rounded img-fluid" alt="ProfilPic"/>
+                                    <p id="commentTime" class="text-secondary text-center post-time">Time</p>
+                                </div>
+                                <div class="col-md-10 comment-area">
+                                  <!-- Todo Add server side script to show name of the logged in person -->
+                                    <p><a href="#"><strong id="userName">{{user.userName}}</strong></a></p>
+                                    <p>
+                                        <textarea autofocus id="cmntbody" class="review-txt-area" rows="4" style="width:100%" placeholder="Write a comment"></textarea>
+                                    </p>
+                                    <p>
+                                        <a class="float-right btn text-white btn-primary add-comment"> </i> <span>ADD</span></a>
+                                  </p>
+                                </div>
+                            </div>
+                              
                         </div>
-                      </div>
-                    </div>
-                  </div>
-                  {{/each}}
-                </div>
-              </div>    
-            {{/each}}
+                    
+    </div>
+
+  <!-- End of Commnt Dialog Box-->
+
+            </div>
+            <!-- End of Comments -->   
+	    </div>
+	</div>
+          
+          {{/each}}
           </div>
         </div>
       </div>
@@ -464,6 +479,7 @@
             },
               error: function (jqXhr, textStatus, errorMessage) {
               alert("Login to like review");
+              window.location.href = "/login";
             }
         });
 
@@ -472,37 +488,53 @@
 
   //<!-- Showing Comments Dialogue-->
   $(document).on("click", ".review-reply" , function() {
+    
+    if($("#curUser").val()){
+
         
-        var commentdialogue = $('#commentDialog').detach();
-        $(this).closest(".review-blog").find(".comment-space").append(commentdialogue);
-        $("#commentDialog").show();  
-        $("#commentTime").html("1 ");      
-          
+    var commentdialogue = $('#commentDialog').detach();
+    $(this).closest(".review-blog").find(".comment-space").append(commentdialogue);
+    $("#commentDialog").show();  
+    $("#commentTime").html("Now");
+    $("#userName").html("{{user.userName}}");
+    $("#userImg").attr('src','{{user.userImage}}');
+      
+      }
+      else{
+        alert("Login to Comment on Reviews");
+      window.location.href = "/login";
+    }     
   });
   //<!-- End of Comments Dialogue-->
   
   //<!-- Start of Add commnts -->
    $(document).on("click", ".add-comment" , function() {
 
-    comment = $(this).closest(".comment-area").find(".review-txt-area");
-    commentVal =comment.val();
-    comment.val("");
+      var ID = $(this).closest(".review-blog").find(".review-id");
+      var revid= ID.data("reviewid");
+      var commentUrl = "/products/reviews/comment/"+revid;	
+      comment = $(this).closest(".comment-area").find(".review-txt-area");
+      
+      commentVal =comment.val();
+     
+      comment.val("");
         if (commentVal.trim()) {
-      /*$.ajax({
+          
+      $.ajax({
        type: 'POST',
-       url: add url,
-       data: { myData: 'This is my data.' },
-       success: function (data) {
-        
-        $(this).closest(".review-blog").find(".comment-space").append("<div class='card card-inner'><div class='card-body'><div class='row'><div class='col-md-2'><img src='https://image.ibb.co/jw55Ex/def_face.jpg' class='img img-rounded img-fluid'/><p class='text-secondary text-center'>15 Minutes Ago</p></div><div class='col-md-10'><p><a href='https://maniruzzaman-akash.blogspot.com/p/contact.html'><strong>Maniruzzaman Akash</strong></a></p><p>"+commentVal+"</p><p><a class='float-right btn btn-outline-primary ml-2'>  <i class='fa fa-reply'></i> Reply</a><a class='float-right btn text-white btn-danger review-like'><i class='fa fa-heart'></i> <span>Like</span></a></p></div></div></div></div>");
+       url: commentUrl,
+       data: { commentBody: commentVal },
+       success: function (data) {        
+        //$(this).closest(".review-blog").find(".comment-space").append("<div class='card card-inner'><div class='card-body'><div class='row'><div class='col-md-2'><img src='https://image.ibb.co/jw55Ex/def_face.jpg' class='img img-rounded img-fluid'/><p class='text-secondary text-center'>15 Minutes Ago</p></div><div class='col-md-10'><p><a href='https://maniruzzaman-akash.blogspot.com/p/contact.html'><strong>Maniruzzaman Akash</strong></a></p><p>"+commentVal+"</p><p><a class='float-right btn btn-outline-primary ml-2'>  <i class='fa fa-reply'></i> Reply</a><a class='float-right btn text-white btn-danger review-like'><i class='fa fa-heart'></i> <span>Like</span></a></p></div></div></div></div>");
         $("#commentDialog").hide();  
+        window.location.reload();
       },
         error: function (jqXhr, textStatus, errorMessage) {
           alert(errorMessage);
       }
-    });*/
-      $(this).closest(".review-blog").find(".comment-space").append("<div class='card card-inner'><div class='card-body'><div class='row'><div class='col-md-2'><img src='https://image.ibb.co/jw55Ex/def_face.jpg' class='img img-rounded img-fluid'/><p class='text-secondary text-center'>15 Minutes Ago</p></div><div class='col-md-10'><p><a href='https://maniruzzaman-akash.blogspot.com/p/contact.html'><strong>Maniruzzaman Akash</strong></a></p><p>"+commentVal+"</p><p><a class='float-right btn btn-outline-primary ml-2'>  <i class='fa fa-reply'></i> Reply</a><a class='float-right btn text-white btn-danger review-like'><i class='fa fa-heart'></i> <span>Like</span></a></p></div></div></div></div>");
-      $("#commentDialog").hide();   
+    });
+    //  $(this).closest(".review-blog").find(".comment-space").append("<div class='card card-inner'><div class='card-body'><div class='row'><div class='col-md-2'><img src='https://image.ibb.co/jw55Ex/def_face.jpg' class='img img-rounded img-fluid'/><p class='text-secondary text-center'>15 Minutes Ago</p></div><div class='col-md-10'><p><a href='https://maniruzzaman-akash.blogspot.com/p/contact.html'><strong>Maniruzzaman Akash</strong></a></p><p>"+commentVal+"</p><p><a class='float-right btn btn-outline-primary ml-2'>  <i class='fa fa-reply'></i> Reply</a><a class='float-right btn text-white btn-danger review-like'><i class='fa fa-heart'></i> <span>Like</span></a></p></div></div></div></div>");
+     $("#commentDialog").hide();   
     }
     else{
       alert("Please Enter valid comment");
@@ -533,13 +565,14 @@ $(".review-like").each(function(){
   });
 //End of liked review on page load
 
+ 
+
   
-  /*for(){
-    $(".review-like").find('span').text("Liked");
-    $(".review-like").removeClass("btn-danger").addClass("btn-dark");  
-  }*/
 
 
 }); 
+
+
+
 </script>
 

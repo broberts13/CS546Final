@@ -8,6 +8,7 @@
       password: $("#password").val(),
       email: $("#email").val(),
       makeupLevel: $("#makeupLevel").val(),
+      userImage: $("#img").data("user"),
     };
 
     if ($("#imageUpload")[0].files.length == 0) {

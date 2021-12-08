@@ -5,6 +5,11 @@ const userData = data.users;
 const productData = data.products;
 
 
+router.get("/", async (req, res) => {
+  if(req.session.user == null) {
+    return res.redirect("/login?error=Please login to continue");
+  }
+
 router.get("/login", async (req, res) => {
   return res.render("users/login", { user: req.session.user });
 });
@@ -167,9 +172,7 @@ router.post("/private/:id", async (req, res) => {
     email,
     makeupLevel,
   } = req.body;
-
-  const users = await userData.getUserById(req.session.user._id.toString());
-
+ const users = await userData.getUserById(req.session.user._id.toString());
   try {
   if (!username) {
     throw "You must provide User name";
@@ -190,6 +193,9 @@ router.post("/private/:id", async (req, res) => {
   else if (!makeupLevel) {
     throw "You must provide makeup level";
   } 
+  else if(req.session.user.userName == userName && req.session.user.userImage==userImage && req.session.user.firstName == firstName && req.session.user.lastName==lastName && req.session.user.email==email && req.session.user.makeupLevel==makeupLevel){
+    throw "Data is Up-to-date";
+  }
     const user = await userData.updateUser(
       req.session.user._id,
       username,

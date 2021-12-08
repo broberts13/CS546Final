@@ -427,7 +427,7 @@ async function addToLikes(userId, prodId) {
 
 //print review
 async function getUserReviews(userId) {
-  const user = await usersData.getUserById(userId.toString());
+ 
   const productList = await getAllProducts();
   let userReviews = [];
   productList.forEach((e) => {
@@ -441,6 +441,36 @@ async function getUserReviews(userId) {
   return userReviews;
 }
 
+//Add Comments
+async function postComment(userId,revId,commentBody) {
+  const prodCollection = await products();
+  const user = await usersData.getUserById(userId.toString());
+  let date = new Date().toUTCString();
+  let revobj = await getReviewById(revId);
+
+
+  const comment = {
+    _id: ObjectId(),
+    userId: userId,
+    userName: user.userName,
+    userImage: user.userImage,
+    commentBody: commentBody ,
+    date: date,
+  };
+
+    revobj.product.reviews[revobj.index].Comments.push(comment);
+
+    const prodId = ObjectId(revobj.product._id);
+    const updatedInfo = await prodCollection.updateOne(
+      { _id: prodId },
+      { $set: { reviews: revobj.product.reviews } }
+    );
+    if (updatedInfo.modifiedCount === 0) {
+      throw "Could not modify review";
+    }
+}
+  
+
 module.exports = {
   getAllProducts,
   getProductById,
@@ -453,5 +483,6 @@ module.exports = {
   addToReviewLikes,
   findWishlistProd,
   getUserReviews,
+  postComment,
   searchProducts,
 };

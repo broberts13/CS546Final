@@ -1,5 +1,4 @@
 <div class="container rounded bg-white mt-5 mb-5">
-
   <div class="row">
 
     <div class="col1">
@@ -8,9 +7,12 @@
           <div
             class="d-flex flex-column align-items-center text-center p-3 py-5"
           ><img
+              id="img"
               class="rounded-circle mt-5"
               width="150px"
+              data-user="{{users.userImage}}"
               src={{users.userImage}}
+              alt="Profile"
             /><br /><span class="font-weight-bold"><strong
               >{{users.firstName}}:</strong></span><span
               class="text-black-50"
@@ -77,7 +79,7 @@
                   class="form-control"
                   placeholder="enter New Password"
                   value={{users.Password}}
-                /></div>
+                ></div>
               <div class="col-md-12"><label class="labels">Email ID</label><input
                   type="text"
                   id="email"
@@ -122,15 +124,27 @@
           name="form-user-delete"
           method="post"
           action="/users/delete/{{user._id}}"
-        >
-          <button class="btn btn-primary profile-button" type="submit">Delete
+        ><label for="del">Delete profile, Once you delete you cant undo it</label>
+          <button  id="del" class="redbtn" class="btn btn-primary profile-button" type="submit">Delete
             Profile</button>
         </form>
+        <br>
+        <br>
+        <br>
+        <label for="wishl">Go to WishList</label><br>
+        <button id="wishl" onclick="window.location.href='#wish'" class="btn btn-primary profile-button" type="submit">My WishList</button>
+        <br>
+        <br>
+        <br>
+        <label for="revl">Go to Review List</label><br>
+         <button id="revl" onclick="window.location.href='#rev'" class="btn btn-primary profile-button" type="submit">My Reviews</button>
               </div>
         </div>
     
+   
+   
     
-    
+ 
     
     </div>
   </div>
@@ -139,17 +153,24 @@
 {{! start of wishlist }}
 <div class="main">
 
+  
+
   <div class="shop_top">
-    <div class="container">
-      <h3 class="wish-title1">My wishlist:</h3>
-      <div class="row shop_box-top">
+    <div id="wish" class="container">
+      {{#if products}}
+      <h3 class="wish-title">My wishlist:</h3>
+      {{else}}
+      <a href="/products">Your Wishlist is Empty, Add products to wishlist</a>
+      {{/if}}
+
+      <div  class="row shop_box-top">
         {{#each products}}
           <div class="col-md-3 shop_box" style="margin-top: 30px;">
             <a href="/products/{{this._id}}">
               <img
                 src="{{this.productPicture}}"
                 class="img-responsive"
-                alt=""
+                alt="product"
               />
               <span class="new-box">
                 <span class="new-label">New</span>
@@ -178,14 +199,21 @@
 </div>
 {{! end of wishlist }}
 
-<div class="container">
+<div id="rev" class="container">
+   {{#if products}}
+     <h3 class="wish-title1">My Reviews:</h3>
+      {{else}}
+      <a href="/products">No Reviews made by You, share your Review for products</a>
+      {{/if}}
   <div class="desc">
    
     <div class="container">
-      <div class="review-list">
+      <div  class="review-list">
+
+     
 
         {{#each userReviews}}
- <h3 class="wish-title1">My Reviews:</h3>
+ 
           <div class="card">
             <div class="card-body review-blog">
               <div class="row">
@@ -193,6 +221,7 @@
                   <img
                     src={{this.userImage}}
                     class="img img-rounded img-fluid"
+                    alt="Review User"
                   />
                   <p class="text-secondary text-center">{{this.date}}</p>
                 </div>
@@ -200,7 +229,7 @@
                   <p>
                     <a
                       class="float-left review-username"
-                      href="https://maniruzzaman-akash.blogspot.com/p/contact.html"
+                      href="#"
                     ><strong>{{this.userName}}</strong></a>
                     <span class="float-right"><i
                         class="text-warning fa fa-star"
@@ -238,6 +267,7 @@
                   <div class="total-like" href="#"><i
                       class="glyphicon glyphicon-thumbs-up"
                     ></i>{{this.likes.length}}</div>
+                    <div class="total-like" href="#"><i class="glyphicon glyphicon-comment"></i> {{this.Comments.length}}</div>
 
                 </div>
               </div>

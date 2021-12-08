@@ -2914,3 +2914,34 @@ image-tools.show-on-hover {
   color: rebeccapurple;
   font-weight: bold;
 }
+
+.wish-title {
+  margin-left: 1.8em;
+  color: rebeccapurple;
+  font-weight: bold;
+}
+
+.redbtn{
+  color: #fff;
+  background-color:red;
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+.err{
+  color: red;
+}

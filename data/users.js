@@ -36,7 +36,7 @@ async function login(username, password) {
     userName: username.toLowerCase(),
   });
 
-  if (!user) throw `invalid username or password`;
+  if (!user) throw `invalid UserName or Password`;
   let flag = false;
   try {
     flag = await bcrypt.compare(password, user.password);
@@ -150,7 +150,11 @@ async function updateUser(
       throw "Invalid Password";
     }
   }
+
+  
   const userCollection = await users();
+  let user = await getUserById(id);
+  
 
   const updateuser = {
     userName: userName.trim(),

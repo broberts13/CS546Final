@@ -67,7 +67,7 @@ const constructorMethod = (app) => {
   // });
 /*
   app.get("/login", (req, res) => {
-    return res.render("users/login");
+    return res.render("users/login", { error: req.query.error });
   });
 
   app.post("/login", async (req, res) => {
