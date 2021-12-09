@@ -3,6 +3,7 @@
     event.preventDefault();
     var formData = new FormData();
     formData.append("image", $("#imageUpload")[0].files[0]);
+    console.log("formData", formData)
     $.ajax({
       type: "POST",
       url: "/uploadSingle",
@@ -16,7 +17,6 @@
           brand: $("#brand").val(),
           price: $("#price").val(),
           category: $("#category").val(),
-          pendingid: $("#pendingid").val(),
           productPicture: path,
         };
         $.ajax({
@@ -24,7 +24,8 @@
           url: "/products", //goes to /admin instead?
           data: newProd,
           success: function (response) {
-            window.location.href = "/products";
+            window.location.href = "/admin";
+            alert("create product success");
           },
           error: function (error) {
             alert(error.responseText);
