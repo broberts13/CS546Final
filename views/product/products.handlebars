@@ -1,6 +1,8 @@
 <div class="main">
   <div class="shop_top">
     <div class="container">
+      <h1 class="text-center"><strong>Products</strong></h1>
+      <h2 class="text-center">Click on the products to see more.</h2>
       <div class="row shop_box-top">
         {{#each products}}
           <div class="col-md-3 shop_box" style="margin-top: 30px;">
@@ -10,20 +12,18 @@
                 class="img-responsive"
                 alt="Product"
               />
+              </a>
               <div class="shop_desc">
                 <h3><a href="/products/{{this._id}}">{{this.productName}}</a></h3>
                 <p>{{this.brand}}</p>
                 <ul class="buttons">	
                   <span class="actual">${{this.price}}</span>						
                     <li class="shop_btn">
-                      <a href="#">
-                        <div><i class="fa fa-heart red-color"></i>  {{this.likes.length}}</div>
-                      </a>
+                      <div><i class="fa fa-heart red-color"></i>  {{this.likes.length}}</div>
                     </li>
                   <div class="clear"> </div>
                 </ul>
               </div>
-            </a>
           </div>
         {{/each}}
       </div>

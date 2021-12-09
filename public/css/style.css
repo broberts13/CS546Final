@@ -22,6 +22,9 @@ body {
   background: #fff;
   font-size: 100%;
 }
+a:link {
+  color:#0072ee;
+}
 body a {
   transition: 0.5s all;
   -webkit-transition: 0.5s all;
