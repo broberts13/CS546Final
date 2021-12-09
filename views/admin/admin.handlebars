@@ -1,9 +1,10 @@
 <div class="container rounded bg-white mt-5 mb-5">
         <div class="row">
                 <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5"
-                                width="150px" src="/public/uploads/thread-lock.jpg"><br><span
-                                class="font-weight-bold"><strong>{{users.firstName}}</strong></span>Admin<br>
-                        <span class="text-black-50">{{users.email}}</span><span> </span>
+                        width="150px" src="/public/uploads/thread-lock.jpg"><br><span
+                        class="font-weight-bold"><strong>{{users.firstName}}</strong></span>Admin<br>
+                        <span class="text-black-50">{{users.email}}</span>
+                        <span> </span>
                 </div>
                 <br>
                 <form action="/products/" method="get">
@@ -43,7 +44,6 @@
                                                         Picture</label><input id="imageUpload" name="imageUpload"
                                                         accept="image/*" class="form-css" type="file" />
                                         </div>
-
                                         <div class="col-md-12">
                                                 <label class="labels">Product Links</label><input type="text"
                                                         class="form-control" placeholder="enter product links"
@@ -66,14 +66,11 @@
                                                         deleted)</label><input type="text" class="form-control"
                                                         id="pendingid" placeholder="enter category" name='pendingId'>
                                         </div>
-
-
-
                                 </div>
                                 <br>
-                                <div class="mt-5 text-center"><button class="btn btn-primary profile-button"
-                                                type="submit">create
-                                        </button></div>
+                                <div class="mt-5 text-center">
+                                        <button class="btn btn-primary profile-button" type="submit">create</button>
+                                </div>
                                 <br>
                         </div>
                 </form>
@@ -98,9 +95,8 @@
                         <p>{{success2}}</p>
                         <p>{{error2}}</p>
                         <br>
-                        <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="submit"
-                                        id='deletePendingIdButton'>delete
-                                </button>
+                        <div class="mt-5 text-center">
+                                <button class="btn btn-primary profile-button" type="submit" id='deletePendingIdButton'>delete</button>
                         </div>
                         <br>
                 </div>
@@ -117,8 +113,8 @@
                         </div>
                         <div class="row mt-3">
                                 <div class="col-md-12"><label class="labels">Product Id</label><input type="text"
-                                                class="form-control" placeholder="enter product id to be deleted"
-                                                name='productId' id='productId'>
+                                        class="form-control" placeholder="enter product id to be deleted"
+                                        name='productId' id='productId'>
 
                                 </div id="container">
                         </div>
@@ -126,13 +122,11 @@
                         <p>{{success3}}</p>
                         <p>{{error3}}</p>
                         <br>
-                        <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="submit"
-                                        id='deleteProductIdButton'>delete
-                                </button>
+                        <div class="mt-5 text-center">
+                                <button class="btn btn-primary profile-button" type="submit" id='deleteProductIdButton'>delete</button>
                         </div>
                         <br>
                 </div>
         </form>
-
 </div>
 <script src="/public/js/admin.js"></script>

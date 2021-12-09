@@ -5,7 +5,7 @@
         <div class="col-md-9 single_left">
           <div class="single_image">
             {{!-- start product picture --}}
-					      <ul id="etalage">
+					  <ul id="etalage">
               <li>
                 <a href="optionallink.html">
                   <img
@@ -18,82 +18,16 @@
                   />
                 </a>
               </li>
-              <li>
-                <img
-                  class="etalage_thumb_image"
-                  src="{{product.productPicture}}"
-                />
-                <img
-                  class="etalage_source_image"
-                  src="{{product.productPicture}}"
-                />
-              </li>
-              <li>
-                <img
-                  class="etalage_thumb_image"
-                  src="{{product.productPicture}}"
-                />
-                <img
-                  class="etalage_source_image"
-                  src="{{product.productPicture}}"
-                />
-              </li>
-              <li>
-                <img
-                  class="etalage_thumb_image"
-                  src="{{product.productPicture}}"
-                />
-                <img
-                  class="etalage_source_image"
-                  src="{{product.productPicture}}"
-                />
-              </li>
-              <li>
-                <img
-                  class="etalage_thumb_image"
-                  src="{{product.productPicture}}"
-                />
-                <img
-                  class="etalage_source_image"
-                  src="{{product.productPicture}}"
-                />
-              </li>
-              <li>
-                <img
-                  class="etalage_thumb_image"
-                  src="{{product.productPicture}}"
-                />
-                <img
-                  class="etalage_source_image"
-                  src="{{product.productPicture}}"
-                />
-              </li>
-              <li>
-                <img
-                  class="etalage_thumb_image"
-                  src="{{product.productPicture}}"
-                />
-                <img
-                  class="etalage_source_image"
-                  src="{{product.productPicture}}"
-                />
-              </li>
             </ul>
-					    </div>
+					</div>
           <!-- end product_slider -->
          {{!-- start product description  --}}
           <div class="single_right">
             <h3>{{product.productName}}</h3>
-       
             <p class="m_10"><strong>Brand:</strong>{{product.brand}}</p>
-            
             <p class="m_10"><strong>Category</strong><br>{{product.category}}</p>
-            
-
-
-		<button id="like" type="submit" class="box-btn" data-productid="{{product._id}}"><span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span></button>
+            <button id="like" type="submit" class="box-btn" data-productid="{{product._id}}"><span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span></button>
             <br>				    	
-
             <input type="hidden" id="userID" value="{{flag}}">
             <input type="hidden" id="revlikeID" value="{{flag1}}">
             <input type ="hidden"  id="curUser" value="{{user._id}}">
@@ -108,16 +42,13 @@
                   href="/users/wishlist/{{product._id}}"
                 > Add to wishlist</a></li>
             </ul>
-             <br>
-              <p><strong>Links to buy this product:</strong></p>
-              {{#each product.productLinks}}
-              
-              <a href="{{this}}">Buy here</a>
-              <br>
-              {{/each}}
+            <br>
+            <p><strong>Links to buy this product:</strong></p>
+            {{#each product.productLinks}}
+            <a href="{{this}}">Buy here</a>
+            <br>
+            {{/each}}
           </div>
-
-        
           <div class="clear"> </div>
         </div>
         <div class="col-md-3">
@@ -126,415 +57,326 @@
             <ul class="prosuct-qty">
                <label><strong>Likes: {{product.likes.length}}</strong><span class="float-right"></span></label><br>
                <br>
-              
-                <label><strong>Average rating: {{product.overallRating}} </strong><span class="float-right"><i
-                        class="text-warning fa fa-star"
-                      ></i></span>
-                    <span class="float-right"><i
-                        class="text-warning fa fa-star"
-                      ></i></span>
-                    <span class="float-right"><i
-                        class="text-warning fa fa-star"
-                      ></i></span>
-                    <span class="float-right"><i class="rating"><strong
-                        >{{this.rating}} </strong></i>
-                      <i class="text-warning fa fa-star"></i></span></strong></strong></label>
-               
-              
+                <label><strong>Average rating: {{product.overallRating}} </strong><span class="float-right">
+                    {{this.rating}} </strong></i>
             </ul>
             <form>
-            <button type="button" name="Submit" class="exclusive">
-              <a href="{{product.productLinks.[0]}}"><span>Let's Buy</span></a>
-            </button>
+              <button type="button" name="Submit" class="exclusive">
+                <a href="{{product.productLinks.[0]}}"><span>Let's Buy</span></a>
+              </button>
             </form>
           </div>
         </div>
       </div>
       {{!-- end of product description --}}
-      
       {{!--start add review container --}}
-        <div class="container">
-            <div class="row">
-            <h2>Add Review</h2>
-            <table width="100%" border="0">
-              <div class="col-md-9 col-md-offset-0">
-                <tr><td width="77%">
+      <div class="container">
+        <div class="row">
+          <h2>Add Review</h2>
+          <table width="100%" border="0">
+            <div class="col-md-9 col-md-offset-0">
+              <tr><td width="77%">
                 <div class="">
                   <form id="addreview" class="form-horizontal" action="/products/review/{{product._id}}" method="post">
-                  <fieldset>
-            
-                    <!-- Name input-->
-                    <div class="form-group">
-                      <label class="col-md-3 control-label" for="title">Review Title</label>
-                      <div class="col-md-9">
-                        <input id="title" name="title" type="text" placeholder="Title" class="form-control">
+                    <fieldset>
+                      <!-- Name input-->
+                      <div class="form-group">
+                        <label class="col-md-3 control-label" for="title">Review Title</label>
+                        <div class="col-md-9">
+                          <input id="title" name="title" type="text" placeholder="Title" class="form-control">
+                        </div>
                       </div>
-                    </div>
-            
-                    
-                    <!-- Message body -->
-                    <div class="form-group">
-                      <label class="col-md-3 control-label" for="review">Your Review</label>
-                      <div class="col-md-9">
-                        <textarea class="form-control" id="reviewBody" name="reviewBody" placeholder="Please enter your review here..." rows="5"></textarea>
+                      <!-- Message body -->
+                      <div class="form-group">
+                        <label class="col-md-3 control-label" for="review">Your Review</label>
+                          <div class="col-md-9">
+                            <textarea class="form-control" id="reviewBody" name="reviewBody" placeholder="Please enter your review here..." rows="5"></textarea>
+                          </div>
                       </div>
-                    </div>
-
-
-                    <!-- Rating -->
-                    <div class="form-group">
-                      <label class="col-md-3 control-label" for="review">Your rating</label>
-                      <div class="col-md-9">
-                        <input id="rating" name=rating value="0" type="number" class="rating" min=0 max=5 step=1 data-size="xs" >
+                      <!-- Rating -->
+                      <div class="form-group">
+                        <label class="col-md-3 control-label" for="review">Your rating</label>
+                        <div class="col-md-9">
+                          <input id="rating" name=rating value="0" type="number" class="rating" min=0 max=5 step=1 data-size="xs" >
+                        </div>
                       </div>
-                    </div>
-            </td>
-            <td align="center" valign="top" width="23%">
-                    <!-- Form actions -->
-                    <div class="form-group">
-                      <div class="col-md-12 text-center">
-                        <button name="btn-addreview" type="submit" class="btn btn-primary btn-md">Submit</button>
-                        <button type="reset" class="btn btn-default btn-md">Clear</button>
-                      </div>
-                    </div>
-                  </fieldset>
+                      <td align="center" valign="top" width="23%">
+                        <!-- Form actions -->
+                        <div class="form-group">
+                          <div class="col-md-12 text-center">
+                            <button name="btn-addreview" type="submit" class="btn btn-primary btn-md">Submit</button>
+                            <button type="reset" class="btn btn-default btn-md">Clear</button>
+                          </div>
+                        </div>
+                      </td>
+                    </fieldset>
                   </form>
                 </div>
+              </td>
+              </tr>
             </div>
-            </td>
-            </tr>
-            </table>
+          </table>
         </div>
-      {{!-- end add review container --}}
-<br>  
-<br>
-
-  
-      <div class="desc">
-        <div class="container">
-          <div id="reviews" class="review-section">
-            {{!-- start review progress-bar-container --}}  
-            <div class="d-flex align-items-center justify-content-between mb-4">
-              <h4 class="m-0">{{product.reviews.length}}Reviews</h4>
-              <select
-                class="custom-select custom-select-sm border-0 shadow-sm ml-2 select2-hidden-accessible"
-                data-select2-id="1"
-                tabindex="-1"
-                aria-hidden="true"
-              >
-                <option data-select2-id="3">Most Liked</option>
-                <option>Most Recent</option>
-              </select>
-              <span
-                class="select2 select2-container select2-container--default"
-                dir="ltr"
-                data-select2-id="2"
-                style="width: 188px;"
-              >
-                <span class="selection">
-                  <span
-                    class="select2-selection select2-selection--single"
-                    role="combobox"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                    tabindex="0"
-                    aria-labelledby="select2-qd66-container"
+        {{!-- end add review container --}}
+        <br>  
+        <br>
+        <div class="desc">
+          <div class="container">
+            <div id="reviews" class="review-section">
+              {{!-- start review progress-bar-container --}}  
+              <div class="d-flex align-items-center justify-content-between mb-4">
+                <h4 class="m-0">{{product.reviews.length}}Reviews</h4>
+                <select
+                  class="custom-select custom-select-sm border-0 shadow-sm ml-2 select2-hidden-accessible"
+                  data-select2-id="1"
+                  tabindex="-1"
+                  aria-hidden="true"
                   >
+                  <option data-select2-id="3">Most Liked</option>
+                  <option>Most Recent</option>
+                </select>
+                <span
+                  class="select2 select2-container select2-container--default"
+                  dir="ltr"
+                  data-select2-id="2"
+                  style="width: 188px;"
+                  >
+                  <span class="selection">
                     <span
-                      class="select2-selection__rendered"
-                      id="select2-qd66-container"
-                      role="textbox"
-                      aria-readonly="true"
-                      title="Overall rating"
-                    ><strong>Average rating: {{product.overallRating}}    <span class="float-right"><i
-                        class="text-warning fa fa-star"
-                      ></i></span>
-                    <span class="float-right"><i
-                        class="text-warning fa fa-star"
-                      ></i></span>
-                    <span class="float-right"><i
-                        class="text-warning fa fa-star"
-                      ></i></span>
-                    <span class="float-right"><i class="rating"><strong
-                        >{{this.rating}} </strong></i>
-                      <i class="text-warning fa fa-star"></i></span></strong></span>
+                      class="select2-selection select2-selection--single"
+                      role="combobox"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                      tabindex="0"
+                      aria-labelledby="select2-qd66-container"
+                      >
+                      <span
+                          class="select2-selection__rendered"
+                          id="select2-qd66-container"
+                          role="textbox"
+                          aria-readonly="true"
+                          title="Overall rating"
+                        >
+                        <strong>Average rating: {{product.overallRating}}     
+                          {{this.rating}} 
+                        </strong>
+                        <i class="text-warning fa fa-star"></i>
+                      </span>
+                    </span>
                     <span
                       class="select2-selection__arrow"
                       role="presentation"
-                    ><b role="presentation"></b></span>
+                      >
+                      <b role="presentation"></b>
+                    </span>
                   </span>
                 </span>
                 <span class="dropdown-wrapper" aria-hidden="true"></span>
-              </span>
-            </div>
-            <div class="row">
-              <div class="col-md-6">
-                <table class="stars-counters">
-                  <tbody>
-                    <tr class="">
-                      <td>
-                        <span>
-                          <button
-                            class="fit-button fit-button-color-blue fit-button-fill-ghost fit-button-size-medium stars-filter"
-                          >5 Stars</button>
-                        </span>
-                      </td>
-                      <td class="progress-bar-container">
-                        <div
-                          class="fit-progressbar fit-progressbar-bar star-progress-bar"
-                        >
-                          <div class="fit-progressbar-background">
-                            <span
-                              class="progress-fill"
-                              style="width: {{status.bar5}}%;"
-                            ></span>
-                          </div>
-                        </div>
-                      </td>
-                      <td class="star-num">({{status.a}})</td>
-                    </tr>
-                    <tr class="">
-                      <td>
-                        <span>
-                          <button
-                            class="fit-button fit-button-color-blue fit-button-fill-ghost fit-button-size-medium stars-filter"
-                          >4 Stars</button>
-                        </span>
-                      </td>
-                      <td class="progress-bar-container">
-                        <div
-                          class="fit-progressbar fit-progressbar-bar star-progress-bar"
-                        >
-                          <div class="fit-progressbar-background">
-                            <span
-                              class="progress-fill"
-                              style="width: {{status.bar4}}%;"
-                            ></span>
-                          </div>
-                        </div>
-                      </td>
-                      <td class="star-num">({{status.b}})</td>
-                    </tr>
-                    <tr class="">
-                      <td>
-                        <span>
-                          <button
-                            class="fit-button fit-button-color-blue fit-button-fill-ghost fit-button-size-medium stars-filter"
-                          >3 Stars</button>
-                        </span>
-                      </td>
-                      <td class="progress-bar-container">
-                        <div
-                          class="fit-progressbar fit-progressbar-bar star-progress-bar"
-                        >
-                          <div class="fit-progressbar-background">
-                            <span
-                              class="progress-fill"
-                              style="width: {{status.bar3}}%;"
-                            ></span>
-                          </div>
-                        </div>
-                      </td>
-                      <td class="star-num">({{status.c}})</td>
-                    </tr>
-                    <tr class="">
-                      <td>
-                        <span>
-                          <button
-                            class="fit-button fit-button-color-blue fit-button-fill-ghost fit-button-size-medium stars-filter"
-                          >2 Stars</button>
-                        </span>
-                      </td>
-                      <td class="progress-bar-container">
-                        <div
-                          class="fit-progressbar fit-progressbar-bar star-progress-bar"
-                        >
-                          <div class="fit-progressbar-background">
-                            <span
-                              class="progress-fill"
-                              style="width: {{status.bar2}}%;"
-                            ></span>
-                          </div>
-                        </div>
-                      </td>
-                      <td class="star-num">({{status.d}})</td>
-                    </tr>
-                    <tr class="">
-                      <td>
-                        <span>
-                          <button
-                            class="fit-button fit-button-color-blue fit-button-fill-ghost fit-button-size-medium stars-filter"
-                          >1 Stars</button>
-                        </span>
-                      </td>
-                      <td class="progress-bar-container">
-                        <div
-                          class="fit-progressbar fit-progressbar-bar star-progress-bar"
-                        >
-                          <div class="fit-progressbar-background">
-                            <span
-                              class="progress-fill"
-                              style="width: {{status.bar1}}%;"
-                            ></span>
-                          </div>
-                        </div>
-                      </td>
-                      <td class="star-num">({{status.e}})</td>
-                    </tr>
-                  </tbody>
-                </table>
               </div>
-              <div class="col-md-6">
-              </div>
-            </div>
-          </div>
-          {{!-- end review progress-bar-container --}}
-          {{!-- start review lists --}}
-          <div class="review-list">
-          {{#each product.reviews}}
-          
-         <div class="card">
-	        <div class="card-body review-blog">
-	            <div class="row">
-        	      <div class="col-md-2">
-        	        <img src={{this.userImage}} class="img img-rounded img-fluid" alt="Reviewing User"/>
-        	        <p class="text-secondary text-center">{{this.date}}</p>
-        	    </div>
-        	    <div class="col-md-10">
-        	        <p>
-        	            <a class="float-left review-username" href="#"><strong>{{this.userName}}</strong></a>
-                      <span class="float-right"><i class="text-warning fa fa-star"></i></span>
-                      <span class="float-right"><i class="text-warning fa fa-star"></i></span>
-        	            <span class="float-right"><i class="text-warning fa fa-star"></i></span>
-        	            <span class="float-right" ><i class="rating"><strong>{{this.rating}} </strong></i> <i class="text-warning fa fa-star"></i></span>              
-
-        	   </p>
-        	       <div class="clearfix"></div>
-                    <p class="review-id" data-userid="{{user.userName}}" data-reviewid="{{this._id}}">{{this.title}}</p>
-                    <p>{{this.reviewBody}}</p>
-        	        <p>
-                      {{!-- Added class review-reply as an identifier for the review like button --}}
-        	            <a class="float-right btn btn-outline-primary ml-2 review-reply"> <i class="fa fa-reply"></i> Comment</a>
-                      {{!-- Added class review-like as an identifier for the review like button --}}
-        	            <a id = "revlike"  class="float-right btn text-white btn-danger review-like" data-selected="{{this.islike}}" > <i class="fa fa-heart"></i> <span>Like</span></a>
-        	      {{!-- id = "revlike" --}}
-                 </p>
-        	    </div>
-              <div class="reviews-members-footer">
-                                    <div class="total-like" href="#"><i class="glyphicon glyphicon-thumbs-up"></i> {{this.likes.length}}</div>
-                                    <div class="total-like" href="#"><i class="glyphicon glyphicon-comment"></i> {{this.Comments.length}}</div> 
-                                    
-              </div>
-	        </div>
-            <!-- Start of Comments -->
-           <div class="comment-space">
-            <br>
-            {{#each this.Comments}}
-	        	<div class="card card-inner">
-            	    <div class="card-body">
-            	        <div class="row">
-                    	    <div class="col-md-2">
-                    	        <img  src="{{this.userImage}}" class="img img-rounded img-fluid" alt="Commenting User" />
-                    	        <p  class="text-secondary text-center">{{this.date}}</p>
-                    	    </div>
-                    	    <div class="col-md-10">
-                    	        <p><a href="#"><strong id="userName">{{this.userName}}</strong></a></p>
-                    	        <p>{{this.commentBody}}</p>
-                    	        <p>
-                
-                                  </p>
-                    	    </div>
-            	        </div>
-                         
-            	    </div>
-              
-	            </div>
-                 {{/each}}
-<!-- Start of Comment Dialog box-->
-<div class="card card-inner" id="commentDialog" style="display:none">
-          <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-2">
-                                  <!-- Todo Add server side script to show photo -->
-                                    <img id="userImg" src="https://image.ibb.co/jw55Ex/def_face.jpg" class="img img-rounded img-fluid" alt="ProfilPic"/>
-                                    <p id="commentTime" class="text-secondary text-center post-time">Time</p>
-                                </div>
-                                <div class="col-md-10 comment-area">
-                                  <!-- Todo Add server side script to show name of the logged in person -->
-                                    <p><a href="#"><strong id="userName">{{user.userName}}</strong></a></p>
-                                    <p>
-                                        <textarea autofocus id="cmntbody" class="review-txt-area" rows="4" style="width:100%" placeholder="Write a comment"></textarea>
-                                    </p>
-                                    <p>
-                                        <a class="float-right btn text-white btn-primary add-comment"> </i> <span>ADD</span></a>
-                                  </p>
-                                </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <table class="stars-counters">
+                    <tbody>
+                      <tr class="">
+                        <td>
+                          <span>
+                            <button
+                              class="fit-button fit-button-color-blue fit-button-fill-ghost fit-button-size-medium stars-filter"
+                            >5 Stars</button>
+                          </span>
+                        </td>
+                        <td class="progress-bar-container">
+                          <div
+                            class="fit-progressbar fit-progressbar-bar star-progress-bar"
+                            >
+                            <div class="fit-progressbar-background">
+                              <span
+                                class="progress-fill"
+                                style="width: {{status.bar5}}%;"
+                              ></span>
                             </div>
-                              
+                          </div>
+                        </td>
+                        <td class="star-num">({{status.a}})</td>
+                      </tr>
+                      <tr class="">
+                        <td>
+                          <span>
+                            <button
+                              class="fit-button fit-button-color-blue fit-button-fill-ghost fit-button-size-medium stars-filter"
+                            >4 Stars</button>
+                          </span>
+                        </td>
+                        <td class="progress-bar-container">
+                          <div
+                            class="fit-progressbar fit-progressbar-bar star-progress-bar"
+                            >
+                            <div class="fit-progressbar-background">
+                              <span
+                                class="progress-fill"
+                                style="width: {{status.bar4}}%;"
+                              ></span>
+                            </div>
+                          </div>
+                        </td>
+                        <td class="star-num">({{status.b}})</td>
+                      </tr>
+                      <tr class="">
+                        <td>
+                          <span>
+                            <button
+                              class="fit-button fit-button-color-blue fit-button-fill-ghost fit-button-size-medium stars-filter"
+                            >3 Stars</button>
+                          </span>
+                        </td>
+                        <td class="progress-bar-container">
+                          <div
+                            class="fit-progressbar fit-progressbar-bar star-progress-bar"
+                            >
+                            <div class="fit-progressbar-background">
+                              <span
+                                class="progress-fill"
+                                style="width: {{status.bar3}}%;"
+                              ></span>
+                            </div>
+                          </div>
+                        </td>
+                        <td class="star-num">({{status.c}})</td>
+                      </tr>
+                      <tr class="">
+                        <td>
+                          <span>
+                            <button
+                              class="fit-button fit-button-color-blue fit-button-fill-ghost fit-button-size-medium stars-filter"
+                            >2 Stars</button>
+                          </span>
+                        </td>
+                        <td class="progress-bar-container">
+                          <div
+                            class="fit-progressbar fit-progressbar-bar star-progress-bar"
+                            >
+                            <div class="fit-progressbar-background">
+                              <span
+                                class="progress-fill"
+                                style="width: {{status.bar2}}%;"
+                              ></span>
+                            </div>
+                          </div>
+                        </td>
+                        <td class="star-num">({{status.d}})</td>
+                      </tr>
+                      <tr class="">
+                        <td>
+                          <span>
+                            <button
+                              class="fit-button fit-button-color-blue fit-button-fill-ghost fit-button-size-medium stars-filter"
+                            >1 Stars</button>
+                          </span>
+                        </td>
+                        <td class="progress-bar-container">
+                          <div
+                            class="fit-progressbar fit-progressbar-bar star-progress-bar"
+                            >
+                            <div class="fit-progressbar-background">
+                              <span
+                                class="progress-fill"
+                                style="width: {{status.bar1}}%;"
+                              ></span>
+                            </div>
+                          </div>
+                        </td>
+                        <td class="star-num">({{status.e}})</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="col-md-6"></div>
+              </div>
             </div>
-                    
-  </div>
-
-  <!-- End of Commnt Dialog Box-->
-
-
-
-
+            {{!-- end review progress-bar-container --}}
+            {{!-- start review lists --}}
+            <div class="review-list">
+              {{#each product.reviews}}
+              <div class="card">
+                <div class="card-body review-blog">
+                  <div class="row">
+                    <div class="col-md-2">
+                      <img src={{this.userImage}} class="img img-rounded img-fluid" alt="Reviewing User"/>
+                      <p class="text-secondary text-center">{{this.date}}</p>
+                    </div>
+                    <div class="col-md-10">
+                      <p>
+                        <a class="float-left review-username" href="#"><strong>{{this.userName}}</strong></a>
+                        <span class="float-right"><i class="text-warning fa fa-star"></i></span>
+                        <span class="float-right"><i class="text-warning fa fa-star"></i></span>
+                        <span class="float-right"><i class="text-warning fa fa-star"></i></span>
+                        <span class="float-right" ><i class="rating"><strong>{{this.rating}} </strong></i> <i class="text-warning fa fa-star"></i></span>              
+                      </p>
+                      <div class="clearfix"></div>
+                        <p class="review-id" data-userid="{{user.userName}}" data-reviewid="{{this._id}}">{{this.title}}</p>
+                        <p>{{this.reviewBody}}</p>
+                        <p>
+                          {{!-- Added class review-reply as an identifier for the review like button --}}
+                          <a class="float-right btn btn-outline-primary ml-2 review-reply"> <i class="fa fa-reply"></i> Comment</a>
+                          {{!-- Added class review-like as an identifier for the review like button --}}
+                          <a id = "revlike"  class="float-right btn text-white btn-danger review-like" data-selected="{{this.islike}}" > <i class="fa fa-heart"></i> <span>Like</span></a>
+                          {{!-- id = "revlike" --}}
+                        </p>
+                    </div>
+                    <div class="reviews-members-footer">
+                      <div class="total-like" href="#"><i class="glyphicon glyphicon-thumbs-up"></i> {{this.likes.length}}</div>
+                      <div class="total-like" href="#"><i class="glyphicon glyphicon-comment"></i> {{this.Comments.length}}</div> 
+                    </div>
+                  </div>
+                  <!-- Start of Comments -->
+                  <div class="comment-space">
+                    <br>
+                    {{#each this.Comments}}
+                    <div class="card card-inner">
+                      <div class="card-body">
+                        <div class="row">
+                          <div class="col-md-2">
+                            <img  src="{{this.userImage}}" class="img img-rounded img-fluid" alt="Commenting User" />
+                            <p  class="text-secondary text-center">{{this.date}}</p>
+                          </div>
+                          <div class="col-md-10">
+                            <p><a href="#"><strong id="userName">{{this.userName}}</strong></a></p>
+                            <p>{{this.commentBody}}</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    {{/each}}
+                  </div>
+                  <!-- Start of Comment Dialog box-->
+                  <div class="card card-inner" id="commentDialog" style="display:none">
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col-md-2">
+                          <!-- Todo Add server side script to show photo -->
+                          <img id="userImg" src="https://image.ibb.co/jw55Ex/def_face.jpg" class="img img-rounded img-fluid" alt="ProfilPic"/>
+                          <p id="commentTime" class="text-secondary text-center post-time">Time</p>
+                        </div>
+                      <div class="col-md-10 comment-area">
+                      <!-- Todo Add server side script to show name of the logged in person -->
+                      <p><a href="#"><strong id="userName">{{user.userName}}</strong></a></p>
+                      <p>
+                        <textarea autofocus id="cmntbody" class="review-txt-area" rows="4" style="width:100%" placeholder="Write a comment"></textarea>
+                      </p>
+                      <p>
+                        <a class="float-right btn text-white btn-primary add-comment"> </i> <span>ADD</span></a>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- End of Commnt Dialog Box-->
             </div>
             <!-- End of Comments -->   
-	         </div>
-	        </div>
-          
-          {{/each}}
-          {{!-- end of review list --}}
           </div>
-        </div>
-      </div>
-  
-      <div class="row">
-        <h4 class="m_11">Related Products</h4>
-        <div class="col-md-4 product1">
-          <img src="/public/uploads/fe1.jpg" class="img-responsive" alt="product" />
-          <div class="shop_desc"><a href="/products">
-            </a><h3><a href="/products"></a><a href="#">aliquam volutp</a></h3>
-            <p>Lorem ipsum consectetuer adipiscing </p>
-            <span class="reducedfrom">$66.00</span>
-            <span class="actual">$12.00</span><br />
-            <ul class="buttons">
-              <li class="cart"><a href="#">Add To Cart</a></li>
-              <li class="shop_btn"><a href="#">Read More</a></li>
-              <div class="clear"> </div>
-            </ul>
-          </div>
-        </div>
-        <div class="col-md-4 product1">
-          <img src="/public/uploads/f1.jpg" class="img-responsive" alt="product" />
-          <div class="shop_desc"><a href="/products">
-            </a><h3><a href="/products"></a><a href="#">aliquam volutp</a></h3>
-            <p>Lorem ipsum consectetuer adipiscing </p>
-            <span class="reducedfrom">$66.00</span>
-            <span class="actual">$12.00</span><br />
-            <ul class="buttons">
-              <li class="cart"><a href="#">Add To Cart</a></li>
-              <li class="shop_btn"><a href="#">Read More</a></li>
-              <div class="clear"> </div>
-            </ul>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <img src="/public/uploads/fm1.jpg" class="img-responsive" alt="product" />
-          <div class="shop_desc"><a href="/products">
-            </a><h3><a href="/products"></a><a href="#">aliquam volutp</a></h3>
-            <p>Lorem ipsum consectetuer adipiscing </p>
-            <span class="reducedfrom">$66.00</span>
-            <span class="actual">$12.00</span><br />
-            <ul class="buttons">
-              <li class="cart"><a href="#">Add To Cart</a></li>
-              <li class="shop_btn"><a href="#">Read More</a></li>
-              <div class="clear"> </div>
-            </ul>
-          </div>
-        </div>
+        </div>    
+        {{/each}}
+        {{!-- end of review list --}}
       </div>
     </div>
   </div>
