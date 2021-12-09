@@ -130,6 +130,7 @@ router.post("/add", async (req, res) => {
   
 });
 
+
 router.put("/:id", async (req, res) => {
   const { productName, productPicture, productLinks, brand, price, category } =
     req.body;
@@ -172,6 +173,7 @@ router.put("/:id", async (req, res) => {
     res.status(404).send({ error: e });
   }
 });
+
 
 router.delete("/:id", async (req, res) => {
   try {
