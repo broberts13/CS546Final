@@ -3,7 +3,6 @@ const router = express.Router();
 const data = require("../data");
 const reviewData = data.reviews;
 
-
 //delete review by reviewId
 router.delete('/:reviewId', async (req, res) => {
     const reviewId = req.params.reviewId;

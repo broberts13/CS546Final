@@ -3,6 +3,7 @@ const router = express.Router();
 const data = require("../data");
 const adminData = require("../data/admin");
 const pendingData = require("../data/pending");
+const xss = require('xss');
 
 router.get("/login", async (req, res) => {
   try {
@@ -13,7 +14,8 @@ router.get("/login", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-  const { username, password } = req.body;
+  const username = xss(req.body.username);
+  const password = xss(req.body.password);
   if (!username) {
     res.status(400).json({ error: "You must provide User name" });
     return;
@@ -42,8 +44,12 @@ router.post("/", async (req, res) => {
 });
 
 router.post("/addProd", async (req, res) => {
-  const { productName, productPicture, productLinks, brand, price, category } =
-    req.body;
+  const productName = xss(req.body.productName);
+  const productPicture = xss(req.body.productPicture);
+  const productLinks = xss(req.body.productLinks);
+  const brand = xss(req.body.brand);
+  const price = xss(req.body.price);
+  const category = xss(req.body.category);
   if (!productName) {
     res
       .status(400)
