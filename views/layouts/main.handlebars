@@ -135,12 +135,14 @@ jQuery(document).ready(function($){
 						    <li><a href="/products">Products</a></li>
 							{{#if user}}
 						    <li><a href="/users">Profile</a></li>
+							{{else}} {{#if admin}}
+						    <li><a href="/admin/logout">Admin Logout</a></li>
 							{{else}}
 						    <li><a href="/login">Login</a></li>
-							{{/if}}	
+							{{/if}}{{/if}}	
 							{{#if user}}
-							<li><a href="/logout">Logout</a></li>	
-							{{/if}}	
+							<li><a href="/logout">Logout</a></li>
+							{{/if}}
 							<div class="clear"></div>
 						</ul>
 						<script type="text/javascript" src="/public/js/responsive-nav.js"></script>
