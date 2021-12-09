@@ -36,6 +36,10 @@ router.post("/login", async (req, res) => {
   //console.log(username, password);
   try {
     const admin = await adminData.login(username, password);
+    if (!admin) {
+      res.status(400).send({ error: "You are not authorized" });
+      return;
+    }
     const pending = await pendingData.getAll();
     // if (user.admin) {
     //   res.render("admin", {user: user})
@@ -43,8 +47,8 @@ router.post("/login", async (req, res) => {
     // }
     
     req.session.admin = admin;
-    console.log(admin)
-    console.log("login success", admin)
+    // console.log(admin)
+    // console.log("login success", admin)
     // res.render("layouts/main", {admin:req.session.admin})
     res.render("admin/admin", {admin:req.session.admin, pending: pending });
   } catch (e) {
