@@ -126,7 +126,7 @@ jQuery(document).ready(function($){
 			  <div class="col-md-12">
 				 <div class="header-left">
 					<div class="logo">
-						<a href="/"><img src="public/images/logo.png" alt=""/></a>
+						<a href="/"><img src="public/images/logo.png" alt="logo"/> </a>
 					</div>
 					<div class="menu">
 						<ul class="nav" id="nav">
@@ -151,6 +151,7 @@ jQuery(document).ready(function($){
 						<div class="search-box">
 								<div id="sb-search" class="sb-search">
 									<form action = "/products/search" method = "POST" id="searchForm">
+										<label for="search">search Box</label>
 										<input class="sb-search-input" placeholder="Enter your search term..." type="search" name="search" id="search">
 										<input class="sb-search-submit" type="submit" value="">
 										<span class="sb-icon-search"> </span>
@@ -171,32 +172,33 @@ jQuery(document).ready(function($){
 		</div>
 	</div>
 	{{{body}}}
-		<div class="footer">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-3">
-						<ul class="footer_box">
-							<h4>Products</h4>
-							<li><a href="/products">All Products</a></li>
-							<li><a href="/products/add">Add a Product</a></li>
-						</ul>
-					</div>
-					<div class="col-md-3">
-						<ul class="footer_box">
-							<h4>Team Members</h4>
-							<li><a href="#">Rachna Shah</a></li>
-							<li><a href="#">JiaNi Yu</a></li>
-							<li><a href="#">SiJia Wang</a></li>
-							<li><a href="#">Belle Roberts</a></li>
-						</ul>
-					</div>
+	<div class="footer">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-3">
+					<ul class="footer_box">
+						<h4>Products</h4>
+						<li><a href="/products">All Products</a></li>
+						<li><a href="/products/add">Add a Product</a></li>
+					</ul>
 				</div>
-				<div class="row footer_bottom">
-				    <div class="copy">
-			           <p>© 2014 Template by <a href="http://w3layouts.com" target="_blank">w3layouts</a></p>
-		            </div>
-   				</div>
+				<div class="col-md-3">
+					<ul class="footer_box">
+						<h4>Team Members</h4>
+						<li><a href="#">Rachna Shah</a></li>
+						<li><a href="#">JiaNi Yu</a></li>
+						<li><a href="#">SiJia Wang</a></li>
+						<li><a href="#">Belle Roberts</a></li>
+					</ul>
+				</div>
 			</div>
+			<div class="row footer_bottom">
+				<div class="copy">
+			        <p>© 2014 Template by <a href="http://w3layouts.com" target="_blank">w3layouts</a></p>
+		        </div>
+   			</div>
 		</div>
-</body>	
+	</div>
+</body>
+
 </html>

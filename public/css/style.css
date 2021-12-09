@@ -581,6 +581,7 @@ li.list_desc h4 a:hover {
 }
 .content_bottom-text h3 {
   color: #fff;
+  background-color: #000;
   font-size: 3em;
   font-weight: 800;
   text-transform: uppercase;
@@ -589,12 +590,14 @@ li.list_desc h4 a:hover {
 }
 p.m_1 {
   color: #fff;
+  background-color: #000;
   font-size: 0.85em;
   line-height: 2.2em;
   margin-bottom: 6%;
 }
 p.m_2 {
   color: #fff;
+  background-color: #000;
   font-size: 0.85em;
   line-height: 2.2em;
 }
