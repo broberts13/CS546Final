@@ -5,25 +5,25 @@ const validate = require("./validation");
 const { ObjectId } = require("mongodb");
 
 let exportedMethods = {
-    async getReviewById(reviewId) {
-        if (!validate.validString(reviewId)) throw 'ReviewId must be strings and not empty';
+    // async getReviewById(reviewId) {
+    //     if (!validate.validString(reviewId)) throw 'ReviewId must be strings and not empty';
     
-        try {
-          var parsedId = ObjectId(reviewId);
-        } catch (e) {
-          throw 'reviewId  is not a valid ObjectId';
-        }
-        const prodCollection = await products();
-        const prod = await prodCollection.findOne({ "reviews": { $elemMatch: { "_id": parsedId } } });
-        if (prod === null) throw 'No review with that reviewId';
-        for (let i = 0; i < prod.reviews.length; i++) {
-          if (prod.reviews[i]._id.toString() == reviewId) {
-            prod.reviews[i]._id = prod.reviews[i]._id.toString();
-            return prod.reviews[i];
-          }
-        }
-        throw 'No review with that reviewId';
-    },
+    //     try {
+    //       var parsedId = ObjectId(reviewId);
+    //     } catch (e) {
+    //       throw 'reviewId  is not a valid ObjectId';
+    //     }
+    //     const prodCollection = await products();
+    //     const prod = await prodCollection.findOne({ "reviews": { $elemMatch: { "_id": parsedId } } });
+    //     if (prod === null) throw 'No review with that reviewId';
+    //     for (let i = 0; i < prod.reviews.length; i++) {
+    //       if (prod.reviews[i]._id.toString() == reviewId) {
+    //         prod.reviews[i]._id = prod.reviews[i]._id.toString();
+    //         return prod.reviews[i];
+    //       }
+    //     }
+    //     throw 'No review with that reviewId';
+    // },
   
   async removeReview(reviewId) {
 

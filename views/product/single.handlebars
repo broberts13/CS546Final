@@ -412,9 +412,6 @@
         	       <div class="clearfix"></div>
                     <p class="review-id" data-userid="{{user.userName}}" data-reviewid="{{this._id}}">{{this.title}}</p>
                     <p>{{this.reviewBody}}</p>
-                  <p>
-                    <a class="float-right btn btn-outline-primary ml-2 delete-review"> <i class="fa fa-reply"></i> Delete</a>
-                 </p>
         	        <p>
                       {{!-- Added class review-reply as an identifier for the review like button --}}
         	            <a class="float-right btn btn-outline-primary ml-2 review-reply"> <i class="fa fa-reply"></i> Comment</a>
@@ -612,33 +609,6 @@
 
         });
   <!-- End of Review Likes -->
-
-  <!-- Delete Review -->
-  $(document).on("click", ".delete-review" , function() {
-
-      var ID = $(this).closest(".review-blog").find(".review-id");
-      var reviewId= ID.data("reviewid");
-      var likereviewUrl = "/reviews/"+reviewId;	
-          
-        $.ajax({
-            type: 'DELETE',
-            url: likereviewUrl,
-            data: {},
-            success: function (data) {
-                if(!data.deleted)
-                  alert(data.msg);
-                else
-                  alert("delete successful!");
-                  window.location.reload();
-            },
-              error: function (jqXhr, textStatus, errorMessage) {
-              alert("Login to delete review");
-              window.location.href = "/login";
-            }
-        });
-
-        });
-  <!-- End of Delete Review -->
 
   <!-- Showing Comments Dialogue-->
   $(document).on("click", ".review-reply" , function() {
