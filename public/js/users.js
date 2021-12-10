@@ -20,7 +20,9 @@
           window.location.reload();
         },
         error: function (error) {
-          alert(error.responseText);
+          var jsonObj = JSON.parse(error.responseText);
+          $("#profile-edit-error").text( jsonObj.error);
+          // alert(error.responseText);
         },
       });
     } else {
@@ -42,12 +44,16 @@
               window.location.href = "/users";
             },
             error: function (error) {
-              alert(error.responseText);
+              var jsonObj = JSON.parse(error.responseText);
+              $("#profile-edit-error").text( jsonObj.error);
+              // alert(error.responseText);
             },
           });
         },
         error: function (error) {
-          alert(error.responseText);
+          var jsonObj = JSON.parse(error.responseText);
+          $("#profile-edit-error").text( jsonObj.error);
+          // alert(error.responseText);
         },
       });
     }
@@ -73,7 +79,9 @@
           window.location.reload();
         },
         error: function (error) {
-          alert(error.responseText);
+          var jsonObj = JSON.parse(error.responseText);
+          $("#adduser-error").text( jsonObj.error);
+          // alert(error.responseText);
         },
       });
     } else {
@@ -95,12 +103,16 @@
               window.location.href = "/users";
             },
             error: function (error) {
-              alert(error.responseText);
+              var jsonObj = JSON.parse(error.responseText);
+              $("#adduser-error").text( jsonObj.error);
+              // alert(error.responseText);
             },
           });
         },
         error: function (error) {
-          alert(error.responseText);
+          var jsonObj = JSON.parse(error.responseText);
+          $("#adduser-error").text( jsonObj.error);
+          // alert(error.responseText);
         },
       });
     }
