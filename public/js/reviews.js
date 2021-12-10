@@ -30,7 +30,8 @@
       });
     }
     else{
-      alert("FILL ALL REQUIRED DETAILS TO POST REVIEW");
+      $("#input-error").text("FILL ALL REQUIRED DETAILS TO POST REVIEW");
+      // alert("FILL ALL REQUIRED DETAILS TO POST REVIEW");
     }
   });
   $(".delete-review").click(function(e) {
