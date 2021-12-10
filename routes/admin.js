@@ -106,7 +106,7 @@ router.post("/deletePending", async (req, res) => {
     }
     const pendingId = await pendingData.deletePending(pending);
     const pendingList = await pendingData.getAll();
-    res.render("admin/admin", {admin:req.session.admin, pending: pendingList, success2: "pending "+pendingId+" request removed successfully" });
+    res.render("admin/admin", {admin:req.session.admin, pending: pendingList, success2: "Pending "+pendingId+" request removed successfully" });
   } catch (e) {
     res.status(404).render("admin/admin", { pending: first, error2: e });
   }

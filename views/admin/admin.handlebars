@@ -1,8 +1,7 @@
 <div class="container rounded bg-white mt-5 mb-5">
         <div class="row">
-                <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5"
-                                width="150px" src="/public/uploads/thread-lock.jpg"><br><span
-                                class="font-weight-bold"><strong>{{users.firstName}}</strong></span>Admin<br>
+                <div class="d-flex flex-column align-items-center text-center"><img class="rounded-circle mt-5"
+                                width="150px" src="/public/uploads/thread-lock.jpg"><br><h2>{{users.firstName}} [Admin]</h2><br>
                         <span class="text-black-50">{{users.email}}</span><span> </span>
                 </div>
                 <br>
@@ -11,15 +10,23 @@
                                 <div>
                                         <br>
                                         <h3 class="text-centre">Pending Products Requests</h3>
-                                        <br>
-                                        <br>
-                                        {{#each pending}}
-                                        <h5>{{this.productName}}</h5>
-                                        <p>{{this.brand}}</p>
-                                        <p>{{this._id}}</p>
-                                        {{/each}}
-                                        <br>
-                                        <br>
+
+                                        <table>
+  <tr>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Brand</th>
+  </tr>
+  {{#each pending}}                                      
+  <tr>
+    <td>{{this._id}}</td>
+    <td>{{this.productName}}</td>
+    <td>{{this.brand}}</td>
+  </tr>
+    {{/each}}
+</table>
+
+                                       
                                 </div>
 
                         </div>
@@ -96,8 +103,9 @@
                                 </div id="container">
                         </div>
                         <br>
-                        <p>{{success2}}</p>
-                        <p>{{error2}}</p>
+                        <p class="success">{{success2}}</p>
+                        <p class="err">{{error2}}</p>
+
                         <br>
                         <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="submit"
                                         id='deletePendingIdButton'>delete

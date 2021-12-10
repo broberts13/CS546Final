@@ -2937,4 +2937,32 @@ image-tools.show-on-hover {
 }
 .err{
   color: red;
+  font-weight: bold;
+}
+
+.success{
+  color: rgb(37, 209, 31);
+  font-weight: bold;
+}
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+  outline: thin solid;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+  outline: thin solid;
+}
+table, th, td {
+  border: 1px solid black;
+  
 }
