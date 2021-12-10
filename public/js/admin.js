@@ -3,7 +3,6 @@
     event.preventDefault();
     var formData = new FormData();
     formData.append("image", $("#imageUpload")[0].files[0]);
-    console.log("formData", formData)
     $.ajax({
       type: "POST",
       url: "/uploadSingle",
@@ -17,34 +16,15 @@
           brand: $("#brand").val(),
           price: $("#price").val(),
           category: $("#category").val(),
+          pendingid: $("#pendingid").val(),
           productPicture: path,
         };
         $.ajax({
           type: "POST",
-          url: "/products", //goes to /admin instead?
+          url: "/products",
           data: newProd,
           success: function (response) {
-            alert("create product success");
-            pendingId = $('#pendingid').val();
-            if (pendingId) {
-              console.log("creating product success, and removing pending item")
-              $.ajax({
-                type: "POST",
-                url: "/admin/deletePending",
-                data: {pendingId:pendingId},
-                success: function (response) {
-                  window.location.href = "/admin";
-                  alert("delete pending product success");
-                },
-                error: function (error) {
-                  alert(error.responseText);
-                },
-              });
-            }
-            else {
-              window.location.href = "/admin";
-            }
-            alert("create product success");
+            window.location.href = "/products";
           },
           error: function (error) {
             alert(error.responseText);
