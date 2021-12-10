@@ -36,7 +36,6 @@ router.post("/", async (req, res) => {
     res.render("admin/admin", {
       user: req.session.user,
       pending: pending,
-      error: e,
     });
   } catch (e) {
     res.status(400).send({ error: e });
