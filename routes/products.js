@@ -66,10 +66,11 @@ router.post("/search", async (req, res) => {
 router.post("/", async (req, res) => {
   const productName = xss(req.body.productName);
   const productPicture = xss(req.body.productPicture);
-  const productLinks = xss(req.body.productLinks);
+  const productLinks = (req.body.productLinks);
   const brand = xss(req.body.brand);
   const price = xss(req.body.price);
   const category = xss(req.body.category);
+  console.log("productLinks ", productLinks, typeof productLinks);
   if (!productName) {
     res.status(400).json({ error: "You must provide product name" });
     return;
