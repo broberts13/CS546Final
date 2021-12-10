@@ -33,6 +33,26 @@
       alert("FILL ALL REQUIRED DETAILS TO POST REVIEW");
     }
   });
+  $(".delete-review").click(function(e) {
 
+      var ID = $(this).closest(".review-blog").find(".review-id");
+      var reviewId= ID.data("reviewid");
+      var likereviewUrl = "/reviews/"+reviewId;	
+          
+        $.ajax({
+            type: 'DELETE',
+            url: likereviewUrl,
+            data: {},
+            success: function (data) {
+                  alert("delete successful!");
+                  window.location.reload();
+            },
+              error: function (jqXhr, textStatus, errorMessage) {
+              alert("Login to delete review");
+              window.location.href = "/login";
+            }
+        });
+
+  });
 
 })(window.jQuery);
