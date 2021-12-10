@@ -31,7 +31,6 @@
     "handlebars-helper-equal": "^1.0.0",
     "helpers": "0.0.6",
     "mongodb": "^3.6.2",
-    "multer": "^1.4.3",
-    "xss": "^1.0.10"
+    "multer": "^1.4.3"
   }
 }

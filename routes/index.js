@@ -75,24 +75,24 @@ const constructorMethod = (app) => {
   app.post("/login", async (req, res) => {
     const { username, password } = req.body;
     if (!username) {
-      return res.redirect("/login?error=Enter UserName");
+      res.status(400).json({ error: "You must provide User name" });
+      return;
     }
-
     if (!password) {
-      return res.redirect("/login?error=Enter Password");
+      res.status(400).json({ error: "You must provide User password" });
+      return;
     }
     try {
       const user = await usersData.login(username, password);
       req.session.user = user;
       res.render("landing/landing", { user: req.session.user });
     } catch (e) {
-      return res.redirect("/login?error=" + e);
+      res.render("users/login", { user: req.session.user, error: e });
     }
   });
 
   app.use("*", (req, res) => {
-   res.status(404).json({ error: "Not found" });
-   // return res.redirect("/?error=Not Found");
+    res.status(404).json({ error: "Not found" });
   });
 };
 
