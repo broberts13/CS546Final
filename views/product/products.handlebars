@@ -1,38 +1,35 @@
+
 <div class="main">
-  <p class="err">{{error}}
-      </p>
   <div class="shop_top">
     <div class="container">
-      
       <div class="row shop_box-top">
         {{#each products}}
           <div class="col-md-3 shop_box" style="margin-top: 30px;">
-            <a href="/products/{{this._id}}">
+            <a
+              href="/products/{{this._id}}"
+            >
               <img
                 src="{{this.productPicture}}"
                 class="img-responsive"
                 alt="Product"
               />
               <div class="shop_desc">
-                <h3><a
-                    href="/products/{{this._id}}"
-                  >{{this.productName}}</a></h3>
+                <h3><a href="/products/{{this._id}}">{{this.productName}}</a></h3>
                 <p>{{this.brand}}</p>
-                <ul class="buttons">
-                  <span class="actual">${{this.price}}</span>
-                  <li class="shop_btn"><a href="#"><div><i
-                          class="fa fa-heart red-color"
-                        ></i>
-                        {{this.likes.length}}</div></a></li>
-                  <div class="clear"> </div>
-                </ul>
-
+                  <ul class="buttons">	
+                    <span class="actual">${{this.price}}</span>						
+							<li class="shop_btn"><a href="#"><div><i class="fa fa-heart red-color"></i>  {{this.likes.length}}</div></a></li>
+							<div class="clear"> </div>
+					    </ul>
+                
+             
+                    
+              
               </div>
             </a></div>
         {{/each}}
       </div>
-      <p class="text-center"><a href="products/add">Don't see the product you're
-          looking for? Click Here</a></p>
+      <p class="text-center"><a href="products/add">Don't see the product you're looking for? Click Here</a></p>
     </div>
   </div>
 </div>
