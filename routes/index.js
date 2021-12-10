@@ -2,7 +2,6 @@ const productsRoutes = require("./products.js");
 const reviewsRoutes = require("./reviews.js");
 const usersRoutes = require("./users.js");
 const adminRoutes = require("./admin.js");
-const profileRoutes = require("./profile.js");
 const usersData = require("../data").users;
 const multer = require("multer");
 var storage = multer.diskStorage({
@@ -24,12 +23,11 @@ const constructorMethod = (app) => {
   app.use("/reviews", reviewsRoutes);
   app.use("/users", usersRoutes);
   app.use("/admin", adminRoutes);
-  app.use("/profile", profileRoutes);
 
   app.get("/", (req, res) => {
     return res.render("landing/landing", { user: req.session.user });
   });
-/*
+
   app.post("/uploadSingle", (req, res) => {
     uploadSingle(req, res, function (err) {
       if (err) {
@@ -56,7 +54,7 @@ const constructorMethod = (app) => {
     req.session.destroy();
     res.redirect("/");
   });
-*/
+
   // app.use(function (req, res, next) {
   //   if (!req.user)
   //     res.header(
@@ -65,37 +63,36 @@ const constructorMethod = (app) => {
   //     );
   //   next();
   // });
-/*
+
   app.get("/login", (req, res) => {
-    return res.render("users/login");
+    return res.render("users/login", { error: req.query.error });
+  });
+
+  app.get("/signup", (req, res) => {
+    return res.render("users/signup", { user: req.session.user });
   });
 
   app.post("/login", async (req, res) => {
     const { username, password } = req.body;
     if (!username) {
-      res.status(400).json({ error: "You must provide User name" });
-      return;
+      return res.redirect("/login?error=Enter UserName");
     }
+
     if (!password) {
-      res.status(400).json({ error: "You must provide User password" });
-      return;
+      return res.redirect("/login?error=Enter Password");
     }
     try {
       const user = await usersData.login(username, password);
       req.session.user = user;
       res.render("landing/landing", { user: req.session.user });
     } catch (e) {
-      res.render("users/login", { user: req.session.user, error: e });
+      return res.redirect("/login?error=" + e);
     }
   });
 
-  app.get("/signup", (req, res) => {
-    return res.render("users/signup", { user: req.session.user });
-  });
-*/
   app.use("*", (req, res) => {
-    //console.log("pillow test", req)
-    res.status(404).render("landing/error", { error: "Not found" , user: req.session.user });
+   res.status(404).json({ error: "Not found" });
+   // return res.redirect("/?error=Not Found");
   });
 };
 

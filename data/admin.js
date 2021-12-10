@@ -144,7 +144,7 @@ async function removeProdById(id) {
 
   return id;
 }
-
+/*
 async function getAllProdctsBystatus(){
   const prodCollection = await products();
   const allRequests = await prodCollection.find({status:"pending"}).toArray();
@@ -160,11 +160,11 @@ async function getAllProdctsBystatus(){
   }
   return req;
 }
-
+*/
 module.exports = {
   createAdmin,
   updateUser,
   removeProdById,
   login,
-  getAllProdctsBystatus,
+  //getAllProdctsBystatus,
 };

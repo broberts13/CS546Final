@@ -1,22 +1,21 @@
 const express = require("express");
 const router = express.Router();
 const data = require("../data");
-const adminData = data.admin;
+const adminData = require("../data/admin");
+const pendingData = require("../data/pending");
+const xss = require('xss');
 
 router.get("/login", async (req, res) => {
   try {
-    res.render("adminlogin");
+    res.render("admin/adminlogin");
   } catch (e) {
     res.status(404).send({ error: e });
   }
 });
 
-
 router.post("/", async (req, res) => {
-  const {
-    username,
-    password,
-  } = req.body;
+  const username = xss(req.body.username);
+  const password = xss(req.body.password);
   if (!username) {
     res.status(400).json({ error: "You must provide User name" });
     return;
@@ -28,40 +27,57 @@ router.post("/", async (req, res) => {
   //console.log(username, password);
   try {
     const admin = await adminData.login(username, password);
-      // if (user.admin) {
-      //   res.render("admin", {user: user})
-      //   return;
-      // }
-      //console.log("login success", admin)
-      res.render("admin", { user: req.session.user });
+    const pending = await pendingData.getAll();
+    // if (user.admin) {
+    //   res.render("admin", {user: user})
+    //   return;
+    // }
+    //console.log("login success", admin)
+    res.render("admin/admin", {
+      user: req.session.user,
+      pending: pending,
+      error: e,
+    });
   } catch (e) {
-
     res.status(400).send({ error: e });
   }
 });
 
-// router.get("/tttttt", async (req, res) => {
-//   console.log("pillow asdfasdf")
-//   return res.render("users/private", { users: req.session.user }); 
-// });
-
-router.post("/delete", async (req, res) => {
-  try {
-    const {
-      productId
-    } = req.body;
-    const prodId = await adminData.removeProdById(productId);
-    res.json({ deleted: true });
-  } catch (e) {
-    res.status(404).send({ error: e });
+router.post("/addProd", async (req, res) => {
+  const productName = xss(req.body.productName);
+  const productPicture = xss(req.body.productPicture);
+  const productLinks = xss(req.body.productLinks);
+  const brand = xss(req.body.brand);
+  const price = xss(req.body.price);
+  const category = xss(req.body.category);
+  if (!productName) {
+    res
+      .status(400)
+      .render("product/single", { error: "You must provide review title" });
+    return;
+  }
+  if (!productPicture) {
+    res
+      .status(400)
+      .render("product/single", {
+        error: "You must provide review before adding",
+      });
+    return;
+  }
+  if (!productLinks) {
+    res
+      .status(400)
+      .render("product/single", { error: "You must provide rating" });
+    return;
   }
 });
 
-router.get("/requests", async (req, res) =>{
-  try{
-    const reqProd = await adminData.getAllProdctsBystatus("pending");
-    res.json({reqProd})
-  }catch (e) {
+router.post("/delete", async (req, res) => {
+  try {
+    const { productId } = req.body;
+    const prodId = await adminData.removeProdById(productId);
+    res.json({ deleted: true });
+  } catch (e) {
     res.status(404).send({ error: e });
   }
 });
