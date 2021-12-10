@@ -19,7 +19,8 @@ const getCollectionFn = (collection) => {
 module.exports = {
   products: getCollectionFn("Products"),
   reviews: getCollectionFn("Reviews"),
-  users: getCollectionFn("Users"),
   admin: getCollectionFn("Admin"),
+  users: getCollectionFn("Users"),
   commentReviews: getCollectionFn("commentReviews"),
+  pendingProducts: getCollectionFn("pendingProducts"),
 };

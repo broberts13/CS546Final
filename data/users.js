@@ -4,7 +4,7 @@ const bcrypt = require("bcrypt");
 const saltRounds = 16;
 const validate = require("./validation");
 const { ObjectId } = require("mongodb");
-//const { getProductById } = require("./products");
+const { getProductById } = require("./products");
 
 async function getUsers() {
   const userCollection = await users();
@@ -28,47 +28,45 @@ async function getUserById(id) {
 
 async function login(username, password) {
   if (!validate.validString(username))
-    throw "Username must be a valid string.";
+    throw "User name must be a valid string.";
   if (!validate.validString(password))
-    throw "Username must be a valid string.";
+    throw "User name must be a valid string.";
   const userCollection = await users();
   const user = await userCollection.findOne({
     userName: username.toLowerCase(),
   });
 
-  if (!user) throw `invalid username or password`;
+  if (!user) throw `invalid UserName or Password`;
   let flag = false;
   try {
     flag = await bcrypt.compare(password, user.password);
   } catch (error) {
     throw error.message;
   }
-  if (!flag) throw "Usern Name or Password does not match";
+  if (!flag) throw "User Name or Password doesnot match";
   return user;
 }
 
 async function createUser(
   userName,
+  userImage,
   firstName,
   lastName,
   password,
   email,
   makeupLevel
 ) {
-
-  userImage = "/public/uploads/profile.jpg";
-  userName = userName.toLowerCase();
-
   if (!validate.validString(userName))
     throw "user name must be a valid string.";
+  if (!validate.validString(userImage)) throw "User picture path Invalid";
   if (!validate.validString(firstName))
     throw "First name must be a valid string.";
   if (!validate.validString(lastName))
     throw "Last name Category must be a valid string.";
-  if (!validate.validString(password))
-    throw "Password must be a valid string.";
-  if (!validate.validEmail(email)) 
-    throw "invalid Email";
+  if (!validate.validString(password)) throw "Password must be a valid string.";
+  if (!validate.validEmail(email)) throw "invalid Email";
+  if (!validate.validString(makeupLevel))
+    throw "makeupLevel must be a valid string";
 
   var regexuser = /^[a-zA-Z0-9]{4,}$/;
 
@@ -83,7 +81,7 @@ async function createUser(
     userName: userName.toLowerCase(),
   });
   if (existUser) {
-    throw "Username already Exists";
+    throw "Username alerady Exists";
   }
   const hash = await bcrypt.hash(password, saltRounds);
 
@@ -94,7 +92,7 @@ async function createUser(
     lastName: lastName.trim(),
     password: hash,
     email: email.trim(),
-    makeupLevel: makeupLevel,
+    makeupLevel: makeupLevel.trim(),
     wishList: [],
   };
 
@@ -148,7 +146,11 @@ async function updateUser(
       throw "Invalid Password";
     }
   }
+
+  
   const userCollection = await users();
+  let user = await getUserById(id);
+  
 
   const updateuser = {
     userName: userName.trim(),
@@ -199,23 +201,39 @@ async function remove(id) {
 async function addToWishList(userId, prodId) {
   const userCollection = await users();
   const user = await getUserById(userId);
-  const product = await getProductById(prodId);
   let flag = false;
   user.wishList.forEach((e) => {
     if (e == prodId) {
       flag = true;
+     
     }
   });
   userId = ObjectId(userId);
   if (!flag) {
     const updatedInfo = await userCollection.updateOne(
       { _id: userId },
-      { $push: { wishList: {prodId:prodId, prodName: product.productName }} }
+      { $push: { wishList: prodId } }
     );
     if (updatedInfo.modifiedCount === 0) {
       throw "Could not add to wishlist";
     }
   }
+}
+
+async function RemoveWishList(userId, prodId) {
+  const userCollection = await users();
+  const user = await getUserById(userId);
+
+  userId = ObjectId(userId);
+  
+    const updatedInfo = await userCollection.updateOne(
+      { _id: userId },
+      { $pull: { wishList: prodId } }
+    );
+    if (updatedInfo.modifiedCount === 0) {
+      throw "Could not remove wishlist";
+    }
+  
 }
 
 module.exports = {
@@ -226,4 +244,5 @@ module.exports = {
   remove,
   login,
   addToWishList,
+  RemoveWishList
 };

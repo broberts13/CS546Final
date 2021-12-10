@@ -7,24 +7,114 @@ const { ObjectId } = require("mongodb");
 
 async function getAllProducts() {
   const prodCollection = await products();
-  const allProducts = await prodCollection.find({}).toArray();
+  //sorting Products by Number of Likes
+  const allProducts = await prodCollection
+    .find({})
+    .sort({ likes: -1 })
+    .toArray();
 
   // Change all _id values to strings
   return allProducts.map(validate.convertObjId);
 }
 
+findWishlistProd;
+
+async function findWishlistProd(wishlistProd) {
+  const prodCollection = await products();
+  let wishprod = [];
+
+  // wishlistProd.forEach(e => {
+  //   e = ObjectId(e);
+  // });
+  //sorting Products by Number of Likes
+  const allProducts = await prodCollection
+    .find({})
+    .sort({ likes: -1 })
+    .toArray();
+  let i = {};
+  allProducts.forEach((e) => {
+    i = e._id.toString();
+    if (wishlistProd.includes(i)) {
+      wishprod.push(e);
+    }
+  });
+
+  // Change all _id values to strings
+  return wishprod.map(validate.convertObjId);
+}
+
+async function progressbar(id) {
+  let count5 = 0,
+    count4 = 0,
+    count3 = 0,
+    count2 = 0,
+    count1 = 0,
+    bar5 = 0,
+    bar4 = 0,
+    bar3 = 0,
+    bar2 = 0,
+    bar1 = 0;
+
+  if (!validate.validString(id)) throw "Product id must be a valid string.";
+  let objId = ObjectId(id.trim());
+  const prodCollection = await products();
+
+  let prod = await prodCollection.findOne({ _id: objId });
+
+  if (!prod) throw `No Product found with id=${id}.`;
+
+  prod.reviews.sort(function (a, b) {
+    return b.rating - a.rating;
+  });
+  prod.reviews.forEach((review) => {
+    if (review.rating == 5) count5 += 1;
+    if (review.rating == 4) count4 += 1;
+    if (review.rating == 3) count3 += 1;
+    if (review.rating == 2) count2 += 1;
+    if (review.rating == 1) count1 += 1;
+  });
+
+  if (prod.reviews.length != 0) {
+    bar5 = (count5 / prod.reviews.length) * 100;
+    bar4 = (count4 / prod.reviews.length) * 100;
+    bar3 = (count3 / prod.reviews.length) * 100;
+    bar2 = (count2 / prod.reviews.length) * 100;
+    bar1 = (count1 / prod.reviews.length) * 100;
+  }
+
+  // Convert _id field to string before returning
+
+  progress = {
+    a: count5,
+    b: count4,
+    c: count3,
+    d: count2,
+    e: count1,
+    bar5: bar5,
+    bar4: bar4,
+    bar3: bar3,
+    bar2: bar2,
+    bar1: bar1,
+  };
+  return progress;
+}
 async function getProductById(id) {
   if (!validate.validString(id)) throw "Product id must be a valid string.";
   let objId = ObjectId(id.trim());
   const prodCollection = await products();
-  const prod = await prodCollection.findOne({ _id: objId });
+
+  let prod = await prodCollection.findOne({ _id: objId });
 
   if (!prod) throw `No Product found with id=${id}.`;
 
-  // Convert _id field to string before returning
-  return validate.convertObjId(prod);
-}
+  //Sorting Reviews by Number of Likes
+  prod.reviews.sort(function (a, b) {
+    return b.likes.length - a.likes.length;
+  });
 
+  prod = validate.convertObjId(prod);
+  return prod;
+}
 
 async function createProduct(
   productName,
@@ -32,8 +122,7 @@ async function createProduct(
   productLinks,
   brand,
   price,
-  category,
-  status = "pending",
+  category
 ) {
   if (!validate.validString(productName))
     throw "Product name must be a valid string.";
@@ -56,6 +145,7 @@ async function createProduct(
         throw "Product external link must be a valid link.";
     }
   }
+
   const prodCollection = await products();
   const newProd = {
     productName: productName.trim(),
@@ -65,9 +155,8 @@ async function createProduct(
     price: price,
     category: category.trim(),
     overallRating: 0,
-    likes: 0,
+    likes: [],
     reviews: [],
-    status: status,
   };
 
   const insertInfo = await prodCollection.insertOne(newProd);
@@ -77,14 +166,6 @@ async function createProduct(
 
   return await getProductById(id);
 }
-async function getProductByStatus(id){
-  const pendingCollection = await products();
-  const prod = await pendingCollection.find({id}).toArray();
-
-  return await prod.name;
-}
-
-
 
 async function updateProduct(
   id,
@@ -93,8 +174,7 @@ async function updateProduct(
   productLinks,
   brand,
   price,
-  category,
-  status,
+  category
 ) {
   if (!validate.validString(id)) throw "Product id must be a valid string.";
   if (!validate.validString(productPicture))
@@ -131,7 +211,6 @@ async function updateProduct(
     overallRating: prod.overallRating,
     likes: prod.likes,
     reviews: prod.reviews,
-    status:prod.status,
   };
 
   id = ObjectId(id);
@@ -147,35 +226,57 @@ async function updateProduct(
   return await getProductById(id.toString());
 }
 
-async function searchProducts(searchTerm) {
+async function remove(id) {
+  if (!validate.validString(id)) throw "Product id must be a valid string.";
+
+  const delprod = await getProductById(id);
+  if (delprod == null) throw "Product Not found";
   const prodCollection = await products();
+  id = ObjectId(id);
+  const deletionInfo = await prodCollection.deleteOne({ _id: id });
 
-  prodCollection.createIndex( { productName: "text", brand: "text", category: "text" } )
+  if (deletionInfo.deletedCount === 0) {
+    throw `Could not delete Product with id of ${id}`;
+  }
 
-  keyword = searchTerm.search;
-  const prod = await prodCollection.find({ $text: { $search: keyword} }).toArray(); //,{ score: { $meta: "textScore" } }).sort( { score: { $meta: "textScore" } } )
-
-  // Convert _id field to string before returning
-  return prod.map(validate.convertObjId);
+  return `${delprod._id}`;
 }
 
-// async function remove(id) {
-//   if (!validate.validString(id)) throw "Product id must be a valid string.";
+//REVIEWS
 
-//   const delprod = await getProductById(id);
-//   if (delprod == null) throw "Product Not found";
-//   const prodCollection = await products();
-//   id = ObjectId(id);
-//   const deletionInfo = await prodCollection.deleteOne({ _id: id });
+async function getReviewById(revId) {
+  if (!validate.validString(revId)) throw "Id must be a valid string.";
 
-//   if (deletionInfo.deletedCount === 0) {
-//     throw `Could not delete Product with id of ${id}`;
-//   }
+  const prodCollection = await products();
+  const allProducts = await prodCollection.find({}).toArray();
+  let prodid = "";
+  let flag = false;
 
-//   return `${delprod._id}`;
-// }
+  allProducts.forEach((e) => {
+    if (e.reviews.length != 0) {
+      e.reviews.forEach((e1) => {
+        if (e1._id == revId) {
+          prodid = e1.productId;
+        }
+      });
+    }
+  });
 
-async function addToreviews(userId, prodId, title, reviewId, reviewBody, rating) {
+  let prod = await getProductById(prodid);
+  let cnt = -1;
+  let index = 0;
+  prod.reviews.forEach((rev) => {
+    cnt += 1;
+    let id = rev._id.toString();
+    if (id == revId) {
+      index = cnt;
+    }
+  });
+  reviewobj = { index: index, review: prod.reviews[index], product: prod };
+  return reviewobj;
+}
+
+async function addToreviews(userId, prodId, title, reviewBody, rating) {
   const user = await usersData.getUserById(userId.toString());
   let date = new Date().toUTCString();
   if (!title) {
@@ -199,17 +300,17 @@ async function addToreviews(userId, prodId, title, reviewId, reviewBody, rating)
     const prodCollection = await products();
     // const prod = await getProductById(prodId);
     const addreview = {
+      _id: ObjectId(),
       productId: prodId,
       userId: userId,
       userName: user.userName,
       userImage: user.userImage,
       date: date,
       title: title,
-      reviewId: reviewId,
       reviewBody: reviewBody,
       rating: rating,
-      likes: 0,
-      comments: [],
+      likes: [],
+      Comments: [],
     };
     prodId = ObjectId(prodId);
     const updatedInfo = await prodCollection.updateOne(
@@ -222,14 +323,16 @@ async function addToreviews(userId, prodId, title, reviewId, reviewBody, rating)
 
     //new
 
-    const prod = await getProductById(prodId.toString());
+    let product = await getProductById(prodId.toString());
     let overallRating = 0;
-    prod.reviews.forEach((review) => {
+
+    product.reviews.forEach((review) => {
       overallRating = overallRating + review.rating;
     });
-    if (prod.reviews.length != 0)
-      overallRating = overallRating / prod.reviews.length;
-
+    if (product.reviews.length != 0) {
+      overallRating = overallRating / product.reviews.length;
+    }
+    overallRating= overallRating.toFixed( 2 );
     const ratingUpdateInfo = await prodCollection.updateOne(
       { _id: prodId },
       { $set: { overallRating: overallRating } }
@@ -237,19 +340,137 @@ async function addToreviews(userId, prodId, title, reviewId, reviewBody, rating)
     if (ratingUpdateInfo.matchedCount === 0)
       throw "Could not update overall rating";
 
-    const product = await getProductById(prodId.toString());
+    product = await getProductById(prodId.toString());
     return product;
   }
 }
 
+//review like
+async function addToReviewLikes(userId, revId) {
+  const prodCollection = await products();
 
+  let revobj = await getReviewById(revId);
+  let flag = false;
+
+  revobj.review.likes.forEach((e) => {
+    if (e == userId) {
+      flag = true;
+    }
+  });
+  if (!flag) {
+    revobj.product.reviews[revobj.index].likes.push(userId);
+
+    const prodId = ObjectId(revobj.product._id);
+    const updatedInfo = await prodCollection.updateOne(
+      { _id: prodId },
+      { $set: { reviews: revobj.product.reviews } }
+    );
+    if (updatedInfo.modifiedCount === 0) {
+      throw "Could not modify review";
+    }
+  }
+}
+
+//Product like
+async function addToLikes(userId, prodId) {
+  const prodCollection = await products();
+  const prod = await getProductById(prodId);
+  let flag = false;
+  prod.likes.forEach((e) => {
+    if (e == userId) {
+      flag = true;
+    }
+  });
+  prodId = ObjectId(prodId);
+  if (!flag) {
+    const updatedInfo = await prodCollection.updateOne(
+      { _id: prodId },
+      { $push: { likes: userId } }
+    );
+    if (updatedInfo.modifiedCount === 0) {
+      throw "Login to Like the product";
+    }
+  } else {
+    const updatedInfo = await prodCollection.updateOne(
+      { _id: prodId },
+      { $pull: { likes: userId } }
+    );
+    if (updatedInfo.modifiedCount === 0) {
+      throw "Login to Like the product";
+    }
+  }
+}
+
+//print review
+async function getUserReviews(userId) {
+ 
+  const productList = await getAllProducts();
+  let userReviews = [];
+  productList.forEach((e) => {
+    e.reviews.forEach((e1) => {
+      if (e1.userId == userId) {
+        userReviews.push(e1);
+      }
+    });
+  });
+
+  return userReviews;
+}
+
+//Add Comments
+async function postComment(userId,revId,commentBody) {
+  const prodCollection = await products();
+  const user = await usersData.getUserById(userId.toString());
+  let date = new Date().toUTCString();
+  let revobj = await getReviewById(revId);
+
+
+  const comment = {
+    _id: ObjectId(),
+    userId: userId,
+    userName: user.userName,
+    userImage: user.userImage,
+    commentBody: commentBody ,
+    date: date,
+  };
+
+    revobj.product.reviews[revobj.index].Comments.push(comment);
+
+    const prodId = ObjectId(revobj.product._id);
+    const updatedInfo = await prodCollection.updateOne(
+      { _id: prodId },
+      { $set: { reviews: revobj.product.reviews } }
+    );
+    if (updatedInfo.modifiedCount === 0) {
+      throw "Could not modify review";
+    }
+}
+async function searchProducts(searchTerm) {
+  const prodCollection = await products();
+
+  prodCollection.createIndex( { productName: "text", brand: "text", category: "text" } )
+
+  keyword = searchTerm.search;
+  const prod = await prodCollection.find({ $text: { $search: keyword} }).toArray(); //,{ score: { $meta: "textScore" } }).sort( { score: { $meta: "textScore" } } )
+
+  // Convert _id field to string before returning
+  return prod.map(validate.convertObjId);
+}
+  
 
 module.exports = {
   getAllProducts,
   getProductById,
   createProduct,
   updateProduct,
+  remove,
   addToreviews,
+  progressbar,
+  addToLikes,
+  getReviewById,
+  addToReviewLikes,
+  findWishlistProd,
+  getUserReviews,
+  postComment,
   searchProducts,
-  getProductByStatus,
 };

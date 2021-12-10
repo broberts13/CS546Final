@@ -38,7 +38,7 @@ body a {
 }
 .logo {
   float: left;
-  margin-right: 2%;
+  margin-right: 0%;
 }
 .menu {
   float: left;
@@ -2549,14 +2549,7 @@ body {
  * For more JQuery/Bootstrap plugins and demos visit http://plugins.krajee.com
  * For more Yii related demos visit http://demos.krajee.com
  */
-.rating-loading {
-  width: 25px;
-  height: 25px;
-  font-size: 0px;
-  color: #fff;
-  background: transparent url("../img/loading.gif") top left no-repeat;
-  border: none;
-}
+
 /*
  * Stars
  */
@@ -2853,5 +2846,95 @@ image-tools.show-on-hover {
   color: #fff;
 }
 .red-color {
+  color: red;
+}
+
+.box-btn {
+  float: left;
+  background: transparent;
+  font-size: 53px;
+  color: #4d4e56;
+  font-weight: 300;
+  cursor: pointer;
+  border-radius: 2px;
+  line-height: 0.5;
+  border: none;
+  outline: none;
+}
+.glyphicon {
+  transition: color 0.3s linear;
+}
+.box-btn .red {
+  color: red;
+}
+
+/* upload pic box */
+.form-css {
+  display: block;
+  width: 100%;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+/* total likes of reviews */
+
+.total-like {
+  border: 1px solid;
+  border-radius: 50px;
+  display: inline-block;
+  font-weight: 500;
+  height: 34px;
+  line-height: 33px;
+  padding: 0 13px;
+  vertical-align: top;
+  color: blue;
+}
+.reviews-members-footer {
+  margin-left: 30px;
+}
+
+
+
+.wish-title1 {
+  margin-left: 1em;
+  color: rebeccapurple;
+  font-weight: bold;
+}
+
+.wish-title {
+  margin-left: 1.8em;
+  color: rebeccapurple;
+  font-weight: bold;
+}
+
+.redbtn{
+  color: #fff;
+  background-color:red;
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+.err{
   color: red;
 }

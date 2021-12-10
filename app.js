@@ -28,13 +28,20 @@ app.use(
   })
 );
 
+app.use("/login", (req, res, next) => {
+  if(req.session.user != null) {
+    return res.redirect("/");
+  }
+  next();
+});
+
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.engine("handlebars", exphbs());
 app.set("view engine", "handlebars");
 
 configRoutes(app);
 
-app.listen(3000, () => {
+app.listen(3001, () => {
   console.log("We've now got a server!");
-  console.log("Your routes will be running on http://localhost:3000");
+  console.log("Your routes will be running on http://localhost:3001");
 });
