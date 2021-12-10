@@ -34,7 +34,7 @@ router.post("/", async (req, res) => {
     const pending = await pendingData.getAll();
     req.session.admin = admin;
     res.render("admin/admin", {
-      user: req.session.user,
+      admin:req.session.admin,
       pending: pending,
       error: e,
     });
