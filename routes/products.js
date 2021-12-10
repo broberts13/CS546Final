@@ -70,7 +70,7 @@ router.post("/", async (req, res) => {
   const brand = xss(req.body.brand);
   const price = xss(req.body.price);
   const category = xss(req.body.category);
-  console.log("productLinks ", productLinks, typeof productLinks);
+  //console.log("productLinks ", productLinks, typeof productLinks);
   if (!productName) {
     res.status(400).json({ error: "You must provide product name" });
     return;
