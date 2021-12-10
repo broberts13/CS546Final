@@ -3,7 +3,6 @@ const router = express.Router();
 const data = require("../data");
 const productData = data.products;
 const pendingData = require("../data/pending");
-const xss = require('xss');
 
 router.get("/add", async (req, res) => {
   //if not user redirect to login
@@ -64,12 +63,8 @@ router.post("/search", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-  const productName = xss(req.body.productName);
-  const productPicture = xss(req.body.productPicture);
-  const productLinks = xss(req.body.productLinks);
-  const brand = xss(req.body.brand);
-  const price = xss(req.body.price);
-  const category = xss(req.body.category);
+  const { productName, productPicture, productLinks, brand, price, category } =
+    req.body;
   if (!productName) {
     res.status(400).json({ error: "You must provide product name" });
     return;
@@ -112,8 +107,8 @@ router.post("/", async (req, res) => {
 
 router.post("/add", async (req, res) => {
   let formBody = req.body;
-  productName = xss(req.body.newProdName)
-  productBrand = xss(req.body.newProdBrand)
+  productName = req.body.newProdName
+  productBrand = req.body.newProdBrand
 
   if (!productName) {
     res.status(400).render("product/add", { prod: formBody, error: "You must provide product name.",user: req.session.user });
@@ -135,14 +130,9 @@ router.post("/add", async (req, res) => {
   
 });
 
-
 router.put("/:id", async (req, res) => {
-  const productName = xss(req.body.productName);
-  const productPicture = xss(req.body.productPicture);
-  const productLinks = xss(req.body.productLinks);
-  const brand = xss(req.body.brand);
-  const price = xss(req.body.price);
-  const category = xss(req.body.category);
+  const { productName, productPicture, productLinks, brand, price, category } =
+    req.body;
   if (!productName) {
     res.status(400).json({ error: "You must provide product name" });
     return;
@@ -183,7 +173,6 @@ router.put("/:id", async (req, res) => {
   }
 });
 
-
 router.delete("/:id", async (req, res) => {
   try {
     const prodId = await productData.remove(req.params.id);
@@ -194,9 +183,7 @@ router.delete("/:id", async (req, res) => {
 });
 
 router.post("/review/:prodId", async (req, res) => {
-  const title = xss(req.body.title);
-  const reviewBody = xss(req.body.reviewBody);
-  const rating = xss(req.body.rating);
+  const { title, reviewBody, rating } = req.body;
   if (!title) {
     res.status(400).json({ error: "You must provide review title" });
     return;
