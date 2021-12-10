@@ -51,7 +51,6 @@ router.post("/login", async (req, res) => {
     res.render("admin/admin", {
       admin:req.session.admin,
       pending: pending,
-      error: e,
     });
   } catch (e) {
     res.status(400).send({ error: e });
@@ -102,21 +101,6 @@ router.post("/addProd", async (req, res) => {
   }
 });
 
-router.post("/delete", async (req, res) => {
-  checkAdmin(req, res);
-  const pendingList = await pendingData.getAll();
-  try {
-    const product = req.body.productId;
-    if (!product) {
-      throw "Please enter the id of the pending request."
-    }
-    const prodId = await productsData.remove(product);
-    res.render("admin/admin", {admin:req.session.admin, pending: pendingList, success3: "product " + prodId + " removed successfully" });
-  } catch (e) {
-    res.status(404).render("admin/admin", { pending: pendingList, error3: e });
-  }
-});
-
 router.post("/deletePending", async (req, res) => {
   checkAdmin(req, res);
   const first = await pendingData.getAll();
@@ -130,6 +114,21 @@ router.post("/deletePending", async (req, res) => {
     res.render("admin/admin", {admin:req.session.admin, pending: pendingList, success2: "pending "+pendingId+" request removed successfully" });
   } catch (e) {
     res.status(404).render("admin/admin", { pending: first, error2: e });
+  }
+});
+
+router.post("/delete", async (req, res) => {
+  checkAdmin(req, res);
+  const pendingList = await pendingData.getAll();
+  try {
+    const product = req.body.productId;
+    if (!product) {
+      throw "Please enter the id of the pending request."
+    }
+    const prodId = await productsData.remove(product);
+    res.render("admin/admin", {admin:req.session.admin, pending: pendingList, success3: "product " + prodId + " removed successfully" });
+  } catch (e) {
+    res.status(404).render("admin/admin", { pending: pendingList, error3: e });
   }
 });
 

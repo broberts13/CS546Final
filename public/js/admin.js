@@ -16,7 +16,6 @@
           brand: $("#brand").val(),
           price: $("#price").val(),
           category: $("#category").val(),
-          pendingid: $("#pendingid").val(),
           productPicture: path,
         };
         $.ajax({

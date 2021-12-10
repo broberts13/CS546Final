@@ -6,7 +6,6 @@
                         <span class="text-black-50">{{users.email}}</span><span> </span>
                 </div>
                 <br>
-                </form>
                 <form action="/products/" method="get">
                         <div id='requestList'>
                                 <div>
@@ -15,9 +14,9 @@
                                         <br>
                                         <br>
                                         {{#each pending}}
-                                                <h5>{{this.productName}}</h5>
-                                                <p>{{this.brand}}</p>
-                                                <p>{{this._id}}</p>
+                                        <h5>{{this.productName}}</h5>
+                                        <p>{{this.brand}}</p>
+                                        <p>{{this._id}}</p>
                                         {{/each}}
                                         <br>
                                         <br>
@@ -41,15 +40,10 @@
 
                                         </div id="container">
                                         <div class="col-md-12"><label class="labels">Product
-                                                        Picture</label><input
-                                        id="imageUpload"
-                                        name="imageUpload"
-                                        accept="image/*"
-                                        class="form-css"
-                                        type="file"
-                                        />
+                                                        Picture</label><input id="imageUpload" name="imageUpload"
+                                                        accept="image/*" class="form-css" type="file" />
                                         </div>
-                                        
+
                                         <div class="col-md-12">
                                                 <label class="labels">Product Links</label><input type="text"
                                                         class="form-control" placeholder="enter product links"
@@ -57,19 +51,24 @@
                                                 {{!-- <button id="newsectionbtn">add more</button> --}}
 
                                         </div>
-                                        <div class="col-md-12"><label  class="labels">Brand</label><input id="brand" type="text"
-                                                        class="form-control" placeholder="enter brand" name='brand'>
+                                        <div class="col-md-12"><label class="labels">Brand</label><input id="brand"
+                                                        type="text" class="form-control" placeholder="enter brand"
+                                                        name='brand'>
                                         </div>
-                                        <div class="col-md-12"><label class="labels">Price</label><input type="text" id="price"
-                                                        class="form-control" placeholder="enter price" name='price'>
+                                        <div class="col-md-12"><label class="labels">Price</label><input type="text"
+                                                        id="price" class="form-control" placeholder="enter price"
+                                                        name='price'>
                                         </div>
-                                        <div class="col-md-12"><label class="labels">Category</label><input type="text" id="category"
-                                                        class="form-control" placeholder="enter category"
-                                                        name='category'></div>
+                                        <div class="col-md-12"><label class="labels">Category</label><input type="text"
+                                                        id="category" class="form-control" placeholder="enter category"
+                                                        name='category'>
+                                        </div>
+
                                         <div class="col-md-12"><label class="labels">Pending Product Id to be deleted
-                                                        * Please leave this blank if you want to document this request</label><input type="text"
-                                                        class="form-control" id="pendingid" placeholder="enter category"
-                                                        name='pendingId'></div>
+                                                        * Please leave this blank if you want to document this
+                                                        request</label><input type="text" class="form-control"
+                                                        id="pendingid" placeholder="enter category" name='pendingId'>
+                                        </div>
 
 
 
@@ -93,21 +92,49 @@
                                 <br>
                         </div>
                         <div class="row mt-3">
-                                <div class="col-md-12"><label class="labels">Product Id</label><input type="text"
-                                                class="form-control" placeholder="enter product id to be deleted"
-                                                name='productId' id='productId'>
+                                <div class="col-md-12"><label class="labels">Pending Product Id</label><input
+                                                type="text" class="form-control"
+                                                placeholder="enter pending product id to be deleted" name='pendingId'
+                                                id='pendingId'>
 
                                 </div id="container">
                         </div>
                         <br>
+                        <p>{{success2}}</p>
+                        <p>{{error2}}</p>
                         <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="submit"
-                                        id='deleteProductIdButton'>delete
-                                </button></div>
+                                        id='deletePendingIdButton'>delete
+                                </button>
+                                </div>
+                <br>
+</div>
+
+</form>
+<br>
+<form action="/admin/delete" method="post" id="deleteProductForm">
+        <div>
+                <div>
                         <br>
-        </form>
-</div>
-</div>
-</div>
-</div>
+                        <h3 class="text-centre">Delete a Product</h3>
+                        <br>
+                        <br>
+                </div>
+                <div class="row mt-3">
+                        <div class="col-md-12"><label class="labels">Product Id</label><input type="text"
+                                        class="form-control" placeholder="enter product id to be deleted"
+                                        name='productId' id='productId'>
+                        </div id="container">
+                </div>
+                <br>
+                <p>{{success3}}</p>
+                <p>{{error3}}</p>
+                <br>
+                <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="submit"
+                                id='deleteProductIdButton'>delete
+                        </button>
+                </div>
+                <br>
+        </div>
+</form>
 </div>
 <script src="/public/js/admin.js"></script>
