@@ -24,7 +24,26 @@
           url: "/products", //goes to /admin instead?
           data: newProd,
           success: function (response) {
-            window.location.href = "/admin";
+            alert("create product success");
+            pendingId = $('#pendingid').val();
+            if (pendingId) {
+              console.log("creating product success, and removing pending item")
+              $.ajax({
+                type: "POST",
+                url: "/admin/deletePending",
+                data: {pendingId:pendingId},
+                success: function (response) {
+                  window.location.href = "/admin";
+                  alert("delete pending product success");
+                },
+                error: function (error) {
+                  alert(error.responseText);
+                },
+              });
+            }
+            else {
+              window.location.href = "/admin";
+            }
             alert("create product success");
           },
           error: function (error) {

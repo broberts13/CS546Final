@@ -1,4 +1,6 @@
 <div class="main">
+  <p class="err">{{error}}
+      </p>
   <div class="shop_top">
     <div class="container">
       <h1 class="text-center"><strong>Products</strong></h1>
@@ -14,7 +16,9 @@
               />
               </a>
               <div class="shop_desc">
-                <h3><a href="/products/{{this._id}}">{{this.productName}}</a></h3>
+                <h3><a
+                    href="/products/{{this._id}}"
+                  >{{this.productName}}</a></h3>
                 <p>{{this.brand}}</p>
                 <ul class="buttons">	
                   <span class="actual">${{this.price}}</span>						
@@ -27,7 +31,8 @@
           </div>
         {{/each}}
       </div>
-      <p class="text-center"><a href="products/add">Don't see the product you're looking for? Click Here</a></p>
+      <p class="text-center"><a href="products/add">Don't see the product you're
+          looking for? Click Here</a></p>
     </div>
   </div>
 </div>
