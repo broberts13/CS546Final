@@ -1670,7 +1670,11 @@ p.cart {
   padding-right: 5%;
 }
 
-h4.title {
+h2.loginTitle{
+  font-size: medium;
+}
+
+h3.title {
   color: #000;
   margin-bottom: 0.5em;
   font-size: 1em;
@@ -1698,9 +1702,7 @@ h4.title {
   outline: none;
   font-size: 1em;
 }
-.button1 input[type="submit"]:hover {
-  background: #555;
-}
+
 #login-form label {
   color: #777;
   line-height: 2.8em;
