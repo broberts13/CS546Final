@@ -211,6 +211,7 @@ router.post("/review/:prodId", async (req, res) => {
     return;
   }
   try {
+    if(!req.session.user){ throw "! Login to Add Review";}
     await productData.addToreviews(
       req.session.user._id.toString(),
       req.params.prodId,
@@ -218,7 +219,8 @@ router.post("/review/:prodId", async (req, res) => {
       reviewBody,
       rating
     );
-    return res.json("Success");
+    let success = "Review Added Successfully";
+    return res.json({success: success});
   } catch (e) {
     return res.status(404).send({ error: e });
   }

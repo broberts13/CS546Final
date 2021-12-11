@@ -2,17 +2,18 @@
   const a = $("#btn-whishlist");
   a.on("click", function (event) {
     event.preventDefault();
+
     $.ajax({
       type: "POST",
       url: this.href,
       data: {},
       success: function (data) {
-        alert("Added to wishlist");
+        $("#wishsucc").text("Added to WishList");
+        //alert("Added to wishlist");
       },
-      error: function (xhr, textStatus, error) {
-        alert("To save your product to wishlist, Login first");
-        window.location.href = "/login";
+      error: function (error) {
+        $("#wisherr").text(JSON.parse(error.responseText).error);
       },
     });
   });
- })(window.jQuery);
+})(window.jQuery);

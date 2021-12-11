@@ -11,20 +11,20 @@
                                         <br>
                                         <h3 class="text-centre">Pending Products Requests</h3>
 
-                                        <table>
-  <tr>
-    <th>Id</th>
-    <th>Name</th>
-    <th>Brand</th>
-  </tr>
-  {{#each pending}}                                      
-  <tr>
-    <td>{{this._id}}</td>
-    <td>{{this.productName}}</td>
-    <td>{{this.brand}}</td>
-  </tr>
-    {{/each}}
-</table>
+                                        <table id="pendingprod">
+                                        <tr id="pendingrow">
+                                        <th id="pendinghead">Id</th>
+                                        <th id="pendinghead">Name</th>
+                                        <th id="pendinghead">Brand</th>
+                                        </tr>
+                                        {{#each pending}}                                      
+                                        <tr id="pendingrow">
+                                        <td id="pendingcol">{{this._id}}</td>
+                                        <td id="pendingcol">{{this.productName}}</td>
+                                        <td id="pendingcol">{{this.brand}}</td>
+                                        </tr>
+                                        {{/each}}
+                                        </table>
 
                                        
                                 </div>
@@ -37,8 +37,6 @@
                                 <div>
                                         <br>
                                         <h3 class="text-centre">Create New Product</h3>
-                                        <br>
-                                        <br>
                                 </div>
                                 <div class="row mt-3">
                                         <div class="col-md-12"><label class="labels">Product Name</label><input
@@ -52,7 +50,7 @@
                                         </div>
 
                                         <div class="col-md-12">
-                                                <label class="labels">Product Links</label><input type="text"
+                                                <label class="labels">Product Links (You can add multiple links, just seperate it with ','))</label><input type="text"
                                                         class="form-control" placeholder="enter product links"
                                                         id="productLinks" name='productLinks'>
                                                 {{!-- <button id="newsectionbtn">add more</button> --}}
@@ -80,7 +78,7 @@
                                 </div>
                                 <br>
                                 <div class="mt-5 text-center"><button class="btn btn-primary profile-button"
-                                                type="submit">create
+                                                type="submit">Create Product
                                         </button></div>
                                 <br>
                         </div>
@@ -91,24 +89,22 @@
                         <div>
                                 <br>
                                 <h3 class="text-centre">Delete a Request</h3>
-                                <br>
-                                <br>
+                               
                         </div>
                         <div class="row mt-3">
                                 <div class="col-md-12"><label class="labels">Pending Product Id</label><input
                                                 type="text" class="form-control"
-                                                placeholder="enter pending product id to be deleted" name='pendingId'
+                                                placeholder="Enter Pending Product Id to be Deleted" name='pendingId'
                                                 id='pendingId'>
 
                                 </div id="container">
                         </div>
-                        <br>
                         <p class="success">{{success2}}</p>
                         <p class="err">{{error2}}</p>
 
                         <br>
-                        <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="submit"
-                                        id='deletePendingIdButton'>delete
+                        <div class="mt-5 text-center"><button class="btn btn-danger" type="submit"
+                                        id='deletePendingIdButton'>Delete pending Request 
                                 </button>
                         </div>
                         <br>
@@ -120,23 +116,22 @@
                 <div>
                         <div>
                                 <br>
-                                <h3 class="text-centre">Delete a Product</h3>
-                                <br>
-                                <br>
+                                <h3 class="text-centre">Delete a Product [* All Reviews, Likes and Comments will be Deleted]</h3>
+                              
                         </div>
                         <div class="row mt-3">
                                 <div class="col-md-12"><label class="labels">Product Id</label><input type="text"
-                                                class="form-control" placeholder="enter product id to be deleted"
+                                                class="form-control" placeholder="Enter Product Id to be Deleted"
                                                 name='productId' id='productId'>
 
                                 </div id="container">
                         </div>
-                        <br>
+                        
                         <p>{{success3}}</p>
                         <p>{{error3}}</p>
                         <br>
-                        <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="submit"
-                                        id='deleteProductIdButton'>delete
+                        <div class="mt-5 text-center"><button class="btn btn-danger" type="submit"
+                                        id='deleteProductIdButton'>Delete Product
                                 </button>
                         </div>
                         <br>

@@ -2946,29 +2946,55 @@ image-tools.show-on-hover {
   font-weight: bold;
 }
 
+p.reverr {
+  color: red;
+  font-weight: bold;
+  font-size: 14px;
+  margin-right: 10px;
+}
+p.commenterr {
+  color: red;
+  font-weight: bold;
+}
 .success{
   color: rgb(37, 209, 31);
   font-weight: bold;
 }
-table {
+
+#pendingprod
+ {
   font-family: arial, sans-serif;
   border-collapse: collapse;
   width: 100%;
   
 }
 
-td, th {
+#pendinghead{
+
+  font-weight: bold;
+  text-decoration: underline;
+  
   border: 1px solid #dddddd;
   text-align: left;
   padding: 8px;
   outline: thin solid;
-}
-
-tr:nth-child(even) {
-  background-color: #dddddd;
-  outline: thin solid;
-}
-table, th, td {
-  border: 1px solid black;
   
 }
+ 
+#pendingcol{
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+  outline: thin solid;
+  column-width: 35%;
+}
+
+#pendingrow{
+
+  background-color: rgb(243, 241, 241);
+  outline: thin solid;
+  
+ 
+}
+
+
