@@ -151,7 +151,7 @@ async function updateUser(
 
   const userCollection = await users();
   let user = await getUserById(id);
-  
+ 
 
   const updateuser = {
     userName: userName.trim(),
@@ -166,9 +166,10 @@ async function updateUser(
     updateuser.password = hash;
   }
 
-  if (userImage != null && userImage.length != 0) {
+
+  if (userImage != null) {
     updateuser.userImage = userImage;
-  }
+   }
 
   id = ObjectId(id);
 
@@ -179,7 +180,6 @@ async function updateUser(
   if (updatedInfo.modifiedCount === 0) {
     throw "Could not update User";
   }
-
   return await getUserById(id.toString());
 }
 

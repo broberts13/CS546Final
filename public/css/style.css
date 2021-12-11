@@ -436,8 +436,8 @@ li.list_desc h4 a:hover {
   transition: all 0.3s;
   background: #000;
 }
-a:link{
-  color:#0072ee;
+a:link {
+  color: #0072ee;
 }
 .button a:hover {
   background: #222;
@@ -2951,9 +2951,9 @@ image-tools.show-on-hover {
   font-weight: bold;
 }
 
-.redbtn{
+.redbtn {
   color: #fff;
-  background-color:red;
+  background-color: red;
   display: inline-block;
   padding: 6px 12px;
   margin-bottom: 0;
@@ -2972,7 +2972,7 @@ image-tools.show-on-hover {
   border: 1px solid transparent;
   border-radius: 4px;
 }
-.err{
+.err {
   color: red;
   font-weight: bold;
 }
@@ -2987,32 +2987,28 @@ p.commenterr {
   color: red;
   font-weight: bold;
 }
-.success{
+.success {
   color: rgb(37, 209, 31);
   font-weight: bold;
 }
 
-#pendingprod
- {
+#pendingprod {
   font-family: arial, sans-serif;
   border-collapse: collapse;
   width: 100%;
-  
 }
 
-#pendinghead{
-
+#pendinghead {
   font-weight: bold;
   text-decoration: underline;
-  
+
   border: 1px solid #dddddd;
   text-align: left;
   padding: 8px;
   outline: thin solid;
-  
 }
- 
-#pendingcol{
+
+#pendingcol {
   border: 1px solid #dddddd;
   text-align: left;
   padding: 8px;
@@ -3020,12 +3016,13 @@ p.commenterr {
   column-width: 35%;
 }
 
-#pendingrow{
-
+#pendingrow {
   background-color: rgb(243, 241, 241);
   outline: thin solid;
-  
- 
 }
 
-
+.Ptitle {
+  text-align: center;
+  font-family: fantasy;
+  background-color: rgb(245, 220, 225);
+}

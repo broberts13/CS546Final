@@ -437,6 +437,7 @@
   $(document).on("click", ".review-like" , function() {
 
       var ID = $(this).closest(".review-blog").find(".review-id");
+      var errbtn = $(this).closest(".review-blog").find("#rev-err");
       var likeBtn = $(this);     
       var revid= ID.data("reviewid");
       var likereviewUrl = "/products/reviews/likes/"+revid;	
@@ -452,7 +453,7 @@
                   
             },
               error: function (jqXhr, textStatus, errorMessage) {
-              $("#rev-err").text("Login to Like Reviews");
+              errbtn.text("Login to Like Reviews");
             }
         });
 
@@ -461,8 +462,9 @@
 
   <!-- Showing Comments Dialogue-->
   $(document).on("click", ".review-reply" , function() {
-    
-    if($("#curUser").val()){        
+     
+    var errbtn = $(this).closest(".review-blog").find("#rev-err");  
+    if($("#curUser").val()){    
     var commentdialogue = $('#commentDialog').detach();
     $(this).closest(".review-blog").find(".comment-space").append(commentdialogue);
     $("#commentDialog").show();  
@@ -470,9 +472,9 @@
     $("#userName").html("{{user.userName}}");
     $("#userImg").attr('src','{{user.userImage}}');
        $("#cmntbody").focus();
-      }
-      else{
-         $("#rev-err").text("Login to Comment on Reviews");
+    }
+    else{
+        errbtn.text("Login to Comment on Reviews");
     }     
   });
   <!-- End of Comments Dialogue-->
