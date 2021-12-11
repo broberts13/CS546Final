@@ -1500,6 +1500,25 @@ ul.product-colors {
   padding: 0;
   margin-bottom: 5%;
 }
+.productInfo h1{
+  color: #08080b;
+  font-weight: 700;
+  font-size: 20pt;
+  padding-bottom: 0.5em;
+  display: block;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+}
+.productInfo h2{
+  color: #08080b;
+  font-weight: 700;
+  font-size: 14pt;
+  padding-bottom: 0.5em;
+  display: block;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+}
+
 .product-colors h3,
 .prosuct-qty span {
   color: #08080b;

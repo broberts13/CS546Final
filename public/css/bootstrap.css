@@ -118,7 +118,6 @@ textarea {
 }
 button {
   overflow: visible;
-  background-color: #0072ee;
 }
 button,
 select {
@@ -241,9 +240,6 @@ th {
   .table td,
   .table th {
     background-color: #fff !important;
-  }
-  .btn{
-    background-color: #0072ee;
   }
   .btn > .caret,
   .dropup > .btn > .caret {
@@ -2179,8 +2175,8 @@ fieldset[disabled] .btn-default.active {
 }
 .btn-primary {
   color: #fff;
-  background-color: #0072ee;
-  border-color: #0072ee;
+  background-color: #428bca;
+  border-color: #357ebd;
 }
 .btn-primary:hover,
 .btn-primary:focus,
@@ -2188,8 +2184,8 @@ fieldset[disabled] .btn-default.active {
 .btn-primary.active,
 .open .dropdown-toggle.btn-primary {
   color: #fff;
-  background-color: #0072ee;
-  border-color: #0072ee;
+  background-color: #3276b1;
+  border-color: #285e8e;
 }
 .btn-primary:active,
 .btn-primary.active,
@@ -2211,11 +2207,11 @@ fieldset[disabled] .btn-primary:active,
 .btn-primary.disabled.active,
 .btn-primary[disabled].active,
 fieldset[disabled] .btn-primary.active {
-  background-color: #0072ee;
-  border-color: #0072ee;
+  background-color: #428bca;
+  border-color: #357ebd;
 }
 .btn-primary .badge {
-  color: #0072ee;
+  color: #428bca;
   background-color: #fff;
 }
 .btn-success {
