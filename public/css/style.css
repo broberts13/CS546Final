@@ -436,6 +436,9 @@ li.list_desc h4 a:hover {
   transition: all 0.3s;
   background: #000;
 }
+a:link{
+  color:#0072ee;
+}
 .button a:hover {
   background: #222;
 }
