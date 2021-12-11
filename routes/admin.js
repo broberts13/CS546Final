@@ -24,18 +24,21 @@ router.post("/login", async (req, res) => {
   const username = xss(req.body.username);
   const password = xss(req.body.password);
   if (!username) {
-    res.status(400).json({ error: "You must provide User name" });
+    res.render("admin/adminlogin",{ error: "You must provide User name" });
+    // res.status(400).json({ error: "You must provide User name" });
     return;
   }
   if (!password) {
-    res.status(400).json({ error: "You must provide password" });
+    res.render("admin/adminlogin",{ error: "You must provide password" });
+    // res.status(400).json({ error: "You must provide password" });
     return;
   }
   //console.log(username, password);
   try {
     const admin = await adminData.login(username, password);
     if (!admin) {
-      res.status(400).send({ error: "You are not authorized" });
+      res.render("admin/adminlogin",{ error: "You are not authorized" });
+      // res.status(400).send({ error: "You are not authorized" });
       return;
     }
     const pending = await pendingData.getAll();
