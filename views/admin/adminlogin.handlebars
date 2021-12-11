@@ -3,38 +3,33 @@
 		<div class="d-flex flex-column align-items-center text-center p-3 py-5">
 			<img 
 				class="rounded-circle mt-5"
-				width="150px" src="/public/uploads/thread-lock.jpg"
+				width="150" src="/public/uploads/thread-lock.jpg"
 				alt="admin picture"
 			>
 			<br>
 			<h1>Administrator</h1>
 		</div>
-		{{!-- <div class="main">
-			<div class="shop_top">
-				<div class="container">
-					<div class="col-md-6">
-						<div class="login-page"> --}}
 		<h2 class="text-center">Log In</h2>
-			<form action="/admin/login" method="post" name="adminlogin" id="login-form">
-				<fieldset class="input">
-					<p id="login-form-username">
-						<label for="modlgn_username"><h3>Username</h3></label>
-						<input id="modlgn_username" type="text" name="username" class="inputbox"
-							size="18" autocomplete="off" />
+		<form action="/admin/login" method="post" name="adminlogin" id="login-form">
+			<fieldset class="input">
+				<h3 id="login-form-username">
+					<label for="modlgn_username">Username</label>
+					<input id="modlgn_username" type="text" name="username" class="inputbox"
+						size="18" autocomplete="off" />
+				</h3>
+				<h3 id="login-form-password">
+					<label for="modlgn_passwd">Password</label>
+					<input id="modlgn_passwd" type="password" name="password" class="inputbox"
+						size="18" autocomplete="off" />
+				</h3>
+				<p class= "err">{{error}}</p>
+				<div class="remember">
+					<p id="login-form-remember">
 					</p>
-					<p id="login-form-password">
-						<label for="modlgn_passwd"><h3>Password</h3></label>
-						<input id="modlgn_passwd" type="password" name="password" class="inputbox"
-							size="18" autocomplete="off" />
-					</p>
-					<p class= "err" style="color:#ee0000;">{{error}}</p>
-					<div class="remember">
-						<p id="login-form-remember">
-						</p>
-						<input type="submit" name="Submit" class="button" value="Login" />
-						<div class="clear"></div>
-					</div>
-				</fieldset>
-			</form>
-		</div>
+					<input type="submit" name="Submit" class="button" value="Login" />
+					<div class="clear"></div>
+				</div>
+			</fieldset>
+		</form>
 	</div>
+</div>

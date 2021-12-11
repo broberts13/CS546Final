@@ -3,7 +3,7 @@
                 <div class="d-flex flex-column align-items-center text-center">
                         <img 
                                 class="rounded-circle mt-5"
-                                width="150px" 
+                                width="150" 
                                 src="/public/uploads/thread-lock.jpg"
                                 alt= "AdminPic"
                         >
@@ -18,16 +18,16 @@
                                         <br>
                                         <h2 class="text-centre">Pending Products Requests</h2>
                                         <table id="pendingprod">
-                                        <tr id="pendingrow">
-                                        <th id="pendinghead">Id</th>
-                                        <th id="pendinghead">Name</th>
-                                        <th id="pendinghead">Brand</th>
+                                        <tr id="pendingrow1">
+                                                <th id="pendinghead1">Id</th>
+                                                <th id="pendinghead2">Name</th>
+                                                <th id="pendinghead3">Brand</th>
                                         </tr>
                                         {{#each pending}}                                      
-                                        <tr id="pendingrow">
-                                        <td id="pendingcol">{{this._id}}</td>
-                                        <td id="pendingcol">{{this.productName}}</td>
-                                        <td id="pendingcol">{{this.brand}}</td>
+                                        <tr id="pendingrow2">
+                                                <td id="pendingcol1">{{this._id}}</td>
+                                                <td id="pendingcol2">{{this.productName}}</td>
+                                                <td id="pendingcol3">{{this.brand}}</td>
                                         </tr>
                                         {{/each}}
                                         </table>
@@ -113,7 +113,7 @@
                                 </div>
                                 <br>
                                 <div class="mt-5 text-center">
-                                        <button class="btn btn-primary profile-button" style="background-color: #0072ee;"
+                                        <button class="btn btn-primary profile-button"
                                                 type="submit">Create Product
                                         </button>
                                 </div>
@@ -163,8 +163,8 @@
                                 </div id="container">
                         </div>
                         
-                        <p>{{success3}}</p>
-                        <p>{{error3}}</p>
+                        <p class="success">{{success3}}</p>
+                        <p class= "err">{{error3}}</p>
                         <br>
                         <div class="mt-5 text-center"><button class="btn btn-danger" type="submit"
                                         id='deleteProductIdButton'>Delete Product

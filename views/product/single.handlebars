@@ -47,7 +47,7 @@
               </li>
             </ul>
             <p id="wishsucc" class="success"></p>
-            <p id="wisherr" class="err" style="color:#ee0000;"></p>
+            <p id="wisherr" class="err"></p>
              <br>
               <p><strong>Links to buy this product:</strong></p>
               {{#each product.productLinks}}
@@ -68,7 +68,7 @@
                   <span class="float-right"><i class="rating"><strong>{{this.rating}} </strong></i>
             </ul>
             <form>
-              <button type="button" style="background-color:#dc3737;" name="Submit" class="exclusive">
+              <button type="button" name="Submit" class="exclusive">
                 <a href="{{product.productLinks.[0]}}"><span>Buy</span></a>
               </button>
             </form>
@@ -82,7 +82,7 @@
           <h2>Add Review</h2>
           <!--  <table width="100%" border="0"> -->
           <div class="col-md-9 col-md-offset-0">
-            <tr><p id = "input-error"style="display: block; text-align: center;"class= "err">{{error}}</p></tr>
+            <tr><p id = "input-error" class= "err">{{error}}</p></tr>
             <tr>
               <!-- <td width="77%"></td> -->
               <div>
@@ -190,7 +190,7 @@
                           <td>
                             <span>
                               <button
-                                class="fit-button fit-button-color-blue fit-button-fill-ghost fit-button-size-medium stars-filter" style = "color:#2c64e2;"
+                                class="fit-button fit-button-color-blue fit-button-fill-ghost fit-button-size-medium stars-filter"
                               >5 Stars</button>
                             </span>
                           </td>
@@ -204,13 +204,13 @@
                               </div>
                             </div>
                           </td>
-                          <td class="star-num" style="color:#436fe6;">({{status.a}})</td>
+                          <td class="star-num">({{status.a}})</td>
                         </tr>
                         <tr class="">
                           <td>
                             <span>
                               <button
-                                class="fit-button fit-button-color-blue fit-button-fill-ghost fit-button-size-medium stars-filter" style = "color:#2c64e2; "
+                                class="fit-button fit-button-color-blue fit-button-fill-ghost fit-button-size-medium stars-filter"
                               >4 Stars</button>
                             </span>
                           </td>
@@ -226,13 +226,13 @@
                               </div>
                             </div>
                           </td>
-                          <td class="star-num" style="color:#0058da">({{status.b}})</td>
+                          <td class="star-num">({{status.b}})</td>
                         </tr>
                         <tr class="">
                           <td>
                             <span>
                               <button
-                                class="fit-button fit-button-color-blue fit-button-fill-ghost fit-button-size-medium stars-filter" style = "color:#2c64e2; "
+                                class="fit-button fit-button-color-blue fit-button-fill-ghost fit-button-size-medium stars-filter"
                               >3 Stars</button>
                             </span>
                           </td>
@@ -248,13 +248,13 @@
                               </div>
                             </div>
                           </td>
-                          <td class="star-num" style="color:#0058da">({{status.c}})</td>
+                          <td class="star-num">({{status.c}})</td>
                         </tr>
                         <tr class="">
                           <td>
                             <span>
                               <button
-                                class="fit-button fit-button-color-blue fit-button-fill-ghost fit-button-size-medium stars-filter"style = "color:#2c64e2; "
+                                class="fit-button fit-button-color-blue fit-button-fill-ghost fit-button-size-medium stars-filter"
                               >2 Stars</button>
                             </span>
                           </td>
@@ -270,13 +270,13 @@
                               </div>
                             </div>
                           </td>
-                          <td class="star-num" style="color:#0058da;">({{status.d}})</td>
+                          <td class="star-num">({{status.d}})</td>
                         </tr>
                         <tr class="">
                           <td>
                             <span>
                               <button
-                                class="fit-button fit-button-color-blue fit-button-fill-ghost fit-button-size-medium stars-filter"style = "color:#2c64e2; "
+                                class="fit-button fit-button-color-blue fit-button-fill-ghost fit-button-size-medium stars-filter"
                               >1 Stars</button>
                             </span>
                           </td>
@@ -292,7 +292,7 @@
                               </div>
                             </div>
                           </td>
-                          <td class="star-num" style="color:#436fe6;">({{status.e}})</td>
+                          <td class="star-num">({{status.e}})</td>
                         </tr>
                       </tbody>
                     </table>
@@ -315,7 +315,7 @@
                     <p>
                       <a class="float-left review-username" href="#"><strong>{{this.userName}}</strong></a>
                       <span class="float-right"><i class="text-warning fa fa-star"></i></span>
-                      <span class="float-right" ><i class="rating" style="color:#9d6e00;"><strong>{{this.rating}} </strong></i> 
+                      <span class="float-right" ><i class="rating"><strong>{{this.rating}} </strong></i> 
                     </p>
                     <div class="clearfix"></div>
                       <p class="review-id" data-userid="{{user.userName}}" data-reviewid="{{this._id}}">{{this.title}}</p>
@@ -324,7 +324,7 @@
                         {{!-- Added class review-reply as an identifier for the review like button --}}
                         <a class="float-right btn btn-outline-primary ml-2 review-reply"> <i class="fa fa-reply"></i> Comment</a>
                         {{!-- Added class review-like as an identifier for the review like button --}}
-                        <a id = "revlike"  class="float-right btn text-white btn-danger review-like" data-selected="{{this.islike}}" > <i class="fa fa-heart" ></i> <span style="background-color: #d4423c;">Like</span></a>
+                        <a id = "revlike"  class="float-right btn text-white btn-danger review-like" data-selected="{{this.islike}}" > <i class="fa fa-heart" ></i> <span>Like</span></a>
                       {{!-- id = "revlike" --}}
                       </p>
                     </div>
@@ -367,7 +367,7 @@
                             <p>
                               <textarea autofocus id="cmntbody" class="review-txt-area" rows="4" style="width:100%" placeholder="Write a comment"></textarea>
                             </p>
-                            <p id = "comment-error"style="display: block; text-align: center; color: red;"></p></tr>
+                            <p id = "comment-error"class="err"></p></tr>
                             <p>
                               <a class="float-right btn text-white btn-primary add-comment"> </i> <span>ADD</span></a>
                             </p>

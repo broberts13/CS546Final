@@ -16,7 +16,7 @@
             <span class="font-weight-bold">
               <strong>{{users.firstName}}:</strong>
             </span>
-            <span class="text-50" style ="color:#767676;">{{users.email}}</span>
+            <span class="text-50">{{users.email}}</span>
             <span> </span>
           </div>
           <br/>
@@ -43,13 +43,13 @@
               <br />
             </div>
             <div class="row mt-2">
-              <div class="col-md-6"><label for="firstName" class="labels"><h2>First Name</h2></label><input type="text" id="firstName" name="firstName" class="form-control" placeholder="First" value={{users.firstName}}></div>
-              <div class="col-md-6"><label for="lastName" class="labels"><h2>Last Name</h2></label><input type="text"  id="lastName" name="lastName"  class="form-control" placeholder="Last" value={{users.lastName}}></div>
+              <div class="col-md-6"><h2><label for="firstName" class="labels">First Name</label></h2><input type="text" id="firstName" name="firstName" class="form-control" placeholder="First" value={{users.firstName}}></div>
+              <div class="col-md-6"><h2><label for="lastName" class="labels">Last Name</label></h2><input type="text"  id="lastName" name="lastName"  class="form-control" placeholder="Last" value={{users.lastName}}></div>
             </div>
             <div class="row mt-3">
-              <div class="col-md-12"><label for="userName" class="labels"><h3>Username</h3></label><br>{{users.userName}}</div>
-              <div class="col-md-12"><label for="password" class="labels"><h3>Password</h3></label><input type="text" id="password" name= "password"  class="form-control" placeholder="Password" ></div>
-              <div class="col-md-12"><label for="email" class="labels"><h3>Email</h3></label><input type="text" id="email" name="email"  class="form-control" placeholder="Email"  value={{users.email}}></div>
+              <div class="col-md-12"><h3><label for="userName" class="labels">Username</label></h3><br>{{users.userName}}</div>
+              <div class="col-md-12"><h3><label for="password" class="labels">Password</label></h3><input type="text" id="password" name= "password"  class="form-control" placeholder="Password" ></div>
+              <div class="col-md-12"><h3><label for="email" class="labels">Email</label></h3><input type="text" id="email" name="email"  class="form-control" placeholder="Email"  value={{users.email}}></div>
               <div class="col-md-12"><label for="makeupLevel" class="labels">Makeup Level</label>
                 <select name = "dropdown"id="makeupLevel" name="makeupLevel" class="form-control" placeholder="Makeup Level" >
                   <option value = "Basic" selected>Basic</option>
@@ -67,7 +67,6 @@
             <div class="mt-5 text-center">
               <button
                 class="btn btn-primary profile-button"
-                style="background-color: #007cc0;"
                 type="submit"
               >Save Profile</button>
             </div>
@@ -84,7 +83,7 @@
             action="/users/delete/{{user._id}}"
             >
             <label for="del">Delete profile, Once you delete you cant undo it</label>
-            <button  id="del" class="redbtn" class="btn btn-primary profile-button" type="submit" style="background-color: #ee0000;">Delete
+            <button  id="del" class="redbtn" class="btn btn-primary profile-button" type="submit">Delete
               Profile
             </button>
           </form>
@@ -93,13 +92,13 @@
           <br>
           <label for="wishl">Go to WishList</label>
           <br>
-          <button id="wishl" onclick="window.location.href='#wish'" class="btn btn-primary profile-button" type="submit" style="background-color: #007cc0;">My WishList</button>
+          <button id="wishl" onclick="window.location.href='#wish'" class="btn btn-primary profile-button" type="submit">My WishList</button>
           <br>
           <br>
           <br>
           <label for="revl">Go to Review List</label>
           <br>
-          <button id="revl" onclick="window.location.href='#rev'" class="btn btn-primary profile-button" type="submit" style="background-color: #007cc0;">My Reviews</button>  
+          <button id="revl" onclick="window.location.href='#rev'" class="btn btn-primary profile-button" type="submit">My Reviews</button>  
         </div>
       </div>
     </div>
@@ -173,7 +172,7 @@
                   <p>
                     <a class="float-left review-username" href="#" ><strong>{{this.userName}}</strong></a>
                     <span class="float-right"><i class="text-warning fa fa-star" ></i></span>
-                    <span class="float-right"><i class="rating" style="color:#9d6e00;"><strong>{{this.rating}} </strong></i>
+                    <span class="float-right"><i class="rating"><strong>{{this.rating}} </strong></i>
                   </p>
                   <div class="clearfix"></div>
                   <p
