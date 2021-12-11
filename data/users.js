@@ -1,5 +1,6 @@
 const mongoCollections = require("../config/mongoCollections");
 const users = mongoCollections.users;
+const productData = require("../data/products");
 const bcrypt = require("bcrypt");
 const saltRounds = 16;
 const validate = require("./validation");
@@ -147,7 +148,7 @@ async function updateUser(
     }
   }
 
-  
+
   const userCollection = await users();
   let user = await getUserById(id);
   
@@ -217,6 +218,9 @@ async function addToWishList(userId, prodId) {
     if (updatedInfo.modifiedCount === 0) {
       throw "Could not add to wishlist";
     }
+  }
+  else{
+    throw "Already added to Wishlist";
   }
 }
 

@@ -26,7 +26,6 @@
           url: "/products",
           data: newProd,
           success: function (response) {
-            alert("create product success");
             pendingId = $('#pendingid').val();
             if (pendingId) {
               console.log("creating product success, and removing pending item")
@@ -42,7 +41,7 @@
                   alert(error.responseText);
                 },
               });
-            }
+            } 
             else {
               window.location.href = "/admin";
             }

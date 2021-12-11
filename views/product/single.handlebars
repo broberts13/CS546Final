@@ -46,8 +46,10 @@
                 <a id="btn-whishlist" href="/users/wishlist/{{product._id}}" > Add to wishlist</a>
               </li>
             </ul>
-            <br>
-            <p><strong>Links to buy this product:</strong></p>
+            <p id="wishsucc" class="success"></p>
+            <p id="wisherr" class="err"></p>
+             <br>
+              <p><strong>Links to buy this product:</strong></p>
               {{#each product.productLinks}}
               <a href="{{this}}">Buy here</a>
               <br>
@@ -100,15 +102,21 @@
                         <label hidden for="reviewBody">Review Body</label>
                         <textarea class="form-control" id="reviewBody" name="reviewBody" placeholder="Please enter your review here..." rows="5"></textarea>
                       </div>
+                       
                     </div>
                     <!-- Rating -->
                     <div class="form-group">
                       <label class="col-md-3 control-label" for="review">Your rating</label>
+                      
                       <div class="col-md-9">
+                        <p id = "input-success" class= "float-right success"></p>
+                        <p id = "input-error" class= "float-right err"></p>
                         <input id="rating" name=rating value="0" type="number" class="rating" min=0 max=5 step=1 data-size="xs" >
+                       
                       </div>
                     </div>   
                     <!-- <td align="center" valign="top" width="23%"> </td> -->
+
                     <!-- Form actions -->
                     <div class="form-group">
                       <div class="col-md-12 text-center">
@@ -373,7 +381,7 @@
 	              </div>
 	            </div>
               {{/each}}
-                {{!-- end of review list --}}
+              {{!-- end of review list --}}
             </div>
           </div>
         </div>
@@ -416,7 +424,8 @@
 			
 		},
 		error: function (xhr, textStatus, error) {
-			alert("Login to Add Like, Failed to Add Like");
+			//alert("Login to Add Like, Failed to Add Like");
+       $("#wisherr").text("Login to Add Product Like");
 		},
 		});
 
@@ -443,8 +452,7 @@
                   
             },
               error: function (jqXhr, textStatus, errorMessage) {
-              alert("Login to like review");
-              window.location.href = "/login";
+              $("#rev-err").text("Login to Like Reviews");
             }
         });
 
@@ -464,8 +472,7 @@
        $("#cmntbody").focus();
       }
       else{
-        alert("Login to Comment on Reviews");
-      window.location.href = "/login";
+         $("#rev-err").text("Login to Comment on Reviews");
     }     
   });
   <!-- End of Comments Dialogue-->
