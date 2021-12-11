@@ -218,6 +218,9 @@ async function addToWishList(userId, prodId) {
       throw "Could not add to wishlist";
     }
   }
+  else{
+    throw "Already added to Wishlist";
+  }
 }
 
 async function RemoveWishList(userId, prodId) {

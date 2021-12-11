@@ -34,6 +34,7 @@ router.get("/", async (req, res) => {
 
 router.post("/wishlist/:prodId", async (req, res) => {
   try {
+    if(!req.session.user){ throw "Login, to add product in Wishlist";}
     await userData.addToWishList(
       req.session.user._id.toString(),
       req.params.prodId

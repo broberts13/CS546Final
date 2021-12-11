@@ -108,6 +108,8 @@
                   href="/users/wishlist/{{product._id}}"
                 > Add to wishlist</a></li>
             </ul>
+            <p id="wishsucc" class="success"></p>
+            <p id="wisherr" class="err"></p>
              <br>
               <p><strong>Links to buy this product:</strong></p>
               {{#each product.productLinks}}
@@ -158,7 +160,7 @@
             <h2>Add Review</h2>
             <table width="100%" border="0">
               <div class="col-md-9 col-md-offset-0">
-                <tr><p id = "input-error"style="display: block; text-align: center;"class= "err">{{error}}</p></tr>
+                <tr></tr>
                 <tr><td width="77%">
                 <div class="">
                   <form id="addreview" class="form-horizontal" action="/products/review/{{product._id}}" method="post">
@@ -179,16 +181,22 @@
                       <div class="col-md-9">
                         <textarea class="form-control" id="reviewBody" name="reviewBody" placeholder="Please enter your review here..." rows="5"></textarea>
                       </div>
+                       
                     </div>
 
 
                     <!-- Rating -->
                     <div class="form-group">
                       <label class="col-md-3 control-label" for="review">Your rating</label>
+                      
                       <div class="col-md-9">
+                        <p id = "input-success" class= "float-right success"></p>
+                        <p id = "input-error" class= "float-right err"></p>
                         <input id="rating" name=rating value="0" type="number" class="rating" min=0 max=5 step=1 data-size="xs" >
+                       
                       </div>
                     </div>
+                    
             </td>
             <td align="center" valign="top" width="23%">
                     <!-- Form actions -->
@@ -415,18 +423,26 @@
                     <p>{{this.reviewBody}}</p>
         	        <p>
                       {{!-- Added class review-reply as an identifier for the review like button --}}
-        	            <a class="float-right btn btn-outline-primary ml-2 review-reply"> <i class="fa fa-reply"></i> Comment</a>
+        	            <a class="float-right btn btn-outline-primary ml-2 review-reply"> <i class="fa fa-reply"></i> Comment </a>
                       {{!-- Added class review-like as an identifier for the review like button --}}
         	            <a id = "revlike"  class="float-right btn text-white btn-danger review-like" data-selected="{{this.islike}}" > <i class="fa fa-heart"></i> <span>Like</span></a>
         	      {{!-- id = "revlike" --}}
+                
                  </p>
-                 
+                 <br>
+                 <br>
+                 <br>
+                 <br>
+                 <p id ="rev-err" class="float-right reverr"></p>
+                  
         	    </div>
+              
+              
+
               <div class="reviews-members-footer">
                                     <div class="total-like" href="#"><i class="glyphicon glyphicon-thumbs-up"></i> {{this.likes.length}}</div>
                                     <div class="total-like" href="#"><i class="glyphicon glyphicon-comment"></i> {{this.Comments.length}}</div> 
-                                    
-              </div>
+                                                  </div>
 	        </div>
             <!-- Start of Comments -->
            <div class="comment-space">
@@ -467,7 +483,7 @@
                                     <p>
                                         <textarea autofocus id="cmntbody" class="review-txt-area" rows="4" style="width:100%" placeholder="Write a comment"></textarea>
                                     </p>
-                                    <p id = "comment-error"style="display: block; text-align: center; color: red;"></p></tr>
+                                    <p class="commenterr" id="comment-error" ></p></tr>
 
                                     <p>
                                         <a class="float-right btn text-white btn-primary add-comment"> </i> <span>ADD</span></a>
@@ -578,7 +594,8 @@
 			
 		},
 		error: function (xhr, textStatus, error) {
-			alert("Login to Add Like, Failed to Add Like");
+			//alert("Login to Add Like, Failed to Add Like");
+       $("#wisherr").text("Login to Add Product Like");
 		},
 		});
 
@@ -605,8 +622,7 @@
                   
             },
               error: function (jqXhr, textStatus, errorMessage) {
-              alert("Login to like review");
-              window.location.href = "/login";
+              $("#rev-err").text("Login to Like Reviews");
             }
         });
 
@@ -626,8 +642,7 @@
        $("#cmntbody").focus();
       }
       else{
-        alert("Login to Comment on Reviews");
-      window.location.href = "/login";
+         $("#rev-err").text("Login to Comment on Reviews");
     }     
   });
   <!-- End of Comments Dialogue-->
