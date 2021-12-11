@@ -58,17 +58,13 @@ router.post("/wishlist/remove/:prodId", async (req, res) => {
 });
 
 router.post("/profile", async (req, res) => {
-  const userName = xss(req.body.userName);
   const userImage = xss(req.body.userImage);
   const firstName = xss(req.body.firstName);
   const lastName = xss(req.body.lastName);
   const password = xss(req.body.password);
   const email = xss(req.body.email);
   const makeupLevel = xss(req.body.makeupLevel);
-  if (!userName) {
-    res.status(400).json({ error: "You must provide User name" });
-    return;
-  }
+  const userName = req.session.user.userName;
   if (!userImage) {
     res.status(400).json({ error: "You must provide User picture" });
     return;
@@ -90,10 +86,11 @@ router.post("/profile", async (req, res) => {
     res.status(400).json({ error: "You must provide makeup level" });
     return;
   }
-  if(req.session.user.userName == userName && req.session.user.userImage==userImage && req.session.user.firstName == firstName && req.session.user.lastName==lastName && req.session.user.email==email && req.session.user.makeupLevel==makeupLevel){
+  if(req.session.user.userImage==userImage && req.session.user.firstName == firstName && req.session.user.lastName==lastName && req.session.user.email==email && req.session.user.makeupLevel==makeupLevel){
     res.status(400).json({ error: "Data is Up-to-date"});
     return;
   }
+  
 
   try {
     const user = await userData.updateUser(

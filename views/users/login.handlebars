@@ -1,23 +1,30 @@
 <div class="main">
   <div class="shop_top">
+    <div class = "login-header text-center">
+      <h1>Login or Signup</h1>
+      <h2 class= "loginTitle">Please log in or create an account to access more features</h2>
+    </div>
+    <br>
     <div class="container">
       <div class="col-md-6">
         <div class="login-page">
-          <h4 class="title">Don't Have an Account?</h4>
+          <h3 class="title">Don't Have an Account?</h3>
           <p>Not a member? Click the link below to sign-up and join a community of makeup lovers just like you! With an account, you have the power to save products to a wishlist and write reviews. We're excited to have you!</p>
           <div class="button1">
-            <a href="/signup"><input
+            <form action="/signup">
+              <input
                 type="submit"
                 name="Submit"
                 value="Create an Account"
-              /></a>
+              />
+            </form>
           </div>
           <div class="clear"></div>
         </div>
       </div>
       <div class="col-md-6">
         <div class="login-title">
-          <h4 class="title">Returning Users</h4>
+          <h3 class="title">Returning Users</h3>
           <div id="loginbox" class="loginbox">
             <form action="/login" method="POST" name="login" id="login-form">
               <fieldset class="input">
@@ -53,11 +60,7 @@
                 </div>
               </fieldset>
             </form>
-           
             <p class= "err">{{error}}</p>
-         
-
-            
           </div>
         </div>
         <div class="clear"></div>
