@@ -1,25 +1,28 @@
 <div class="container rounded bg-white mt-5 mb-5">
   <div class="row">
-
     <div class="col1">
       <form id="form-user-edit" action="/users/profile" method="post">
         <div class="col-md-3 border-right">
-          <div
-            class="d-flex flex-column align-items-center text-center p-3 py-5"
-          ><img
+          <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+            <img
               id="img"
               class="rounded-circle mt-5"
               width="150px"
               data-user="{{users.userImage}}"
               src={{users.userImage}}
               alt="Profile"
-            /><br /><span class="font-weight-bold"><strong
-              >{{users.firstName}}:</strong></span><span
-              class="text-black-50"
-            >{{users.email}}</span><span> </span></div>
-
-          <br />
-
+            />
+            <br/>
+            <span class="font-weight-bold">
+              <strong>{{users.firstName}}:</strong>
+            </span>
+            <span class="text-50" style ="color:#767676;">{{users.email}}</span>
+            <span> </span>
+          </div>
+          <br/>
+          <label hidden for="imageUpload">
+            Profile Picture
+          </label>
           <input
             id="imageUpload"
             name="imageUpload"
@@ -27,76 +30,33 @@
             class="form-css"
             type="file"
             id="formFileMultiple"
-          /><br />
-
+          />
+          <br/>
         </div>
         {{! <a href="/">sign up here</a> }}
         <div class="col-md-5 border-right">
           <div class="p-3 py-5">
             <div class="d-flex justify-content-between align-items-center mb-3">
               <br />
-
-              <h3 class="text-centre">Profile Settings</h3>
-
+              <h1 class="text-centre">Profile Settings</h1>
               <br />
               <br />
             </div>
             <div class="row mt-2">
-              <div class="col-md-6"><label class="labels">Name</label><input
-                  type="text"
-                  id="firstName"
-                  name="firstName"
-                  class="form-control"
-                  placeholder="first name"
-                  value={{users.firstName}}
-                /></div>
-              <div class="col-md-6"><label class="labels">Surname</label><input
-                  type="text"
-                  id="lastName"
-                  name="lastName"
-                  class="form-control"
-                  placeholder="last name"
-                  value={{users.lastName}}
-                /></div>
+              <div class="col-md-6"><label for="firstName" class="labels"><h2>First Name</h2></label><input type="text" id="firstName" name="firstName" class="form-control" placeholder="First" value={{users.firstName}}></div>
+              <div class="col-md-6"><label for="lastName" class="labels"><h2>Last Name</h2></label><input type="text"  id="lastName" name="lastName"  class="form-control" placeholder="Last" value={{users.lastName}}></div>
             </div>
             <div class="row mt-3">
-              <div class="col-md-12"><label
-                  class="labels"
-                >UserName</label><input
-                  type="text"
-                  id="userName"
-                  name="userName"
-                  class="form-control"
-                  placeholder="enter UserName"
-                  value={{users.userName}}
-                /></div>
-              <div class="col-md-12"><label
-                  class="labels"
-                >Password</label><input
-                  type="text"
-                  id="password"
-                  name="password"
-                  class="form-control"
-                  placeholder="Enter New Password"
-                  value={{users.Password}}
-                ></div>
-              <div class="col-md-12"><label class="labels">Email ID</label><input
-                  type="text"
-                  id="email"
-                  name="email"
-                  class="form-control"
-                  placeholder="enter email id"
-                  value={{users.email}}
-                /></div>
-              <div class="col-md-12"><label class="labels">Makeup Level</label><input
-                  type="text"
-                  id="makeupLevel"
-                  name="makeupLevel"
-                  class="form-control"
-                  placeholder="enter makeup level"
-                  value={{users.makeupLevel}}
-                /></div>
-
+              <div class="col-md-12"><label for="userName" class="labels"><h3>Username</h3></label><br>{{users.userName}}</div>
+              <div class="col-md-12"><label for="password" class="labels"><h3>Password</h3></label><input type="text" id="password" name= "password"  class="form-control" placeholder="Password" ></div>
+              <div class="col-md-12"><label for="email" class="labels"><h3>Email</h3></label><input type="text" id="email" name="email"  class="form-control" placeholder="Email"  value={{users.email}}></div>
+              <div class="col-md-12"><label for="makeupLevel" class="labels">Makeup Level</label>
+                <select name = "dropdown"id="makeupLevel" name="makeupLevel" class="form-control" placeholder="Makeup Level" >
+                  <option value = "Basic" selected>Basic</option>
+                  <option value = "Intermediate">Intermediate</option>
+                  <option value = "Advanced">Advanced</option>
+                </select>
+              </div>
             </div>
             {{! <div class="row mt-3">
                     <div class="col-md-6"><label class="labels">Country</label><input type="text" class="form-control" placeholder="country" value=""></div>
@@ -104,40 +64,42 @@
                 </div> }}
             <br />
             <p id = "profile-edit-error"class= "err"></p>
-            <div class="mt-5 text-center"><button
+            <div class="mt-5 text-center">
+              <button
                 class="btn btn-primary profile-button"
+                style="background-color: #007cc0;"
                 type="submit"
-              >Save Profile</button></div>
-
-            <br />
-
+              >Save Profile</button>
+            </div>
+            <br/>
           </div>
-
         </div>
       </form>
       <div class="col-md-4">
         <div class="p-3 py-5">
-              <form
-                  id="form-user-delete"
-                  name="form-user-delete"
-                  method="post"
-                  action="/users/delete/{{user._id}}"
-              ><label for="del">Delete profile, Once you delete you cant undo it</label>
-              <button  id="del" class="redbtn" class="btn btn-primary profile-button" type="submit">Delete
-                Profile</button>
-              </form>
-              <br>
-              <br>
-              <br>
-              
-                <label for="wishl">Go to WishList</label><br>
-                <button id="wishl" onclick="window.location.href='#wish'" class="btn btn-primary profile-button" type="submit">My WishList</button>
-                <br>
-                <br>
-                <br>
-                <label for="revl">Go to Review List</label><br>
-                <button id="revl" onclick="window.location.href='#rev'" class="btn btn-primary profile-button" type="submit">My Reviews</button>
-              
+          <form
+            id="form-user-delete"
+            name="form-user-delete"
+            method="post"
+            action="/users/delete/{{user._id}}"
+            >
+            <label for="del">Delete profile, Once you delete you cant undo it</label>
+            <button  id="del" class="redbtn" class="btn btn-primary profile-button" type="submit" style="background-color: #ee0000;">Delete
+              Profile
+            </button>
+          </form>
+          <br>
+          <br>
+          <br>
+          <label for="wishl">Go to WishList</label>
+          <br>
+          <button id="wishl" onclick="window.location.href='#wish'" class="btn btn-primary profile-button" type="submit" style="background-color: #007cc0;">My WishList</button>
+          <br>
+          <br>
+          <br>
+          <label for="revl">Go to Review List</label>
+          <br>
+          <button id="revl" onclick="window.location.href='#rev'" class="btn btn-primary profile-button" type="submit" style="background-color: #007cc0;">My Reviews</button>  
         </div>
       </div>
     </div>
@@ -146,9 +108,6 @@
 
 {{! start of wishlist }}
 <div class="main">
-
-  
-
   <div class="shop_top">
     <div id="wish" class="container">
       {{#if products}}
@@ -156,7 +115,6 @@
       {{else}}
       <a href="/products">Your Wishlist is Empty, Add products to wishlist</a>
       {{/if}}
-
       <div  class="row shop_box-top">
         {{#each products}}
           <div class="col-md-3 shop_box" style="margin-top: 30px;">
@@ -166,19 +124,23 @@
                 class="img-responsive"
                 alt="product"
               />
-              <div class="shop_desc">
-                <h3><a href="#">{{this.productName}}</a></h3>
-                <p>{{this.brand}}</p>
-                <span class="actual">${{this.price}}</span><br />
-                <ul class="buttons">
-                  <li><a
-                      class="remove"
-                      href="/users/wishlist/remove/{{this._id}}"
-                    >Remove From WishList</a></li>
-                  <div class="clear"> </div>
-                </ul>
-              </div>
-            </a></div>
+            </a>
+            <div class="shop_desc">
+              <h3><a href="#">{{this.productName}}</a></h3>
+              <p>{{this.brand}}</p>
+              <span class="actual">${{this.price}}</span><br />
+              <ul class="buttons">
+                <li>
+                  <a
+                    class="remove"
+                    href="/users/wishlist/remove/{{this._id}}"
+                    >Remove From WishList
+                  </a>
+                </li>
+                <div class="clear"> </div>
+              </ul>
+            </div> 
+          </div>
         {{/each}}
       </div>
     </div>
@@ -187,20 +149,15 @@
 {{! end of wishlist }}
 
 <div id="rev" class="container">
-   {{#if userReviews}}
-     <h3 class="wish-title1">My Reviews:</h3>
-      {{else}}
-      <a href="/products">No Reviews made by You, share your Review for products</a>
-      {{/if}}
+  {{#if userReviews}}
+    <h3 class="wish-title1">My Reviews:</h3>
+    {{else}}
+    <a href="/products">No Reviews made by You, share your Review for products</a>
+  {{/if}}
   <div class="desc">
-   
     <div class="container">
       <div  class="review-list">
-
-     
-
         {{#each userReviews}}
- 
           <div class="card">
             <div class="card-body review-blog">
               <div class="row">
@@ -214,40 +171,26 @@
                 </div>
                 <div class="col-md-10">
                   <p>
-                    <a
-                      class="float-left review-username"
-                      href="#"
-                    ><strong>{{this.userName}}</strong></a>
-                    <span class="float-right"><i
-                        class="text-warning fa fa-star"
-                      ></i></span>
-                    <span class="float-right"><i
-                        class="text-warning fa fa-star"
-                      ></i></span>
-                    <span class="float-right"><i
-                        class="text-warning fa fa-star"
-                      ></i></span>
-                    <span class="float-right"><i class="rating"><strong
-                        >{{this.rating}} </strong></i>
-                      <i class="text-warning fa fa-star"></i></span>
-
+                    <a class="float-left review-username" href="#" ><strong>{{this.userName}}</strong></a>
+                    <span class="float-right"><i class="text-warning fa fa-star" ></i></span>
+                    <span class="float-right"><i class="rating" style="color:#9d6e00;"><strong>{{this.rating}} </strong></i>
                   </p>
                   <div class="clearfix"></div>
                   <p
                     class="review-id"
                     data-reviewid="{{this._id}}"
-                  >{{this.title}}</p>
+                    >{{this.title}}
+                  </p>
                   <p>{{this.reviewBody}}</p>
                    <p>
-                       <a class="float-right btn btn-outline-primary ml-2 delete-review"> <i class="fa fa-reply"></i> Delete</a>
-
-                  </p>
+                     <a class="float-right btn btn-outline-primary ml-2 delete-review"> <i class="fa fa-reply"></i> Delete</a>
+                    </p>
                   <p>
                     {{! Added class review-reply as an identifier for the review like button }}
                     <a
                       class="float-right btn btn-outline-primary ml-2 review-reply"
                       href="/products/{{this.productId}}"
-                    >
+                      >
                       <i class="fa fa-reply"></i>Product You Reviewd
                     </a>
                     {{! Added class review-like as an identifier for the review like button }}
@@ -257,16 +200,14 @@
                 <div class="reviews-members-footer">
                   <div class="total-like" href="#"><i
                       class="glyphicon glyphicon-thumbs-up"
-                    ></i>{{this.likes.length}}</div>
-                    <div class="total-like" href="#"><i class="glyphicon glyphicon-comment"></i> {{this.Comments.length}}</div>
-
+                    ></i>{{this.likes.length}}
+                  </div>
+                  <div class="total-like" href="#"><i class="glyphicon glyphicon-comment"></i> {{this.Comments.length}}</div>
                 </div>
               </div>
-
             </div>
           </div>
         {{/each}}
-
       </div>
     </div>
   </div>
