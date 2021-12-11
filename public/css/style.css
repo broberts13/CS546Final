@@ -9,6 +9,7 @@ h2,
 h3 {
   margin-top: 0;
 }
+
 ul,
 ol {
   margin: 0;
@@ -581,6 +582,7 @@ li.list_desc h4 a:hover {
 }
 .content_bottom-text h3 {
   color: #fff;
+  background-color: black;
   font-size: 3em;
   font-weight: 800;
   text-transform: uppercase;
@@ -589,12 +591,14 @@ li.list_desc h4 a:hover {
 }
 p.m_1 {
   color: #fff;
+  background-color: black;
   font-size: 0.85em;
   line-height: 2.2em;
   margin-bottom: 6%;
 }
 p.m_2 {
   color: #fff;
+  background-color: black;
   font-size: 0.85em;
   line-height: 2.2em;
 }
@@ -1662,6 +1666,7 @@ p.cart {
   border-right: 1px solid #eee;
   padding-right: 5%;
 }
+
 h4.title {
   color: #000;
   margin-bottom: 0.5em;
@@ -2899,8 +2904,6 @@ image-tools.show-on-hover {
 .reviews-members-footer {
   margin-left: 30px;
 }
-
-
 
 .wish-title1 {
   margin-left: 1em;

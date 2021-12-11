@@ -91,7 +91,7 @@ const constructorMethod = (app) => {
   });
 
   app.use("*", (req, res) => {
-   res.status(404).json({ error: "Not found" });
+   res.status(404).render("landing/error", { error: "Not found" });
    // return res.redirect("/?error=Not Found");
   });
 };
