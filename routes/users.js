@@ -3,6 +3,7 @@ const router = express.Router();
 const data = require("../data");
 const userData = data.users;
 const productData = data.products;
+const xss = require('xss');
 
 router.get("/", async (req, res) => {
   if(req.session.user == null) {
@@ -33,6 +34,7 @@ router.get("/", async (req, res) => {
 
 router.post("/wishlist/:prodId", async (req, res) => {
   try {
+    if(!req.session.user){ throw "Login, to add product in Wishlist";}
     await userData.addToWishList(
       req.session.user._id.toString(),
       req.params.prodId
@@ -56,15 +58,13 @@ router.post("/wishlist/remove/:prodId", async (req, res) => {
 });
 
 router.post("/profile", async (req, res) => {
-  const {
-    userName,
-    userImage,
-    firstName,
-    lastName,
-    password,
-    email,
-    makeupLevel,
-  } = req.body;
+  const userName = xss(req.body.userName);
+  const userImage = xss(req.body.userImage);
+  const firstName = xss(req.body.firstName);
+  const lastName = xss(req.body.lastName);
+  const password = xss(req.body.password);
+  const email = xss(req.body.email);
+  const makeupLevel = xss(req.body.makeupLevel);
   if (!userName) {
     res.status(400).json({ error: "You must provide User name" });
     return;
@@ -92,6 +92,7 @@ router.post("/profile", async (req, res) => {
   }
   if(req.session.user.userName == userName && req.session.user.userImage==userImage && req.session.user.firstName == firstName && req.session.user.lastName==lastName && req.session.user.email==email && req.session.user.makeupLevel==makeupLevel){
     res.status(400).json({ error: "Data is Up-to-date"});
+    return;
   }
 
   try {
@@ -109,19 +110,18 @@ router.post("/profile", async (req, res) => {
     res.redirect("/users");
   } catch (e) {
     res.status(400).send({ error: e.message });
+    return;
   }
 });
 
 router.post("/signup", async (req, res) => {
-  const {
-    userName,
-    userImage,
-    firstName,
-    lastName,
-    password,
-    email,
-    makeupLevel,
-  } = req.body;
+  const userName = xss(req.body.userName);
+  const userImage = xss(req.body.userImage);
+  const firstName = xss(req.body.firstName);
+  const lastName = xss(req.body.lastName);
+  const password = xss(req.body.password);
+  const email = xss(req.body.email);
+  const makeupLevel = xss(req.body.makeupLevel);
   if (!userName) {
     res.status(400).json({ error: "You must provide User name" });
     return;
@@ -169,15 +169,13 @@ router.post("/signup", async (req, res) => {
 });
 
 router.put("/users", async (req, res) => {
-  const {
-    userName,
-    userImage,
-    firstName,
-    lastName,
-    password,
-    email,
-    makeupLevel,
-  } = req.body;
+  const userName = xss(req.body.userName);
+  const userImage = xss(req.body.userImage);
+  const firstName = xss(req.body.firstName);
+  const lastName = xss(req.body.lastName);
+  const password = xss(req.body.password);
+  const email = xss(req.body.email);
+  const makeupLevel = xss(req.body.makeupLevel);
   if (!userName) {
     res.status(400).json({ error: "You must provide User name" });
     return;

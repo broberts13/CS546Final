@@ -1,0 +1,142 @@
+<div class="container rounded bg-white mt-5 mb-5">
+        <div class="row">
+                <div class="d-flex flex-column align-items-center text-center"><img class="rounded-circle mt-5"
+                                width="150px" src="/public/uploads/thread-lock.jpg"><br><h2>{{users.firstName}} [Admin]</h2><br>
+                        <span class="text-black-50">{{users.email}}</span><span> </span>
+                </div>
+                <br>
+                <form action="/products/" method="get">
+                        <div id='requestList'>
+                                <div>
+                                        <br>
+                                        <h3 class="text-centre">Pending Products Requests</h3>
+
+                                        <table id="pendingprod">
+                                        <tr id="pendingrow">
+                                        <th id="pendinghead">Id</th>
+                                        <th id="pendinghead">Name</th>
+                                        <th id="pendinghead">Brand</th>
+                                        </tr>
+                                        {{#each pending}}                                      
+                                        <tr id="pendingrow">
+                                        <td id="pendingcol">{{this._id}}</td>
+                                        <td id="pendingcol">{{this.productName}}</td>
+                                        <td id="pendingcol">{{this.brand}}</td>
+                                        </tr>
+                                        {{/each}}
+                                        </table>
+
+                                       
+                                </div>
+
+                        </div>
+                </form>
+                <br>
+                <form id="createprod" action="/products/" method="post">
+                        <div>
+                                <div>
+                                        <br>
+                                        <h3 class="text-centre">Create New Product</h3>
+                                </div>
+                                <div class="row mt-3">
+                                        <div class="col-md-12"><label class="labels">Product Name</label><input
+                                                        type="text" class="form-control" id="productName"
+                                                        placeholder="enter product name" name='productName'>
+
+                                        </div id="container">
+                                        <div class="col-md-12"><label class="labels">Product
+                                                        Picture</label><input id="imageUpload" name="imageUpload"
+                                                        accept="image/*" class="form-css" type="file" />
+                                        </div>
+
+                                        <div class="col-md-12">
+                                                <label class="labels">Product Links (You can add multiple links, just seperate it with ','))</label><input type="text"
+                                                        class="form-control" placeholder="enter product links"
+                                                        id="productLinks" name='productLinks'>
+                                                {{!-- <button id="newsectionbtn">add more</button> --}}
+
+                                        </div>
+                                        <div class="col-md-12"><label class="labels">Brand</label><input id="brand"
+                                                        type="text" class="form-control" placeholder="enter brand"
+                                                        name='brand'>
+                                        </div>
+                                        <div class="col-md-12"><label class="labels">Price</label><input type="text"
+                                                        id="price" class="form-control" placeholder="enter price"
+                                                        name='price'>
+                                        </div>
+                                        <div class="col-md-12"><label class="labels">Category</label><input type="text"
+                                                        id="category" class="form-control" placeholder="enter category"
+                                                        name='category'></div>
+                                        <div class="col-md-12"><label class="labels">Pending Product Id to be deleted
+                                                        * Please leave this blank if you want to document this request
+                                                </label><input type="text" class="form-control" id="pendingid"
+                                                        placeholder="enter category" name='pendingId'>
+                                        </div>
+
+
+
+                                </div>
+                                <br>
+                                <div class="mt-5 text-center"><button class="btn btn-primary profile-button"
+                                                type="submit">Create Product
+                                        </button></div>
+                                <br>
+                        </div>
+                </form>
+        </div>
+        <form action="/admin/deletePending" method="post" id="deletePendingForm">
+                <div>
+                        <div>
+                                <br>
+                                <h3 class="text-centre">Delete a Request</h3>
+                               
+                        </div>
+                        <div class="row mt-3">
+                                <div class="col-md-12"><label class="labels">Pending Product Id</label><input
+                                                type="text" class="form-control"
+                                                placeholder="Enter Pending Product Id to be Deleted" name='pendingId'
+                                                id='pendingId'>
+
+                                </div id="container">
+                        </div>
+                        <p class="success">{{success2}}</p>
+                        <p class="err">{{error2}}</p>
+
+                        <br>
+                        <div class="mt-5 text-center"><button class="btn btn-danger" type="submit"
+                                        id='deletePendingIdButton'>Delete pending Request 
+                                </button>
+                        </div>
+                        <br>
+                </div>
+        </form>
+
+        <br>
+        <form action="/admin/delete" method="post" id="deleteProductForm">
+                <div>
+                        <div>
+                                <br>
+                                <h3 class="text-centre">Delete a Product [* All Reviews, Likes and Comments will be Deleted]</h3>
+                              
+                        </div>
+                        <div class="row mt-3">
+                                <div class="col-md-12"><label class="labels">Product Id</label><input type="text"
+                                                class="form-control" placeholder="Enter Product Id to be Deleted"
+                                                name='productId' id='productId'>
+
+                                </div id="container">
+                        </div>
+                        
+                        <p>{{success3}}</p>
+                        <p>{{error3}}</p>
+                        <br>
+                        <div class="mt-5 text-center"><button class="btn btn-danger" type="submit"
+                                        id='deleteProductIdButton'>Delete Product
+                                </button>
+                        </div>
+                        <br>
+                </div>
+        </form>
+
+</div>
+<script src="/public/js/admin.js"></script>

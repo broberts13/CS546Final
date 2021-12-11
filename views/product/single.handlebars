@@ -4,18 +4,17 @@
       <div class="row">
         <div class="col-md-9 single_left">
           <div class="single_image">
-            <ul id="etalage">
+            {{!-- start product picture --}}
+					      <ul id="etalage">
               <li>
-                <a href="#">
+                <a href="optionallink.html">
                   <img
                     class="etalage_thumb_image"
                     src="{{product.productPicture}}"
-                    alt="Product"
                   />
                   <img
                     class="etalage_source_image"
                     src="{{product.productPicture}}"
-                    alt="Product"
                   />
                 </a>
               </li>
@@ -23,85 +22,73 @@
                 <img
                   class="etalage_thumb_image"
                   src="{{product.productPicture}}"
-                  alt="Product"
                 />
                 <img
                   class="etalage_source_image"
                   src="{{product.productPicture}}"
-                  alt="Product"
                 />
               </li>
               <li>
                 <img
                   class="etalage_thumb_image"
                   src="{{product.productPicture}}"
-                  alt="Product"
                 />
                 <img
                   class="etalage_source_image"
                   src="{{product.productPicture}}"
-                  alt="Product"
                 />
               </li>
               <li>
                 <img
                   class="etalage_thumb_image"
                   src="{{product.productPicture}}"
-                  alt="Product"
                 />
                 <img
                   class="etalage_source_image"
                   src="{{product.productPicture}}"
-                  alt="Product"
                 />
               </li>
               <li>
                 <img
                   class="etalage_thumb_image"
                   src="{{product.productPicture}}"
-                  alt="Product"
                 />
                 <img
                   class="etalage_source_image"
                   src="{{product.productPicture}}"
-                  alt="Product"
                 />
               </li>
               <li>
                 <img
                   class="etalage_thumb_image"
                   src="{{product.productPicture}}"
-                  alt="Product"
                 />
                 <img
                   class="etalage_source_image"
                   src="{{product.productPicture}}"
-                  alt="Product"
                 />
               </li>
               <li>
                 <img
                   class="etalage_thumb_image"
                   src="{{product.productPicture}}"
-                  alt="Product"
                 />
                 <img
                   class="etalage_source_image"
                   src="{{product.productPicture}}"
-                  alt="Product"
                 />
               </li>
             </ul>
-          </div>
+					    </div>
           <!-- end product_slider -->
+         {{!-- start product description  --}}
           <div class="single_right">
             <h3>{{product.productName}}</h3>
        
             <p class="m_10"><strong>Brand:</strong>{{product.brand}}</p>
             
             <p class="m_10"><strong>Category</strong><br>{{product.category}}</p>
-            <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+            
 
 
 		<button id="like" type="submit" class="box-btn" data-productid="{{product._id}}"><span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span></button>
@@ -112,7 +99,7 @@
             <input type ="hidden"  id="curUser" value="{{user._id}}">
             <div class="btn_form">
               <form>
-                <label for="box-btn">Like</label>
+                <label for="box-btn"> Like</label>
               </form>
             </div>
             <ul class="add-to-links">
@@ -121,44 +108,8 @@
                   href="/users/wishlist/{{product._id}}"
                 > Add to wishlist</a></li>
             </ul>
-            
-            
-            <div class="social_buttons">
-              <h4>{{product.reviews.length}} Reviews</h4>
-              <button
-                type="button"
-                class="btn1 btn1-default1 btn1-twitter"
-                onclick=""
-              >
-                <i class="icon-twitter"></i>
-                Tweet
-              </button>
-              <button
-                type="button"
-                class="btn1 btn1-default1 btn1-facebook"
-                onclick=""
-              >
-                <i class="icon-facebook"></i>
-                Share
-              </button>
-              <button
-                type="button"
-                class="btn1 btn1-default1 btn1-google"
-                onclick=""
-              >
-                <i class="icon-google"></i>
-                Google+
-              </button>
-              <button
-                type="button"
-                class="btn1 btn1-default1 btn1-pinterest"
-                onclick=""
-              >
-                <i class="icon-pinterest"></i>
-                Pinterest
-              </button>
-             
-            </div>
+            <p id="wishsucc" class="success"></p>
+            <p id="wisherr" class="err"></p>
              <br>
               <p><strong>Links to buy this product:</strong></p>
               {{#each product.productLinks}}
@@ -167,15 +118,18 @@
               <br>
               {{/each}}
           </div>
+
+        
           <div class="clear"> </div>
         </div>
         <div class="col-md-3">
           <div class="box-info-product">
             <p class="price2">${{product.price}}</p>
             <ul class="prosuct-qty">
+               <label><strong>Likes: {{product.likes.length}}</strong><span class="float-right"></span></label><br>
+               <br>
               
-              
-                <label><strong><strong>Average rating: {{product.overallRating}}<span class="float-right"><i
+                <label><strong>Average rating: {{product.overallRating}} </strong><span class="float-right"><i
                         class="text-warning fa fa-star"
                       ></i></span>
                     <span class="float-right"><i
@@ -198,68 +152,77 @@
           </div>
         </div>
       </div>
+      {{!-- end of product description --}}
       
-
-<div class="container">
-    <div class="row">
-    <h2>Add Review</h2>
-    <table width="100%" border="0">
-      <div class="col-md-9 col-md-offset-0">
-        <tr><td width="77%">
-        <div class="">
-          <form id="addreview" class="form-horizontal" action="/products/review/{{product._id}}" method="post">
-          <fieldset>
-    
-            <!-- Name input-->
-            <div class="form-group">
-              <label class="col-md-3 control-label" for="title">Review Title</label>
-              <div class="col-md-9">
-                <input id="title" name="title" type="text" placeholder="Title" class="form-control">
-              </div>
-            </div>
-    
+      {{!--start add review container --}}
+        <div class="container">
+            <div class="row">
+            <h2>Add Review</h2>
+            <table width="100%" border="0">
+              <div class="col-md-9 col-md-offset-0">
+                <tr></tr>
+                <tr><td width="77%">
+                <div class="">
+                  <form id="addreview" class="form-horizontal" action="/products/review/{{product._id}}" method="post">
+                  <fieldset>
             
-            <!-- Message body -->
-            <div class="form-group">
-              <label class="col-md-3 control-label" for="review">Your Review</label>
-              <div class="col-md-9">
-                <textarea class="form-control" id="reviewBody" name="reviewBody" placeholder="Please enter your review here..." rows="5"></textarea>
-              </div>
-            </div>
+                    <!-- Name input-->
+                    <div class="form-group">
+                      <label class="col-md-3 control-label" for="title">Review Title</label>
+                      <div class="col-md-9">
+                        <input id="title" name="title" type="text" placeholder="Title" class="form-control">
+                      </div>
+                    </div>
+            
+                    
+                    <!-- Message body -->
+                    <div class="form-group">
+                      <label class="col-md-3 control-label" for="review">Your Review</label>
+                      <div class="col-md-9">
+                        <textarea class="form-control" id="reviewBody" name="reviewBody" placeholder="Please enter your review here..." rows="5"></textarea>
+                      </div>
+                       
+                    </div>
 
 
-            <!-- Rating -->
-            <div class="form-group">
-              <label class="col-md-3 control-label" for="review">Your rating</label>
-              <div class="col-md-9">
-                <input id="rating" name=rating value="0" type="number" class="rating" min=0 max=5 step=1 data-size="xs" >
-              </div>
+                    <!-- Rating -->
+                    <div class="form-group">
+                      <label class="col-md-3 control-label" for="review">Your rating</label>
+                      
+                      <div class="col-md-9">
+                        <p id = "input-success" class= "float-right success"></p>
+                        <p id = "input-error" class= "float-right err"></p>
+                        <input id="rating" name=rating value="0" type="number" class="rating" min=0 max=5 step=1 data-size="xs" >
+                       
+                      </div>
+                    </div>
+                    
+            </td>
+            <td align="center" valign="top" width="23%">
+                    <!-- Form actions -->
+                    <div class="form-group">
+                      <div class="col-md-12 text-center">
+                        <button name="btn-addreview" type="submit" class="btn btn-primary btn-md">Submit</button>
+                        <button type="reset" class="btn btn-default btn-md">Clear</button>
+                      </div>
+                    </div>
+                  </fieldset>
+                  </form>
+                </div>
             </div>
-    </td>
-    <td align="center" valign="top" width="23%">
-            <!-- Form actions -->
-            <div class="form-group">
-              <div class="col-md-12 text-center">
-                <button name="btn-addreview" type="submit" class="btn btn-primary btn-md">Submit</button>
-                <button type="reset" class="btn btn-default btn-md">Clear</button>
-              </div>
-            </div>
-          </fieldset>
-          </form>
+            </td>
+            </tr>
+            </table>
         </div>
-    </div>
-    </td>
-    </tr>
-    </table>
-</div>
-
-<br>
+      {{!-- end add review container --}}
+<br>  
 <br>
 
-
+  
       <div class="desc">
         <div class="container">
           <div id="reviews" class="review-section">
+            {{!-- start review progress-bar-container --}}  
             <div class="d-flex align-items-center justify-content-between mb-4">
               <h4 class="m-0">{{product.reviews.length}}Reviews</h4>
               <select
@@ -268,7 +231,7 @@
                 tabindex="-1"
                 aria-hidden="true"
               >
-                <option data-select2-id="3">Most Relevant</option>
+                <option data-select2-id="3">Most Liked</option>
                 <option>Most Recent</option>
               </select>
               <span
@@ -434,7 +397,8 @@
               </div>
             </div>
           </div>
-
+          {{!-- end review progress-bar-container --}}
+          {{!-- start review lists --}}
           <div class="review-list">
           {{#each product.reviews}}
           
@@ -442,12 +406,12 @@
 	        <div class="card-body review-blog">
 	            <div class="row">
         	      <div class="col-md-2">
-        	        <img src={{this.userImage}} class="img img-rounded img-fluid" alt="Reviewing User"/>
+        	        <img src={{this.user.userImage}} class="img img-rounded img-fluid" alt="Reviewing User"/>
         	        <p class="text-secondary text-center">{{this.date}}</p>
         	    </div>
         	    <div class="col-md-10">
         	        <p>
-        	            <a class="float-left review-username" href="#"><strong>{{this.userName}}</strong></a>
+        	            <a class="float-left review-username" href="#"><strong>{{this.user.userName}}</strong></a>
                       <span class="float-right"><i class="text-warning fa fa-star"></i></span>
                       <span class="float-right"><i class="text-warning fa fa-star"></i></span>
         	            <span class="float-right"><i class="text-warning fa fa-star"></i></span>
@@ -459,17 +423,26 @@
                     <p>{{this.reviewBody}}</p>
         	        <p>
                       {{!-- Added class review-reply as an identifier for the review like button --}}
-        	            <a class="float-right btn btn-outline-primary ml-2 review-reply"> <i class="fa fa-reply"></i> Comment</a>
+        	            <a class="float-right btn btn-outline-primary ml-2 review-reply"> <i class="fa fa-reply"></i> Comment </a>
                       {{!-- Added class review-like as an identifier for the review like button --}}
         	            <a id = "revlike"  class="float-right btn text-white btn-danger review-like" data-selected="{{this.islike}}" > <i class="fa fa-heart"></i> <span>Like</span></a>
         	      {{!-- id = "revlike" --}}
+                
                  </p>
+                 <br>
+                 <br>
+                 <br>
+                 <br>
+                 <p id ="rev-err" class="float-right reverr"></p>
+                  
         	    </div>
+              
+              
+
               <div class="reviews-members-footer">
                                     <div class="total-like" href="#"><i class="glyphicon glyphicon-thumbs-up"></i> {{this.likes.length}}</div>
                                     <div class="total-like" href="#"><i class="glyphicon glyphicon-comment"></i> {{this.Comments.length}}</div> 
-                                    
-              </div>
+                                                  </div>
 	        </div>
             <!-- Start of Comments -->
            <div class="comment-space">
@@ -479,11 +452,11 @@
             	    <div class="card-body">
             	        <div class="row">
                     	    <div class="col-md-2">
-                    	        <img  src="{{this.userImage}}" class="img img-rounded img-fluid" alt="Commenting User" />
+                    	        <img  src="{{this.user.userImage}}" class="img img-rounded img-fluid" alt="Commenting User" />
                     	        <p  class="text-secondary text-center">{{this.date}}</p>
                     	    </div>
                     	    <div class="col-md-10">
-                    	        <p><a href="#"><strong id="userName">{{this.userName}}</strong></a></p>
+                    	        <p><a href="#"><strong id="userName">{{this.user.userName}}</strong></a></p>
                     	        <p>{{this.commentBody}}</p>
                     	        <p>
                 
@@ -510,15 +483,17 @@
                                     <p>
                                         <textarea autofocus id="cmntbody" class="review-txt-area" rows="4" style="width:100%" placeholder="Write a comment"></textarea>
                                     </p>
+                                    <p class="commenterr" id="comment-error" ></p></tr>
+
                                     <p>
                                         <a class="float-right btn text-white btn-primary add-comment"> </i> <span>ADD</span></a>
                                   </p>
                                 </div>
                             </div>
                               
-                        </div>
+            </div>
                     
-    </div>
+  </div>
 
   <!-- End of Commnt Dialog Box-->
 
@@ -527,13 +502,15 @@
 
             </div>
             <!-- End of Comments -->   
-	    </div>
-	</div>
+	         </div>
+	        </div>
           
           {{/each}}
+          {{!-- end of review list --}}
           </div>
         </div>
       </div>
+  
       <div class="row">
         <h4 class="m_11">Related Products</h4>
         <div class="col-md-4 product1">
@@ -582,50 +559,17 @@
     </div>
   </div>
 </div>
+{{!-- javascript code, ajax code, for review like, product like,comments --}}
 
-<script type="text/javascript">
-  $(document).ready(function() { $(".dropdown
-  img.flag").addClass("flagvisibility"); $(".dropdown dt a").click(function() {
-  $(".dropdown dd ul").toggle(); }); $(".dropdown dd ul li a").click(function()
-  { var text = $(this).html(); $(".dropdown dt a span").html(text); $(".dropdown
-  dd ul").hide(); $("#result").html("Selected value is: " +
-  getSelectedValue("sample")); }); function getSelectedValue(id) { return $("#"
-  + id).find("dt a span.value").html(); } $(document).bind('click', function(e)
-  { var $clicked = $(e.target); if (! $clicked.parents().hasClass("dropdown"))
-  $(".dropdown dd ul").hide(); }); $("#flagSwitcher").click(function() {
-  $(".dropdown img.flag").toggleClass("flagvisibility"); }); });
-</script>
-<!----details-product-slider--->
-				<!-- Include the Etalage files -->
-<link rel="stylesheet" href="css/etalage.css" />
-<script src="js/jquery.etalage.min.js"></script>
-<!-- Include the Etalage files -->
-<script>
-  jQuery(document).ready(function($){ $('#etalage').etalage({ thumb_image_width:
-  300, thumb_image_height: 400, show_hint: true, click_callback:
-  function(image_anchor, instance_id){ alert('Callbackexample:\\\\\\\\\\\\\\\nYou clicked on an image with the anchor:
-  "'+image_anchor+'"\n(in Etalage instance: "'+instance_id+'")'); } }); // This is for the dropdown list example: $('.dropdownlist').change(function(){
-  etalage_show( $(this).find('option:selected').attr('class') ); }); });
-</script>
 
-<script src="/public/js/jquery.etalage.min.js"></script>
-<script src="/public/js/wishlist.js"></script>
-<script src="/public/js/reviews.js"></script>
-
-<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-
-<script src="//code.jquery.com/jquery-3.6.0.min.js"></script>
-
-<script src="/public/js/reviewstructure.js"></script>
 
 <script>
-   
+//   Adding product Like
 	$(function($) {
-    $(document).on('click', '.box-btn', function(event) {
-    //$(this).find('.glyphicon').toggleClass('red').toggleClass('glyphicon-heart-empty glyphicon-heart');
+     $(document).on('click', '.box-btn', function(event) {
+    
     var selected ="false";
-  //Checking if the product is liked
+   //Checking if the product is liked
 	  if ( $(this).find('.glyphicon').hasClass('red')){
 		       selected = true;
     }		  
@@ -650,15 +594,11 @@
 			
 		},
 		error: function (xhr, textStatus, error) {
-			alert("Login to Add Like, Failed to Add Like");
+			//alert("Login to Add Like, Failed to Add Like");
+       $("#wisherr").text("Login to Add Product Like");
 		},
 		});
 
-  
-
-
-
-   	
   });
   
 
@@ -667,20 +607,11 @@
   $(document).on("click", ".review-like" , function() {
 
       var ID = $(this).closest(".review-blog").find(".review-id");
-      var likeBtn = $(this);
-         
-       /* alert($(this).closest(".review-blog").find(".review-id strong").html());*/
-     
-       var revid= ID.data("reviewid");
-      // var prodid= ID.data("productid");
-
-    //  "/products/likes/"+ $(this).data("productid");
- 
+      var errbtn = $(this).closest(".review-blog").find("#rev-err");
+      var likeBtn = $(this);     
+      var revid= ID.data("reviewid");
       var likereviewUrl = "/products/reviews/likes/"+revid;	
           
-        // $(this).find('span').text("Liked");
-        // $(this).removeClass("btn-danger").addClass("btn-dark");
-      //    $(this).data("reviewid");
         $.ajax({
             type: 'POST',
             url: likereviewUrl,
@@ -692,8 +623,7 @@
                   
             },
               error: function (jqXhr, textStatus, errorMessage) {
-              alert("Login to like review");
-              window.location.href = "/login";
+              errbtn.text("Login to Like Reviews");
             }
         });
 
@@ -702,21 +632,19 @@
 
   <!-- Showing Comments Dialogue-->
   $(document).on("click", ".review-reply" , function() {
-    
-    if($("#curUser").val()){
-
-        
+     
+    var errbtn = $(this).closest(".review-blog").find("#rev-err");  
+    if($("#curUser").val()){    
     var commentdialogue = $('#commentDialog').detach();
     $(this).closest(".review-blog").find(".comment-space").append(commentdialogue);
     $("#commentDialog").show();  
     $("#commentTime").html("Now");
     $("#userName").html("{{user.userName}}");
     $("#userImg").attr('src','{{user.userImage}}');
-      
-      }
-      else{
-        alert("Login to Comment on Reviews");
-      window.location.href = "/login";
+       $("#cmntbody").focus();
+    }
+    else{
+        errbtn.text("Login to Comment on Reviews");
     }     
   });
   <!-- End of Comments Dialogue-->
@@ -744,14 +672,16 @@
         window.location.reload();
       },
         error: function (jqXhr, textStatus, errorMessage) {
-          alert(errorMessage);
+          $("#comment-error").text(errorMessage);
+          //alert(errorMessage);
       }
     });
     //  $(this).closest(".review-blog").find(".comment-space").append("<div class='card card-inner'><div class='card-body'><div class='row'><div class='col-md-2'><img src='https://image.ibb.co/jw55Ex/def_face.jpg' class='img img-rounded img-fluid'/><p class='text-secondary text-center'>15 Minutes Ago</p></div><div class='col-md-10'><p><a href='https://maniruzzaman-akash.blogspot.com/p/contact.html'><strong>Maniruzzaman Akash</strong></a></p><p>"+commentVal+"</p><p><a class='float-right btn btn-outline-primary ml-2'>  <i class='fa fa-reply'></i> Reply</a><a class='float-right btn text-white btn-danger review-like'><i class='fa fa-heart'></i> <span>Like</span></a></p></div></div></div></div>");
      $("#commentDialog").hide();   
     }
     else{
-      alert("Please Enter valid comment");
+      $("#comment-error").text("Please Enter valid comment");
+     // alert("Please Enter valid comment");
     }   
          
           
@@ -759,13 +689,7 @@
    <!-- End of Add commnts -->
 
 
-
-
-
-
-
-
-  //productIDLikes
+//productIDLikes
 if($("#userID").val() == "true"){
   $("#like").find('.glyphicon').removeClass('glyphicon-heart-empty');
   $("#like").find('.glyphicon').addClass('red glyphicon-heart ');
@@ -776,10 +700,8 @@ if($("#userID").val() == "true"){
 //Start of checking for liked review on page load 
 $(".review-like").each(function(){
   if($(this).data("selected") == true){
-
     $(this).find('span').text("Liked");
     $(this).removeClass("btn-danger").addClass("btn-dark");
-
   }
  
   });
@@ -787,12 +709,70 @@ $(".review-like").each(function(){
 
  
 
-  
-
-
 }); 
 
-
-
 </script>
+<script type="text/javascript">
+        $(document).ready(function() {
+            $(".dropdown img.flag").addClass("flagvisibility");
 
+            $(".dropdown dt a").click(function() {
+                $(".dropdown dd ul").toggle();
+            });
+                        
+            $(".dropdown dd ul li a").click(function() {
+                var text = $(this).html();
+                $(".dropdown dt a span").html(text);
+                $(".dropdown dd ul").hide();
+                $("#result").html("Selected value is: " + getSelectedValue("sample"));
+            });
+                        
+            function getSelectedValue(id) {
+                return $("#" + id).find("dt a span.value").html();
+            }
+
+            $(document).bind('click', function(e) {
+                var $clicked = $(e.target);
+                if (! $clicked.parents().hasClass("dropdown"))
+                    $(".dropdown dd ul").hide();
+            });
+
+
+            $("#flagSwitcher").click(function() {
+                $(".dropdown img.flag").toggleClass("flagvisibility");
+            });
+        });
+   </script>
+
+<script src="/public/js/wishlist.js"></script>
+<script src="/public/js/reviews.js"></script>
+
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+<script src="//code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script src="/public/js/reviewstructure.js"></script> 
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+
+<script>
+						jQuery(document).ready(function($){
+			
+							$('#etalage').etalage({
+								thumb_image_width: 300,
+								thumb_image_height: 400,
+								
+								show_hint: true,
+								click_callback: function(image_anchor, instance_id){
+									alert('Callback example:\nYou clicked on an image with the anchor: "'+image_anchor+'"\n(in Etalage instance: "'+instance_id+'")');
+								}
+							});
+							// This is for the dropdown list example:
+							$('.dropdownlist').change(function(){
+								etalage_show( $(this).find('option:selected').attr('class') );
+							});
+
+					});
+				</script>

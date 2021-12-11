@@ -17,11 +17,7 @@
 }
 
 /* Large thumbnail: */
-#etalage .etalage_thumb{
-	background:url(../images/loading.gif) center no-repeat;
-	border: 1px solid #eee;
-	padding: 6px;
-}
+
 /* Large thumbnail - image (in case you want to add a border around the image within the frame) */
 #etalage .etalage_thumb_image{ }
 
@@ -41,11 +37,7 @@
 
 /* Zoomed image area: */
 #etalage .etalage_zoom_area,
-.etalage_zoom_area{
-	background: white url(../images/loading.gif) center no-repeat;
-	border: 1px solid #EEE;
-	padding: 6px;
-}
+
 
 /* Magnifier area (thumbnail hovering rectangle): */
 #etalage .etalage_magnifier{
@@ -61,11 +53,7 @@
 }
 
 /* Hint that will apear at the top right of the large thumbnail (optional): */
-#etalage .etalage_hint{
-	background: url(../images/hint.gif) no-repeat;
-	width: 130px;
-	height: 57px;
-}
+
 
 /* Description area (optional) */
 #etalage .etalage_description{

@@ -1,5 +1,6 @@
 const mongoCollections = require("../config/mongoCollections");
 const users = mongoCollections.users;
+const productData = require("../data/products");
 const bcrypt = require("bcrypt");
 const saltRounds = 16;
 const validate = require("./validation");
@@ -36,7 +37,7 @@ async function login(username, password) {
     userName: username.toLowerCase(),
   });
 
-  if (!user) throw `invalid UserName or Password`;
+  if (!user) throw `Invalid UserName or Password`;
   let flag = false;
   try {
     flag = await bcrypt.compare(password, user.password);
@@ -147,10 +148,10 @@ async function updateUser(
     }
   }
 
-  
+
   const userCollection = await users();
   let user = await getUserById(id);
-  
+ 
 
   const updateuser = {
     userName: userName.trim(),
@@ -165,9 +166,10 @@ async function updateUser(
     updateuser.password = hash;
   }
 
-  if (userImage != null && userImage.length != 0) {
+
+  if (userImage != null) {
     updateuser.userImage = userImage;
-  }
+   }
 
   id = ObjectId(id);
 
@@ -178,7 +180,6 @@ async function updateUser(
   if (updatedInfo.modifiedCount === 0) {
     throw "Could not update User";
   }
-
   return await getUserById(id.toString());
 }
 
@@ -217,6 +218,9 @@ async function addToWishList(userId, prodId) {
     if (updatedInfo.modifiedCount === 0) {
       throw "Could not add to wishlist";
     }
+  }
+  else{
+    throw "Already added to Wishlist";
   }
 }
 

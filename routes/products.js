@@ -2,6 +2,13 @@ const express = require("express");
 const router = express.Router();
 const data = require("../data");
 const productData = data.products;
+const pendingData = require("../data/pending");
+const xss = require('xss');
+
+router.get("/add", async (req, res) => {
+  //if not user redirect to login
+  return res.render("product/add", {user: req.session.user }); 
+});
 
 router.get("/:id", async (req, res) => {
   try {
@@ -45,9 +52,25 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.post("/search", async (req, res) => {
+  try {
+    let searchTerm = req.body;
+
+    const productList = await productData.searchProducts(searchTerm);
+    res.render("product/products", { products: productList, user: req.session.user });
+  } catch (e) {
+    res.status(404).send({ error: e, user: req.session.user });;
+  }
+});
+
 router.post("/", async (req, res) => {
-  const { productName, productPicture, productLinks, brand, price, category } =
-    req.body;
+  const productName = xss(req.body.productName);
+  const productPicture = xss(req.body.productPicture);
+  const productLinks = (req.body.productLinks);
+  const brand = xss(req.body.brand);
+  const price = xss(req.body.price);
+  const category = xss(req.body.category);
+  //console.log("productLinks ", productLinks, typeof productLinks);
   if (!productName) {
     res.status(400).json({ error: "You must provide product name" });
     return;
@@ -88,9 +111,39 @@ router.post("/", async (req, res) => {
   }
 });
 
+router.post("/add", async (req, res) => {
+  let formBody = req.body;
+  productName = xss(req.body.newProdName)
+  productBrand = xss(req.body.newProdBrand)
+
+  if (!productName) {
+    res.status(400).render("product/add", { prod: formBody, error: "You must provide product name.",user: req.session.user });
+    return;
+  }
+  if (!productBrand) {
+    res.status(400).render("product/add",{ prod: formBody, error: "You must provide the brand of the product.",user: req.session.user });
+    return;
+  }
+
+  let success = "You're request has been submitted for review successfully!"
+
+  try {
+    const pending = await pendingData.createPending(productName, productBrand);
+    res.render("product/add", {success: success});
+  } catch (e) {
+    res.status(400).render("product/add", { error: e, prod: formBody});
+  }
+  
+});
+
+
 router.put("/:id", async (req, res) => {
-  const { productName, productPicture, productLinks, brand, price, category } =
-    req.body;
+  const productName = xss(req.body.productName);
+  const productPicture = xss(req.body.productPicture);
+  const productLinks = xss(req.body.productLinks);
+  const brand = xss(req.body.brand);
+  const price = xss(req.body.price);
+  const category = xss(req.body.category);
   if (!productName) {
     res.status(400).json({ error: "You must provide product name" });
     return;
@@ -131,6 +184,7 @@ router.put("/:id", async (req, res) => {
   }
 });
 
+
 router.delete("/:id", async (req, res) => {
   try {
     const prodId = await productData.remove(req.params.id);
@@ -141,7 +195,9 @@ router.delete("/:id", async (req, res) => {
 });
 
 router.post("/review/:prodId", async (req, res) => {
-  const { title, reviewBody, rating } = req.body;
+  const title = xss(req.body.title);
+  const reviewBody = xss(req.body.reviewBody);
+  const rating = xss(req.body.rating);
   if (!title) {
     res.status(400).json({ error: "You must provide review title" });
     return;
@@ -155,6 +211,7 @@ router.post("/review/:prodId", async (req, res) => {
     return;
   }
   try {
+    if(!req.session.user){ throw "! Login to Add Review";}
     await productData.addToreviews(
       req.session.user._id.toString(),
       req.params.prodId,
@@ -162,7 +219,8 @@ router.post("/review/:prodId", async (req, res) => {
       reviewBody,
       rating
     );
-    return res.json("Success");
+    let success = "Review Added Successfully";
+    return res.json({success: success});
   } catch (e) {
     return res.status(404).send({ error: e });
   }

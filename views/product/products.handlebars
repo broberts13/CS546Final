@@ -1,39 +1,47 @@
-
 <div class="main">
+  <p class="err">{{error}}</p>
   <div class="shop_top">
     <div class="container">
+      <div class= "Ptitle">
+        <h1>Products</h1>
+        <h2>Click a product below to see more</h2>
+      </div> 
       <div class="row shop_box-top">
         {{#each products}}
           <div class="col-md-3 shop_box" style="margin-top: 30px;">
-            <a
-              href="/products/{{this._id}}"
-            >
+            <a href="/products/{{this._id}}">
               <img
                 src="{{this.productPicture}}"
                 class="img-responsive"
                 alt="Product"
               />
-              <span class="new-box">
-                <span class="new-label">New</span>
-              </span>
-              <span class="sale-box">
-                <span class="sale-label">Sale!</span>
-              </span>
+            </a>  
               <div class="shop_desc">
-                <h3><a href="#">{{this.productName}}</a></h3>
+                <h3>
+                  <a href="/products/{{this._id}}">
+                    {{this.productName}}
+                  </a>
+                </h3>
                 <p>{{this.brand}}</p>
-                <span class="reducedfrom">$66.00</span>
-                <span class="actual">${{this.price}}</span><br />
                 <ul class="buttons">
-                  <li class="cart"><a href="#">Add To Cart</a></li>
-                  <li class="shop_btn"><a href="#">Read More</a></li>
+                  <span class="actual">${{this.price}}</span>
+                  <li class="shop_btn">
+                    <div>
+                      <i class="fa fa-heart red-color"></i>
+                        {{this.likes.length}}
+                    </div>
+                  </li>
                   <div class="clear"> </div>
                 </ul>
               </div>
-            </a></div>
+          </div>
         {{/each}}
       </div>
+      <p class="text-center">
+        <a href="products/add">
+          Don't see the product you'relooking for? Click Here
+        </a>
+      </p>
     </div>
   </div>
 </div>
-

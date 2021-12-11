@@ -9,6 +9,7 @@ h2,
 h3 {
   margin-top: 0;
 }
+
 ul,
 ol {
   margin: 0;
@@ -435,6 +436,9 @@ li.list_desc h4 a:hover {
   transition: all 0.3s;
   background: #000;
 }
+a:link {
+  color: #0072ee;
+}
 .button a:hover {
   background: #222;
 }
@@ -581,6 +585,7 @@ li.list_desc h4 a:hover {
 }
 .content_bottom-text h3 {
   color: #fff;
+  background-color: black;
   font-size: 3em;
   font-weight: 800;
   text-transform: uppercase;
@@ -589,12 +594,14 @@ li.list_desc h4 a:hover {
 }
 p.m_1 {
   color: #fff;
+  background-color: black;
   font-size: 0.85em;
   line-height: 2.2em;
   margin-bottom: 6%;
 }
 p.m_2 {
   color: #fff;
+  background-color: black;
   font-size: 0.85em;
   line-height: 2.2em;
 }
@@ -1662,6 +1669,7 @@ p.cart {
   border-right: 1px solid #eee;
   padding-right: 5%;
 }
+
 h4.title {
   color: #000;
   margin-bottom: 0.5em;
@@ -2549,14 +2557,7 @@ body {
  * For more JQuery/Bootstrap plugins and demos visit http://plugins.krajee.com
  * For more Yii related demos visit http://demos.krajee.com
  */
-.rating-loading {
-  width: 25px;
-  height: 25px;
-  font-size: 0px;
-  color: #fff;
-  background: transparent url("../img/loading.gif") top left no-repeat;
-  border: none;
-}
+
 /*
  * Stars
  */
@@ -2907,8 +2908,6 @@ image-tools.show-on-hover {
   margin-left: 30px;
 }
 
-
-
 .wish-title1 {
   margin-left: 1em;
   color: rebeccapurple;
@@ -2921,9 +2920,9 @@ image-tools.show-on-hover {
   font-weight: bold;
 }
 
-.redbtn{
+.redbtn {
   color: #fff;
-  background-color:red;
+  background-color: red;
   display: inline-block;
   padding: 6px 12px;
   margin-bottom: 0;
@@ -2942,6 +2941,57 @@ image-tools.show-on-hover {
   border: 1px solid transparent;
   border-radius: 4px;
 }
-.err{
+.err {
   color: red;
+  font-weight: bold;
+}
+
+p.reverr {
+  color: red;
+  font-weight: bold;
+  font-size: 14px;
+  margin-right: 10px;
+}
+p.commenterr {
+  color: red;
+  font-weight: bold;
+}
+.success {
+  color: rgb(37, 209, 31);
+  font-weight: bold;
+}
+
+#pendingprod {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#pendinghead {
+  font-weight: bold;
+  text-decoration: underline;
+
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+  outline: thin solid;
+}
+
+#pendingcol {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+  outline: thin solid;
+  column-width: 35%;
+}
+
+#pendingrow {
+  background-color: rgb(243, 241, 241);
+  outline: thin solid;
+}
+
+.Ptitle {
+  text-align: center;
+  font-family: fantasy;
+  background-color: rgb(245, 220, 225);
 }

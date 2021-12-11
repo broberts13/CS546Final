@@ -32,8 +32,12 @@
                     <div class="col-md-12"><label class="labels">UserName</label><input type="text"  id="userName" name ="userName"class="form-control" placeholder="enter UserName" ></div>
                     <div class="col-md-12"><label class="labels">Password</label><input type="text" id="password" name= "password"  class="form-control" placeholder="enter Password" ></div>
                     <div class="col-md-12"><label class="labels">Email ID</label><input type="text" id="email" name="email"  class="form-control" placeholder="enter email id" ></div>
-                    <div class="col-md-12"><label class="labels">Makeup Level</label><input type="text" id="makeupLevel" name="makeupLevel" class="form-control" placeholder="enter makeup level"></div>
-            
+                    <div class="col-md-12"><label class="labels">Makeup Level</label><select name = "dropdown"id="makeupLevel" name="makeupLevel" class="form-control" placeholder="enter makeup level" >
+            <option value = "Basic" selected>Basic</option>
+            <option value = "Intermediate">Intermediate</option>
+            <option value = "Advanced">Advanced</option>
+         </select>
+                      
                     
                    
                 </div>
@@ -43,6 +47,7 @@
                 </div> --}}
                 <br>
                 <br>
+                <p id = "adduser-error"style="display: block; text-align: center;margin-top:10px;" class= "err"></p>
                 <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="submit">Save Profile</button></div>
                 <br>
             </div>

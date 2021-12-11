@@ -1,6 +1,7 @@
 const productsRoutes = require("./products.js");
 const reviewsRoutes = require("./reviews.js");
 const usersRoutes = require("./users.js");
+const adminRoutes = require("./admin.js");
 const usersData = require("../data").users;
 const multer = require("multer");
 var storage = multer.diskStorage({
@@ -21,6 +22,7 @@ const constructorMethod = (app) => {
   app.use("/products", productsRoutes);
   app.use("/reviews", reviewsRoutes);
   app.use("/users", usersRoutes);
+  app.use("/admin", adminRoutes);
 
   app.get("/", (req, res) => {
     return res.render("landing/landing", { user: req.session.user });
@@ -66,31 +68,31 @@ const constructorMethod = (app) => {
     return res.render("users/login", { error: req.query.error });
   });
 
+  app.get("/signup", (req, res) => {
+    return res.render("users/signup", { user: req.session.user });
+  });
+
   app.post("/login", async (req, res) => {
     const { username, password } = req.body;
     if (!username) {
-      res.status(400).json({ error: "You must provide User name" });
-      return;
+      return res.redirect("/login?error=Enter UserName");
     }
+
     if (!password) {
-      res.status(400).json({ error: "You must provide User password" });
-      return;
+      return res.redirect("/login?error=Enter Password");
     }
     try {
       const user = await usersData.login(username, password);
       req.session.user = user;
       res.render("landing/landing", { user: req.session.user });
     } catch (e) {
-      res.render("users/login", { user: req.session.user, error: e });
+      return res.redirect("/login?error=" + e);
     }
   });
 
-  app.get("/signup", (req, res) => {
-    return res.render("users/signup", { user: req.session.user });
-  });
-
   app.use("*", (req, res) => {
-    res.status(404).json({ error: "Not found" });
+   res.status(404).render("landing/error", { error: "Not found" });
+   // return res.redirect("/?error=Not Found");
   });
 };
 
