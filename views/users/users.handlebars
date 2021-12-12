@@ -11,7 +11,7 @@
           ><img
               id="img"
               class="rounded-circle mt-5"
-              width="150px"
+              width="150"
               data-user="{{users.userImage}}"
               src={{users.userImage}}
               alt="Profile"
@@ -28,7 +28,7 @@
             accept="image/*"
             class="form-css"
             type="file"
-            id="formFileMultiple"
+            {{!id="formFileMultiple"}}
           /><br />
 
         </div>
@@ -59,7 +59,7 @@
                   class="form-control"
                   placeholder="last name"
                   value={{users.lastName}}
-                /></div>
+                ></div>
             </div>
             <div class="row mt-3">
               <div class="col-md-12"><label for="userName"
@@ -81,16 +81,15 @@
                   name="password"
                   class="form-control"
                   placeholder="Enter New Password"
-                  value={{users.Password}}
                 ></div>
-              <div class="col-md-12"><label for="email"class="labels">Email ID</label><input
+              <div class="col-md-12"><label for="email" class="labels">Email ID</label><input
                   type="text"
                   id="email"
                   name="email"
                   class="form-control"
                   placeholder="enter email id"
                   value={{users.email}}
-                /></div>
+                ></div>
               <div class="col-md-12"><label for="makeupLevel" class="labels">Makeup Level</label><input
                   type="text"
                   id="makeupLevel"
@@ -98,7 +97,7 @@
                   class="form-control"
                   placeholder="enter makeup level"
                   value={{users.makeupLevel}}
-                /></div>
+                ></div>
 
             </div>
             {{! <div class="row mt-3">
@@ -106,7 +105,7 @@
                     <div class="col-md-6"><label class="labels">State/Region</label><input type="text" class="form-control" value="" placeholder="state"></div>
                 </div> }}
             <br />
-            <p id = "profile-edit-error"class= "err"></p>
+            <p id = "profile-edit-error" class= "err"></p>
             <div class="mt-5 text-center"><button
                 class="btn btn-primary profile-button"
                 type="submit"
@@ -159,16 +158,17 @@
                 class="img-responsive"
                 alt="product"
               />
+            </a> 
               <div class="shop_desc">
                 <h3><a href="/products/{{this._id}}">{{this.productName}}</a></h3>
                 <p>{{this.brand}}</p>
                 <span class="actual">${{this.price}}</span><br />
                 <ul class="buttons">
                   <li><a class="remove" href="/users/wishlist/remove/{{this._id}}">Remove From WishList</a></li>
-                  <div class="clear"> </div>
+                  {{! <div class="clear"> </div>}}
                 </ul>
               </div>
-            </a></div>
+            </div>
         {{/each}}
       </div>
     </div>
@@ -258,11 +258,11 @@
                 </div>
                   <div class="reviews-members-footer">
                   
-                  <div class="total-like" href="#">
+                  <div class="total-like">
                     <i
                       class="glyphicon glyphicon-thumbs-up"
                     ></i>{{this.likes.length}}</div>
-                    <div class="total-like" href="#"><i class="glyphicon glyphicon-comment"></i> {{this.Comments.length}}</div>
+                    <div class="total-like"><i class="glyphicon glyphicon-comment"></i> {{this.Comments.length}}</div>
                      
                   </div>
               </div>

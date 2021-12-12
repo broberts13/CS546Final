@@ -56,9 +56,9 @@
           <div class="box-info-product">
             <p class="price2">${{product.price}}</p>
             <ul class="prosuct-qty">
-               <label><strong>Likes: {{product.likes.length}}</strong><span class="float-right"></span></label><br>
-               <br>
-              
+              <li><label><strong>Likes: {{product.likes.length}}</strong><span class="float-right"></span></label><br>
+              <br></li>
+              <li>
                 <label><strong>Average rating: {{product.overallRating}} </strong><span class="float-right"><i
                         class="text-warning fa fa-star"
                       ></i></span>
@@ -71,13 +71,13 @@
                     <span class="float-right"><i class="rating"><strong
                         >{{this.rating}} </strong></i>
                       <i class="text-warning fa fa-star"></i></span></label>
-               
+              </li> 
               
             </ul>
             <form>
-            <button type="button" name="Submit" class="exclusive">
-              <a href="{{product.productLinks.[0]}}"><span>Let's Buy</span></a>
-            </button>
+              <button type="submit" name="Submit" class="exclusive" formaction="{{product.productLinks.[0]}}">
+                <span>Let's Buy</span>
+              </button>
             </form>
           </div>
         </div>

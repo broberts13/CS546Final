@@ -26,23 +26,24 @@
                 </h3>
                 <p>{{this.brand}}</p>
                 <ul class="buttons">
-                  <span class="actual">${{this.price}}</span>
+                  <li><span class="actual">${{this.price}}</span></li>
                   <li class="shop_btn">
                     <div>
                       <i class="fa fa-heart red-color"></i>
                         {{this.likes.length}}
                     </div>
                   </li>
-                  <div class="clear"> </div>
+                  <!--<div class="clear"> </div>-->
                 </ul>
               </div>
           </div>
         {{/each}}
-      <p class="text-center">
-        <a href="products/add">
-          Don't see the product you'relooking for? Click Here
-        </a>
-      </p>
+        <p class="text-center">
+          <a href="products/add">
+            Don't see the product you'relooking for? Click Here
+          </a>
+        </p>
+      </div>
     </div>
   </div>
 </div>
