@@ -2911,7 +2911,6 @@ image-tools.show-on-hover {
 .red-color {
   color: red;
 }
-
 .box-btn {
   float: left;
   background: transparent;
@@ -2970,7 +2969,7 @@ image-tools.show-on-hover {
 }
 
 .wish-title {
-  margin-left: 1.8em;
+  margin-left: 0em;
   color: rebeccapurple;
   font-weight: bold;
 }
@@ -3008,7 +3007,7 @@ p.reverr {
   margin-right: 10px;
 }
 
-p.reverr {
+p.revsuc {
   color:rgb(37, 209, 31);
   font-weight: bold;
   font-size: 14px;

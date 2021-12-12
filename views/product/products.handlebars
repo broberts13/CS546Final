@@ -26,14 +26,29 @@
                 </h3>
                 <p>{{this.brand}}</p>
                 <ul class="buttons">
-                  <li><span class="actual">${{this.price}}</span></li>
-                  <li class="shop_btn">
+                  <li><span class="actual">${{this.price}}</span></li>               
                     <div>
-                      <i class="glyphicon glyphicon-comment"></i>
-                        {{this.reviews.length}}  
-                      <i class="fa fa-heart red-color"></i>
-                        {{this.likes.length}}
+                  <li class="shop_btn">{{this.likes.length}} <i class="fa fa-heart red-color"></i>
+                       </li>
+                  <li class="shop_btn">
                     </div>
+                    <br>
+                       <div>  
+                     <span class="float-right"><i
+                        class="text-warning fa fa-star"
+                      ></i></span>
+                    <span class="float-right"><i
+                        class="text-warning fa fa-star"
+                      ></i></span>
+                    <span class="float-right"><i
+                        class="text-warning fa fa-star"
+                      ></i></span>
+                    <span class="float-right"><i class="rating"><strong
+                        >{{this.overallRating}}      </strong></i>
+                      <i class="text-warning fa fa-star"></i></span> 
+                    
+                    </div>
+                 
                   </li>
                   <!--<div class="clear"> </div>-->
                 </ul>
@@ -41,6 +56,9 @@
           </div>
         {{/each}}
         <p class="text-center">
+          <br>
+          <br>
+          
           <a href="products/add">
             Don't see the product you'relooking for? Click Here
           </a>
@@ -49,8 +67,3 @@
     </div>
   </div>
 </div>
-<link
-  href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"
-  rel="stylesheet"
-  id="bootstrap-css"
-/>

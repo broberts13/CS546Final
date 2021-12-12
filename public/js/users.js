@@ -17,6 +17,7 @@
         url: "/users/profile",
         data: updateUser,
         success: function (response) {
+          $("#profile-edit-error").text("");
           $("#profile-edit-success").text("Profile Updated Successfully");
           window.setTimeout(function(){location.reload()},1800)
         },
