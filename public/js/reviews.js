@@ -20,8 +20,9 @@
           rating: ratingInput.val().trim(),
         }),
         success: function (data) {
+          $("#input-error").text("");
           $("#input-success").text(data.success);
-          // window.location.reload();
+          window.setTimeout(function(){location.reload()},2000)
         },
         error: function (error) {
           $("#input-error").text(JSON.parse(error.responseText).error);

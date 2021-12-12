@@ -406,12 +406,12 @@
 	        <div class="card-body review-blog">
 	            <div class="row">
         	      <div class="col-md-2">
-        	        <img src={{this.userImage}} class="img img-rounded img-fluid" alt="Reviewing User"/>
+        	        <img src={{this.user.userImage}} class="img img-rounded img-fluid" alt="Reviewing User"/>
         	        <p class="text-secondary text-center">{{this.date}}</p>
         	    </div>
         	    <div class="col-md-10">
         	        <p>
-        	            <a class="float-left review-username" href="#"><strong>{{this.userName}}</strong></a>
+        	            <a class="float-left review-username" href="#"><strong>{{this.user.userName}}</strong></a>
                       <span class="float-right"><i class="text-warning fa fa-star"></i></span>
                       <span class="float-right"><i class="text-warning fa fa-star"></i></span>
         	            <span class="float-right"><i class="text-warning fa fa-star"></i></span>
@@ -452,11 +452,11 @@
             	    <div class="card-body">
             	        <div class="row">
                     	    <div class="col-md-2">
-                    	        <img  src="{{this.userImage}}" class="img img-rounded img-fluid" alt="Commenting User" />
+                    	        <img  src="{{this.user.userImage}}" class="img img-rounded img-fluid" alt="Commenting User" />
                     	        <p  class="text-secondary text-center">{{this.date}}</p>
                     	    </div>
                     	    <div class="col-md-10">
-                    	        <p><a href="#"><strong id="userName">{{this.userName}}</strong></a></p>
+                    	        <p><a href="#"><strong id="userName">{{this.user.userName}}</strong></a></p>
                     	        <p>{{this.commentBody}}</p>
                     	        <p>
                 
@@ -607,6 +607,7 @@
   $(document).on("click", ".review-like" , function() {
 
       var ID = $(this).closest(".review-blog").find(".review-id");
+      var errbtn = $(this).closest(".review-blog").find("#rev-err");
       var likeBtn = $(this);     
       var revid= ID.data("reviewid");
       var likereviewUrl = "/products/reviews/likes/"+revid;	
@@ -622,7 +623,7 @@
                   
             },
               error: function (jqXhr, textStatus, errorMessage) {
-              $("#rev-err").text("Login to Like Reviews");
+              errbtn.text("Login to Like Reviews");
             }
         });
 
@@ -631,8 +632,9 @@
 
   <!-- Showing Comments Dialogue-->
   $(document).on("click", ".review-reply" , function() {
-    
-    if($("#curUser").val()){        
+     
+    var errbtn = $(this).closest(".review-blog").find("#rev-err");  
+    if($("#curUser").val()){    
     var commentdialogue = $('#commentDialog').detach();
     $(this).closest(".review-blog").find(".comment-space").append(commentdialogue);
     $("#commentDialog").show();  
@@ -640,9 +642,9 @@
     $("#userName").html("{{user.userName}}");
     $("#userImg").attr('src','{{user.userImage}}');
        $("#cmntbody").focus();
-      }
-      else{
-         $("#rev-err").text("Login to Comment on Reviews");
+    }
+    else{
+        errbtn.text("Login to Comment on Reviews");
     }     
   });
   <!-- End of Comments Dialogue-->

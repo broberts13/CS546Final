@@ -206,18 +206,18 @@
               <div class="row">
                 <div class="col-md-2">
                   <img
-                    src={{this.userImage}}
+                    src={{this.user.userImage}}
                     class="img img-rounded img-fluid"
                     alt="Review User"
-                  />
+                  />              
                   <p class="text-secondary text-center">{{this.date}}</p>
-                </div>
+                </div>            
                 <div class="col-md-10">
                   <p>
                     <a
                       class="float-left review-username"
                       href="#"
-                    ><strong>{{this.userName}}</strong></a>
+                    ><strong>{{this.user.userName}}</strong></a>
                     <span class="float-right"><i
                         class="text-warning fa fa-star"
                       ></i></span>
@@ -230,7 +230,7 @@
                     <span class="float-right"><i class="rating"><strong
                         >{{this.rating}} </strong></i>
                       <i class="text-warning fa fa-star"></i></span>
-
+                      
                   </p>
                   <div class="clearfix"></div>
                   <p
@@ -238,29 +238,43 @@
                     data-reviewid="{{this._id}}"
                   >{{this.title}}</p>
                   <p>{{this.reviewBody}}</p>
-                   <p>
-                       <a class="float-right btn btn-outline-primary ml-2 delete-review"> <i class="fa fa-reply"></i> Delete</a>
-
-                  </p>
-                  <p>
-                    {{! Added class review-reply as an identifier for the review like button }}
-                    <a
+                  <div class=" float-right col-md-2">
+                   <img 
+                    src={{this.product.productPicture}}
+                    class="float-right img img-rounded img-fluid"
+                    alt="Reviewed Product"
+                  />
+                   <a
                       class="float-right btn btn-outline-primary ml-2 review-reply"
                       href="/products/{{this.productId}}"
                     >
                       <i class="fa fa-reply"></i>Product You Reviewd
                     </a>
+                  <br>
+                
+                      <p>
+                       <a class="float-right btn btn-danger ml-2 delete-review"> <i class="fa fa-reply"></i> Delete</a>
+
+                  </p>
+                    </div>
+                  <p>
+                     
+                     
+                    {{! Added class review-reply as an identifier for the review like button }}
+                  
                     {{! Added class review-like as an identifier for the review like button }}
                     {{! id = "revlike" }}
                   </p>
                 </div>
-                <div class="reviews-members-footer">
-                  <div class="total-like" href="#"><i
+                  <div class="reviews-members-footer">
+                  
+                  <div class="total-like" href="#">
+                    <i
                       class="glyphicon glyphicon-thumbs-up"
                     ></i>{{this.likes.length}}</div>
                     <div class="total-like" href="#"><i class="glyphicon glyphicon-comment"></i> {{this.Comments.length}}</div>
-
-                </div>
+                     
+                  </div>
               </div>
 
             </div>
@@ -282,7 +296,6 @@
 
 </script>
 
-<link rel="stylesheet" href="css/etalage.css" />
 
 <script src="/public/js/jquery.etalage.min.js"></script>
 <script src="/public/js/wishlist.js"></script>
