@@ -1,5 +1,5 @@
-# CS546Final
-A makeup review webapp
+# CS 546 Web Programming Final Project
+Cosmetic Review Hub: A makeup review webapp
 ## Description 
   
   *What we do on this project* 
