@@ -25,32 +25,23 @@ router.post("/login", async (req, res) => {
   const password = xss(req.body.password);
   if (!username) {
     res.render("admin/adminlogin",{ error: "You must provide User name" });
-    // res.status(400).json({ error: "You must provide User name" });
     return;
   }
   if (!password) {
     res.render("admin/adminlogin",{ error: "You must provide password" });
-    // res.status(400).json({ error: "You must provide password" });
     return;
   }
-  //console.log(username, password);
+  
   try {
     const admin = await adminData.login(username, password);
     if (!admin) {
       res.render("admin/adminlogin",{ error: "You are not authorized" });
-      // res.status(400).send({ error: "You are not authorized" });
       return;
     }
     const pending = await pendingData.getAll();
-    // if (user.admin) {
-    //   res.render("admin", {user: user})
-    //   return;
-    // }
-    
+
     req.session.admin = admin;
-    // console.log(admin)
-    // console.log("login success", admin)
-    // res.render("layouts/main", {admin:req.session.admin})
+
     res.render("admin/admin", {admin:req.session.admin, pending: pending });
   } catch (e) {
     res.status(400).send({ error: e });
@@ -64,11 +55,6 @@ router.get("/", async (req, res) => {
       return
     }
     const pending = await pendingData.getAll();
-    // if (user.admin) {
-    //   res.render("admin", {user: user})
-    //   return;
-    // }
-    //console.log("login success", admin)
     res.render("admin/admin", {admin:req.session.admin, pending: pending });
   } catch (e) {
 

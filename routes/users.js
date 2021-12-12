@@ -3,15 +3,17 @@ const router = express.Router();
 const data = require("../data");
 const userData = data.users;
 const productData = data.products;
-const xss = require('xss');
+const xss = require("xss");
 
 router.get("/", async (req, res) => {
-  if(req.session.user == null) {
+  if (req.session.user == null) {
     return res.redirect("/login?error=Please login to continue");
   }
   try {
     const users = await userData.getUserById(req.session.user._id.toString());
-   const userReviews = await productData.getUserReviews(req.session.user._id.toString());
+    const userReviews = await productData.getUserReviews(
+      req.session.user._id.toString()
+    );
     let wishlistProd = [];
     if (users.wishList.length != null) {
       users.wishList.forEach((e) => {
@@ -25,16 +27,20 @@ router.get("/", async (req, res) => {
       users: users,
       products: products,
       userReviews: userReviews,
-      user: req.session.user
+      user: req.session.user,
     });
   } catch (e) {
-    res.status(404).render("landing/error", { error: e, user: req.session.user  });
+    res
+      .status(404)
+      .render("landing/error", { error: e, user: req.session.user });
   }
 });
 
 router.post("/wishlist/:prodId", async (req, res) => {
   try {
-    if(!req.session.user){ throw "Login, to add product in Wishlist";}
+    if (!req.session.user) {
+      throw "Login, to add product in Wishlist";
+    }
     await userData.addToWishList(
       req.session.user._id.toString(),
       req.params.prodId
@@ -86,11 +92,17 @@ router.post("/profile", async (req, res) => {
     res.status(400).json({ error: "You must provide makeup level" });
     return;
   }
-  if(req.session.user.userImage==userImage && req.session.user.firstName == firstName && req.session.user.lastName==lastName && req.session.user.email==email && req.session.user.makeupLevel==makeupLevel && password==''){
-    res.status(400).json({ error: "Data is Up-to-date"});
+  if (
+    req.session.user.userImage == userImage &&
+    req.session.user.firstName == firstName &&
+    req.session.user.lastName == lastName &&
+    req.session.user.email == email &&
+    req.session.user.makeupLevel == makeupLevel &&
+    password == ""
+  ) {
+    res.status(400).json({ error: "Data is Up-to-date" });
     return;
   }
-  
 
   try {
     const user = await userData.updateUser(
@@ -104,7 +116,7 @@ router.post("/profile", async (req, res) => {
       makeupLevel
     );
     req.session.user = user;
-    res.redirect("/users");
+    res.render("users/users", { user: req.session.user });
   } catch (e) {
     res.status(400).send({ error: e });
     return;
@@ -214,7 +226,9 @@ router.put("/users", async (req, res) => {
     );
     res.json(user);
   } catch (e) {
-    res.status(404).render("landing/error", { error: e, user: req.session.user  });
+    res
+      .status(404)
+      .render("landing/error", { error: e, user: req.session.user });
   }
 });
 

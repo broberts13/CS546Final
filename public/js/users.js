@@ -17,7 +17,8 @@
         url: "/users/profile",
         data: updateUser,
         success: function (response) {
-          window.location.reload();
+          $("#profile-edit-success").text("Profile Updated Successfully");
+          window.setTimeout(function(){location.reload()},1800)
         },
         error: function (error) {
           var jsonObj = JSON.parse(error.responseText);
@@ -41,7 +42,9 @@
             url: "/users/profile",
             data: updateUser,
             success: function (response) {
-              window.location.href = "/users";
+              $("#profile-edit-success").text("Profile Updated Successfully");
+              window.setTimeout(function(){location.href = "/users"},1800)
+             
             },
             error: function (error) {
               var jsonObj = JSON.parse(error.responseText);

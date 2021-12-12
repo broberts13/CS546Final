@@ -44,7 +44,7 @@ async function login(username, password) {
   } catch (error) {
     throw error.message;
   }
-  if (!flag) throw "User Name or Password doesnot match";
+  if (!flag) throw "Invalid UserName or Password";
   return user;
 }
 
