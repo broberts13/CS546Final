@@ -49,4 +49,4 @@ A makeup review webapp
   
   For any questions, please contact me with the information below:
  
-  GitHub: [@broberts13](https://api.github.com/users/broberts13/CS546Final)
+  email:
