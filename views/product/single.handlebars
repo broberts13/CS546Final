@@ -1,84 +1,14 @@
 <div class="main">
-  <div class="shop_top">
+      <h1 class="Ptitle">Everything has beauty, but not everyone sees it.</h1>
+       <h2 class=" Ptitle1">Cosmetic Review Hub</h2>
+  <div class="shop_top">   
     <div class="container">
-      <div class="row">
+      <div class="row">     
         <div class="col-md-9 single_left">
           <div class="single_image">
+           
             {{!-- start product picture --}}
-					      <ul id="etalage">
-              <li>
-                <a href="optionallink.html">
-                  <img
-                    class="etalage_thumb_image"
-                    src="{{product.productPicture}}"
-                  />
-                  <img
-                    class="etalage_source_image"
-                    src="{{product.productPicture}}"
-                  />
-                </a>
-              </li>
-              <li>
-                <img
-                  class="etalage_thumb_image"
-                  src="{{product.productPicture}}"
-                />
-                <img
-                  class="etalage_source_image"
-                  src="{{product.productPicture}}"
-                />
-              </li>
-              <li>
-                <img
-                  class="etalage_thumb_image"
-                  src="{{product.productPicture}}"
-                />
-                <img
-                  class="etalage_source_image"
-                  src="{{product.productPicture}}"
-                />
-              </li>
-              <li>
-                <img
-                  class="etalage_thumb_image"
-                  src="{{product.productPicture}}"
-                />
-                <img
-                  class="etalage_source_image"
-                  src="{{product.productPicture}}"
-                />
-              </li>
-              <li>
-                <img
-                  class="etalage_thumb_image"
-                  src="{{product.productPicture}}"
-                />
-                <img
-                  class="etalage_source_image"
-                  src="{{product.productPicture}}"
-                />
-              </li>
-              <li>
-                <img
-                  class="etalage_thumb_image"
-                  src="{{product.productPicture}}"
-                />
-                <img
-                  class="etalage_source_image"
-                  src="{{product.productPicture}}"
-                />
-              </li>
-              <li>
-                <img
-                  class="etalage_thumb_image"
-                  src="{{product.productPicture}}"
-                />
-                <img
-                  class="etalage_source_image"
-                  src="{{product.productPicture}}"
-                />
-              </li>
-            </ul>
+              <img class="float-left" src="{{product.productPicture}}" alt="product" width="300" height="400">
 					    </div>
           <!-- end product_slider -->
          {{!-- start product description  --}}
@@ -90,7 +20,7 @@
             <p class="m_10"><strong>Category</strong><br>{{product.category}}</p>
             
 
-
+    
 		<button id="like" type="submit" class="box-btn" data-productid="{{product._id}}"><span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span></button>
             <br>				    	
 
@@ -99,7 +29,7 @@
             <input type ="hidden"  id="curUser" value="{{user._id}}">
             <div class="btn_form">
               <form>
-                <label for="box-btn"> Like</label>
+                <label for="like"> Like</label>
               </form>
             </div>
             <ul class="add-to-links">
@@ -140,7 +70,7 @@
                       ></i></span>
                     <span class="float-right"><i class="rating"><strong
                         >{{this.rating}} </strong></i>
-                      <i class="text-warning fa fa-star"></i></span></strong></strong></label>
+                      <i class="text-warning fa fa-star"></i></span></label>
                
               
             </ul>
@@ -157,7 +87,10 @@
       {{!--start add review container --}}
         <div class="container">
             <div class="row">
-            <h2>Add Review</h2>
+              <div>
+                <br>
+                <br>
+            <h3>Add Review</h3>
             <table width="100%" border="0">
               <div class="col-md-9 col-md-offset-0">
                 <tr></tr>
@@ -177,8 +110,9 @@
                     
                     <!-- Message body -->
                     <div class="form-group">
-                      <label class="col-md-3 control-label" for="review">Your Review</label>
+                      <label for="reviewBody" class="col-md-3 control-label" for="review">Your Review</label>
                       <div class="col-md-9">
+                       
                         <textarea class="form-control" id="reviewBody" name="reviewBody" placeholder="Please enter your review here..." rows="5"></textarea>
                       </div>
                        
@@ -213,6 +147,7 @@
             </td>
             </tr>
             </table>
+        </div>
         </div>
       {{!-- end add review container --}}
 <br>  
@@ -513,12 +448,11 @@
   
       <div class="row">
         <h4 class="m_11">Related Products</h4>
-        <div class="col-md-4 product1">
+            <div class="col-md-4 product1">
           <img src="/public/uploads/fe1.jpg" class="img-responsive" alt="product" />
-          <div class="shop_desc"><a href="/products">
-            </a><h3><a href="/products"></a><a href="#">aliquam volutp</a></h3>
+          <div class="shop_desc"><h3><a href="/products">aliquam volutp</a></h3>
             <p>Lorem ipsum consectetuer adipiscing </p>
-            <span class="reducedfrom">$66.00</span>
+          
             <span class="actual">$12.00</span><br />
             <ul class="buttons">
               <li class="cart"><a href="#">Add To Cart</a></li>
@@ -528,11 +462,10 @@
           </div>
         </div>
         <div class="col-md-4 product1">
-          <img src="/public/uploads/f1.jpg" class="img-responsive" alt="product" />
-          <div class="shop_desc"><a href="/products">
-            </a><h3><a href="/products"></a><a href="#">aliquam volutp</a></h3>
+          <img src="/public/uploads/es1.jpg" alt="product" class="img-responsive"/>
+          <div class="shop_desc"><h3><a href="/products">aliquam volutp</a></h3>
             <p>Lorem ipsum consectetuer adipiscing </p>
-            <span class="reducedfrom">$66.00</span>
+          
             <span class="actual">$12.00</span><br />
             <ul class="buttons">
               <li class="cart"><a href="#">Add To Cart</a></li>
@@ -541,12 +474,11 @@
             </ul>
           </div>
         </div>
-        <div class="col-md-4">
+            <div class="col-md-4 product1">
           <img src="/public/uploads/fm1.jpg" class="img-responsive" alt="product" />
-          <div class="shop_desc"><a href="/products">
-            </a><h3><a href="/products"></a><a href="#">aliquam volutp</a></h3>
+          <div class="shop_desc"><h3><a href="/products">aliquam volutp</a></h3>
             <p>Lorem ipsum consectetuer adipiscing </p>
-            <span class="reducedfrom">$66.00</span>
+          
             <span class="actual">$12.00</span><br />
             <ul class="buttons">
               <li class="cart"><a href="#">Add To Cart</a></li>
@@ -757,22 +689,4 @@ $(".review-like").each(function(){
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
 
-<script>
-						jQuery(document).ready(function($){
-			
-							$('#etalage').etalage({
-								thumb_image_width: 300,
-								thumb_image_height: 400,
-								
-								show_hint: true,
-								click_callback: function(image_anchor, instance_id){
-									alert('Callback example:\nYou clicked on an image with the anchor: "'+image_anchor+'"\n(in Etalage instance: "'+instance_id+'")');
-								}
-							});
-							// This is for the dropdown list example:
-							$('.dropdownlist').change(function(){
-								etalage_show( $(this).find('option:selected').attr('class') );
-							});
 
-					});
-				</script>

@@ -1591,7 +1591,7 @@ p.price2 {
   outline: none;
   position: relative;
   display: block;
-  background: #e25050;
+  background: #dc3737;
 }
 .box-info-product .exclusive span {
   font-weight: 700;
@@ -2163,7 +2163,17 @@ fieldset.input input[type="submit"]:hover {
     margin: 10px 0;
   }
 }
+#revlike{
+  color: #fff;
+  background-color:#ee0000;
+  border-color:#ee0000;
+}
 
+#revlike.btn-dark{
+  color: #fff;
+  background-color:#343a40;
+  border-color:#343a40;
+}
 body {
   margin-top: 20px;
   background: #eee;
@@ -2237,8 +2247,9 @@ body {
 .review-section .stars-counters tr .stars-filter.fit-button {
   padding: 6px;
   border: none;
-  color: #4a73e8;
+  color:blue;
   text-align: left;
+  background-color: white;
 }
 .review-section .fit-progressbar-bar .fit-progressbar-background {
   position: relative;
@@ -2286,7 +2297,7 @@ body {
   padding-bottom: 8px;
 }
 .review-section .stars-counters td.star-num {
-  color: #4a73e8;
+  color: #436fe6;
 }
 .ranking li > span {
   color: #62646a;
@@ -2343,7 +2354,7 @@ body {
   display: flex;
   align-items: center;
   margin-left: 10px;
-  color: #ffbf00;
+  color:#9d6e00;
 }
 .review-list ul li .right h4 .gig-rating svg {
   margin: 0 4px 0 0px;
@@ -2390,7 +2401,7 @@ body {
 .review-section .stars-counters tr .stars-filter.fit-button {
   padding: 6px;
   border: none;
-  color: #4a73e8;
+  color: #436fe6;
   text-align: left;
 }
 .review-section .fit-progressbar-bar .fit-progressbar-background {
@@ -2439,7 +2450,7 @@ body {
   padding-bottom: 8px;
 }
 .review-section .stars-counters td.star-num {
-  color: #4a73e8;
+  color: #436fe6;
 }
 .ranking li > span {
   color: #62646a;
@@ -2853,6 +2864,10 @@ a.text-muted:focus {
   color: #929292;
 }
 
+.btn.btn.btn-primary.btn-md{
+  background-color: #436fe6;
+}
+
 .btn-icon {
   padding-left: 9px;
   padding-right: 9px;
@@ -2873,7 +2888,7 @@ a.text-muted:focus {
 }
 
 i.rating {
-  color: rgb(184, 130, 16);
+  color: #9d6e00;
 }
 
 image-tools.show-on-hover {
@@ -2973,7 +2988,7 @@ image-tools.show-on-hover {
   border-radius: 4px;
 }
 .err {
-  color: red;
+  color:#ee0000;
   font-weight: bold;
 }
 
@@ -3023,6 +3038,21 @@ p.commenterr {
 
 .Ptitle {
   text-align: center;
+  
   font-family: fantasy;
   background-color: rgb(245, 220, 225);
+}
+.Ptitle1 {
+  text-align: center;
+  
+  font-family: fantasy;
+  background-color: rgb(248, 244, 246);
+}
+
+.box-info-product .exclusive{
+  border: none;
+  outline: none;
+  position: relative;
+  display: block;
+  background:#ee0000;
 }
