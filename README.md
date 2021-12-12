@@ -52,4 +52,4 @@ A makeup review webapp
   GitHub: [@broberts13](https://api.github.com/users/broberts13)
   [@rachna-eng]
   [@jyu42]
-  [@scarlett587]
+  [@scarlett587](https://api.github.com/scarlett587)
