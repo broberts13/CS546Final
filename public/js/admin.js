@@ -38,9 +38,7 @@
                   alert("delete pending product success");
                 },
                 error: function (error) {
-                  var jsonObj = JSON.parse(error.responseText);
-                  $("#creat-prod-error").text( jsonObj.error);
-                  // alert(error.responseText);
+                  alert(error.responseText);
                 },
               });
             } 
@@ -50,16 +48,12 @@
             alert("create product success");
           },
           error: function (error) {
-            var jsonObj = JSON.parse(error.responseText);
-            $("#creat-prod-error").text( jsonObj.error);
-            // alert(error.responseText);
+            alert(error.responseText);
           },
         });
       },
       error: function (error) {
-        var jsonObj = JSON.parse(error.responseText);
-        $("#creat-prod-error").text( jsonObj.error);
-        // alert(error.responseText);
+        alert(error.responseText);
       },
     });
   });
