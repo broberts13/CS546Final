@@ -24,10 +24,10 @@
                                                 <th id="pendinghead3">Brand</th>
                                         </tr>
                                         {{#each pending}}                                      
-                                        <tr id="pendingrow2">
-                                                <td id="pendingcol1">{{this._id}}</td>
-                                                <td id="pendingcol2">{{this.productName}}</td>
-                                                <td id="pendingcol3">{{this.brand}}</td>
+                                        <tr>
+                                                <td>{{this._id}}</td>
+                                                <td>{{this.productName}}</td>
+                                                <td>{{this.brand}}</td>
                                         </tr>
                                         {{/each}}
                                         </table>
@@ -48,7 +48,7 @@
                                                 type="text" class="form-control" id="productName"
                                                 placeholder="enter product name" name='productName'>
 
-                                        </div id="container">
+                                        </div>
                                         <div class="col-md-12">
                                                 <label for="imageUpload" class="labels">Product Picture</label>
                                                 <input 
@@ -81,7 +81,7 @@
                                                 >
                                         </div>
                                         <div class="col-md-12">
-                                                <label for="price"class="labels">Price</label>
+                                                <label for="price" class="labels">Price</label>
                                                 <input 
                                                         type="text"
                                                         id="price" 
@@ -112,7 +112,7 @@
                                         </div>
                                 </div>
                                 <br>
-                                 <p id= "creat-prod-error"class= "err"></p>
+                                 <p id= "creat-prod-error" class= "err"></p>
                                 <div class="mt-5 text-center">
                                         <button class="btn btn-primary profile-button"
                                                 type="submit">Create Product
@@ -130,12 +130,12 @@
                                
                         </div>
                         <div class="row mt-3">
-                                <div class="col-md-12"><label for="pendingId"class="labels">Pending Product Id</label><input
+                                <div class="col-md-12"><label for="pendingId" class="labels">Pending Product Id</label><input
                                                 type="text" class="form-control"
                                                 placeholder="Enter Pending Product Id to be Deleted" name='pendingId'
                                                 id='pendingId'>
 
-                                </div id="container">
+                                </div>
                         </div>
                         <p class="success">{{success2}}</p>
                         <p class="err">{{error2}}</p>
@@ -161,7 +161,7 @@
                                                 class="form-control" placeholder="Enter Product Id to be Deleted"
                                                 name='productId' id='productId'>
 
-                                </div id="container">
+                                </div>
                         </div>
                         
                         <p class="success">{{success3}}</p>
