@@ -8,159 +8,6 @@ async function main() {
   const db = await dbConnection();
   await db.dropDatabase();
 
-  // const first = await products.createProduct(
-  //   "Highliner Liquid Gel Eyeliner",
-  //   "/public/uploads/highliner.jpg",
-  //   [
-  //     "https://www.sephora.com/product/highliner-liquid-gel-eyeliner-P451610?skuId=2281087",
-  //   ],
-  //   "Marc Jacobs Beauty",
-  //   14.0,
-  //   "Eye-makeup"
-  // );
-
-  // await products.createProduct(
-  //   "Dior BACKSTAGE Face & Body Foundation",
-  //   "/public/uploads/f1.jpg",
-  //   [
-  //     "https://www.sephora.com/product/backstage-face-body-foundation-P432500?skuId=2070571",
-  //   ],
-  //   "Dior",
-  //   40.0,
-  //   "Foundation"
-  // );
-
-  // await products.createProduct(
-  //   "24/7 Glide-On Waterproof Eyeliner Pencil",
-  //   "/public/uploads/24-7.jpg",
-  //   [
-  //     "https://www.sephora.com/product/24-7-glide-on-eye-pencil-P133707?skuId=1393693",
-  //   ],
-  //   "Urban Decay",
-  //   22.0,
-  //   "Eye-makeup"
-  // );
-
-  // const second = await products.createProduct(
-  //   "Highliner Liquid Gel Eyeliner",
-  //   "/public/uploads/highliner.jpg",
-  //   [
-  //     "https://www.sephora.com/product/highliner-liquid-gel-eyeliner-P451610?skuId=2281087",
-  //   ],
-  //   "Marc Jacobs Beauty",
-  //   14.0,
-  //   "Eye-makeup"
-  // );
-
-  // await products.createProduct(
-  //   "24/7 Glide-On Waterproof Eyeliner Pencil",
-  //   "/public/uploads/24-7.jpg",
-  //   [
-  //     "https://www.sephora.com/product/24-7-glide-on-eye-pencil-P133707?skuId=1393693",
-  //   ],
-  //   "Urban Decay",
-  //   22.0,
-  //   "Eye-makeup"
-  // );
-
-  // // await products.updateProduct(
-  // //   first._id,
-  // //   "Highliner Liquid Gel Eyeliner",
-  // //   "/public/uploads/highliner.jpg",
-  // //   [
-  // //     "https://www.sephora.com/product/highliner-liquid-gel-eyeliner-P451610?skuId=2281087",
-  // //   ],
-  // //   "Marc Jacobs Beauty",
-  // //   14,
-  // //   "Eye"
-  // // );
-
-  // // await products.remove(second._id);
-
-  // await products.createProduct(
-  //   "24/7 Glide-On Waterproof Eyeliner Pencil",
-  //   "/public/uploads/24-7.jpg",
-  //   [
-  //     "https://www.sephora.com/product/24-7-glide-on-eye-pencil-P133707?skuId=1393693",
-  //   ],
-  //   "Urban Decay",
-  //   22.0,
-  //   "Eye-makeup"
-  // );
-  // await products.createProduct(
-  //   "24/7 Glide-On Waterproof Eyeliner Pencil",
-  //   "/public/uploads/24-7.jpg",
-  //   [
-  //     "https://www.sephora.com/product/24-7-glide-on-eye-pencil-P133707?skuId=1393693",
-  //   ],
-  //   "Urban Decay",
-  //   22.0,
-  //   "Eye-makeup"
-  // );
-
-  // await products.createProduct(
-  //   "24/7 Glide-On Waterproof Eyeliner Pencil",
-  //   "/public/uploads/24-7.jpg",
-  //   [
-  //     "https://www.sephora.com/product/24-7-glide-on-eye-pencil-P133707?skuId=1393693",
-  //   ],
-  //   "Urban Decay",
-  //   22.0,
-  //   "Eye-makeup"
-  // );
-  // await products.createProduct(
-  //   "24/7 Glide-On Waterproof Eyeliner Pencil",
-  //   "/public/uploads/24-7.jpg",
-  //   [
-  //     "https://www.sephora.com/product/24-7-glide-on-eye-pencil-P133707?skuId=1393693",
-  //   ],
-  //   "Urban Decay",
-  //   22.0,
-  //   "Eye-makeup"
-  // );
-  // await products.createProduct(
-  //   "24/7 Glide-On Waterproof Eyeliner Pencil",
-  //   "/public/uploads/24-7.jpg",
-  //   [
-  //     "https://www.sephora.com/product/24-7-glide-on-eye-pencil-P133707?skuId=1393693",
-  //   ],
-  //   "Urban Decay",
-  //   22.0,
-  //   "Eye-makeup"
-  // );
-
-  // await products.createProduct(
-  //   "24/7 Glide-On Waterproof Eyeliner Pencil",
-  //   "/public/uploads/24-7.jpg",
-  //   [
-  //     "https://www.sephora.com/product/24-7-glide-on-eye-pencil-P133707?skuId=1393693",
-  //   ],
-  //   "Urban Decay",
-  //   22.0,
-  //   "Eye-makeup"
-  // );
-  // await products.createProduct(
-  //   "24/7 Glide-On Waterproof Eyeliner Pencil",
-  //   "/public/uploads/24-7.jpg",
-  //   [
-  //     "https://www.sephora.com/product/24-7-glide-on-eye-pencil-P133707?skuId=1393693",
-  //   ],
-  //   "Urban Decay",
-  //   22.0,
-  //   "Eye-makeup"
-  // );
-
-  // await products.createProduct(
-  //   "24/7 Glide-On Waterproof Eyeliner Pencil",
-  //   "/public/uploads/24-7.jpg",
-  //   [
-  //     "https://www.sephora.com/product/24-7-glide-on-eye-pencil-P133707?skuId=1393693",
-  //   ],
-  //   "Urban Decay",
-  //   22.0,
-  //   "Eye-makeup"
-  // );
-
   await products.createProduct(
     "BACKSTAGE Face & Body Foundation",
     "/public/uploads/f1.jpg",
@@ -332,59 +179,59 @@ async function main() {
   );
 
   await users.createUser(
-    "rachshah2",
-    "/public/uploads/a.jpg",
+    "rachshah",
+    "/public/uploads/j.jpg",
     "Rachna",
     "Shah",
     "shopping",
     "rachshah@gmail.com",
+    "Intermediate"
+  );
+
+  await users.createUser(
+    "belle11",
+    "/public/uploads/k.jpg",
+    "Belle",
+    "Robertz",
+    "shopping",
+    "belle@gmail.com",
+    "Basic"
+  );
+  await users.createUser(
+    "jiani2",
+    "/public/uploads/d.jpg",
+    "Jiani",
+    "yu",
+    "shopping",
+    "yu_jiyani@gmail.com",
+    "Advanced"
+  );
+  await users.createUser(
+    "sijia1",
+    "/public/uploads/i.jpg",
+    "Sijia",
+    "yu",
+    "shopping",
+    "sijia_99@gmail.com",
     "Intermediate"
   );
 
   await users.createUser(
     "megh123",
     "/public/uploads/b.jpg",
-    "Nevil",
-    "Ghelani",
-    "shopping",
-    "nghelani@gmail.com",
-    "Basic"
-  );
-  await users.createUser(
-    "riya123",
-    "/public/uploads/c.jpg",
-    "riya",
-    "Andrew",
-    "shopping",
-    "l_andrew@gmail.com",
-    "Advanced"
-  );
-  await users.createUser(
-    "rachshah3",
-    "/public/uploads/a.jpg",
-    "Rachna",
+    "Megh",
     "Shah",
     "shopping",
-    "rachshah@gmail.com",
-    "Intermediate"
-  );
-
-  await users.createUser(
-    "megh111",
-    "/public/uploads/b.jpg",
-    "Nevil",
-    "Ghelani",
-    "shopping",
-    "nghelani@gmail.com",
+    "mshah@gmail.com",
     "Basic"
   );
   await users.createUser(
-    "riya111",
-    "/public/uploads/c.jpg",
-    "riya",
-    "Andrew",
+    "phill11",
+    "/public/uploads/p.jpg",
+    "Patrick",
+    "Hill",
     "shopping",
-    "l_andrew@gmail.com",
+    "hillpatrick@gmail.com",
     "Advanced"
   );
 

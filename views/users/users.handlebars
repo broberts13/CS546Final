@@ -1,4 +1,6 @@
 <div class="container rounded bg-white mt-5 mb-5">
+     <h1 class="Ptitle">Everything has beauty, but not everyone sees it.</h1>
+       <h2 class=" Ptitle1">Cosmetic Review Hub</h2>
   <div class="row">
 
     <div class="col1">
@@ -15,11 +17,11 @@
               alt="Profile"
             /><br /><span class="font-weight-bold"><strong
               >{{users.firstName}}:</strong></span><span
-              class="text-black-50"
+              class="textmail"
             >{{users.email}}</span><span> </span></div>
 
           <br />
-
+          <label for="imageUpload" class="labels">Upload Image:</label>
           <input
             id="imageUpload"
             name="imageUpload"
@@ -42,7 +44,7 @@
               <br />
             </div>
             <div class="row mt-2">
-              <div class="col-md-6"><label class="labels">Name</label><input
+              <div class="col-md-6"><label for="firstName" class="labels">Name</label><input
                   type="text"
                   id="firstName"
                   name="firstName"
@@ -50,7 +52,7 @@
                   placeholder="first name"
                   value={{users.firstName}}
                 /></div>
-              <div class="col-md-6"><label class="labels">Surname</label><input
+              <div class="col-md-6"><label for="lastName" class="labels">Surname</label><input
                   type="text"
                   id="lastName"
                   name="lastName"
@@ -60,17 +62,18 @@
                 /></div>
             </div>
             <div class="row mt-3">
-              <div class="col-md-12"><label
+              <div class="col-md-12"><label for="userName"
                   class="labels"
-                >UserName</label><input
+                >UserName (Read-Only)</label><input
                   type="text"
                   id="userName"
                   name="userName"
                   class="form-control"
                   placeholder="enter UserName"
                   value={{users.userName}}
+                  readonly
                 /></div>
-              <div class="col-md-12"><label
+              <div class="col-md-12"><label for="password"
                   class="labels"
                 >Password</label><input
                   type="text"
@@ -80,7 +83,7 @@
                   placeholder="Enter New Password"
                   value={{users.Password}}
                 ></div>
-              <div class="col-md-12"><label class="labels">Email ID</label><input
+              <div class="col-md-12"><label for="email"class="labels">Email ID</label><input
                   type="text"
                   id="email"
                   name="email"
@@ -88,7 +91,7 @@
                   placeholder="enter email id"
                   value={{users.email}}
                 /></div>
-              <div class="col-md-12"><label class="labels">Makeup Level</label><input
+              <div class="col-md-12"><label for="makeupLevel" class="labels">Makeup Level</label><input
                   type="text"
                   id="makeupLevel"
                   name="makeupLevel"
@@ -117,17 +120,7 @@
       </form>
       <div class="col-md-4">
         <div class="p-3 py-5">
-              <form
-                  id="form-user-delete"
-                  name="form-user-delete"
-                  method="post"
-                  action="/users/delete/{{user._id}}"
-              ><label for="del">Delete profile, Once you delete you cant undo it</label>
-              <button  id="del" class="redbtn" class="btn btn-primary profile-button" type="submit">Delete
-                Profile</button>
-              </form>
-              <br>
-              <br>
+            
               <br>
               
                 <label for="wishl">Go to WishList</label><br>
@@ -167,14 +160,11 @@
                 alt="product"
               />
               <div class="shop_desc">
-                <h3><a href="#">{{this.productName}}</a></h3>
+                <h3><a href="/products/{{this._id}}">{{this.productName}}</a></h3>
                 <p>{{this.brand}}</p>
                 <span class="actual">${{this.price}}</span><br />
                 <ul class="buttons">
-                  <li><a
-                      class="remove"
-                      href="/users/wishlist/remove/{{this._id}}"
-                    >Remove From WishList</a></li>
+                  <li><a class="remove" href="/users/wishlist/remove/{{this._id}}">Remove From WishList</a></li>
                   <div class="clear"> </div>
                 </ul>
               </div>

@@ -2868,6 +2868,15 @@ a.text-muted:focus {
   background-color: #436fe6;
 }
 
+.btn.btn-primary.profile-button{
+  background-color: #436fe6;
+}
+.btn.btn-danger.ml-2 {
+  background-color:#e42121;
+  color: white;
+}
+
+
 .btn-icon {
   padding-left: 9px;
   padding-right: 9px;
@@ -3055,4 +3064,11 @@ p.commenterr {
   position: relative;
   display: block;
   background:#ee0000;
+}
+.textmail {
+  color: #666464!important;
+}
+
+.btn.btn-primary.profile-button{
+  background-color: 007cc0;
 }
