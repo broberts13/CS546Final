@@ -105,7 +105,7 @@
                     <div class="col-md-6"><label class="labels">State/Region</label><input type="text" class="form-control" value="" placeholder="state"></div>
                 </div> }}
             <br />
-            <p id = "profile-edit-error" class= "err"></p>
+            <p id = "profile-edit-error" class= "err">{{error}}</p>
             <div class="mt-5 text-center"><button
                 class="btn btn-primary profile-button"
                 type="submit"
@@ -229,11 +229,11 @@
                   >{{this.title}}</p>
                   <p>{{this.reviewBody}}</p>
                   <div class=" float-right col-md-2">
-                   <img 
+                   <a href="/products/{{this.productId}}"><img 
                     src={{this.product.productPicture}}
                     class="float-right img img-rounded img-fluid"
                     alt="Reviewed Product"
-                  />
+                  /></a>
                    <a
                       class="float-right btn btn-outline-primary ml-2 review-reply"
                       href="/products/{{this.productId}}"

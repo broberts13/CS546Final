@@ -22,7 +22,7 @@
         success: function (data) {
           $("#input-error").text("");
           $("#input-success").text(data.success);
-          window.setTimeout(function(){location.reload()},2000)
+          window.setTimeout(function(){location.reload()},1500)
         },
         error: function (error) {
           $("#input-error").text(JSON.parse(error.responseText).error);

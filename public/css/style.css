@@ -3007,6 +3007,13 @@ p.reverr {
   font-size: 14px;
   margin-right: 10px;
 }
+
+p.reverr {
+  color:rgb(37, 209, 31);
+  font-weight: bold;
+  font-size: 14px;
+  margin-right: 10px;
+}
 p.commenterr {
   color: red;
   font-weight: bold;

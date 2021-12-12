@@ -75,7 +75,7 @@ async function createUser(
     throw "Invalid Username";
   }
   if (password.length < 6 || password.includes(" ")) {
-    throw "Invalid Password";
+    throw "Password must be Minimum 6 Characters";
   }
   const userCollection = await users();
   const existUser = await userCollection.findOne({
@@ -144,7 +144,7 @@ async function updateUser(
   }
   if (password != null && password.length != 0) {
     if (password.length < 6 || password.includes(" ")) {
-      throw "Invalid Password";
+      throw "Password must be Minimum 6 Characters";
     }
   }
 

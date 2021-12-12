@@ -86,7 +86,7 @@ router.post("/profile", async (req, res) => {
     res.status(400).json({ error: "You must provide makeup level" });
     return;
   }
-  if(req.session.user.userImage==userImage && req.session.user.firstName == firstName && req.session.user.lastName==lastName && req.session.user.email==email && req.session.user.makeupLevel==makeupLevel){
+  if(req.session.user.userImage==userImage && req.session.user.firstName == firstName && req.session.user.lastName==lastName && req.session.user.email==email && req.session.user.makeupLevel==makeupLevel && password==''){
     res.status(400).json({ error: "Data is Up-to-date"});
     return;
   }
@@ -106,7 +106,7 @@ router.post("/profile", async (req, res) => {
     req.session.user = user;
     res.redirect("/users");
   } catch (e) {
-    res.status(400).send({ error: e.message });
+    res.status(400).send({ error: e });
     return;
   }
 });

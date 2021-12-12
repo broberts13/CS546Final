@@ -368,6 +368,7 @@
                  <br>
                  <br>
                  <p id ="rev-err" class="float-right reverr"></p>
+                  <p id ="rev-suc" class="float-right reverr"></p>
                   
         	    </div>
               
@@ -525,7 +526,6 @@
 			
 		},
 		error: function (xhr, textStatus, error) {
-			//alert("Login to Add Like, Failed to Add Like");
        $("#wisherr").text("Login to Add Product Like");
 		},
 		});
@@ -534,7 +534,7 @@
   
 
 
-  <!-- Adding Review Like -->
+ // <!-- Adding Review Like -->
   $(document).on("click", ".review-like" , function() {
 
       var ID = $(this).closest(".review-blog").find(".review-id");
@@ -559,9 +559,9 @@
         });
 
         });
-  <!-- End of Review Likes -->
+  //<!-- End of Review Likes -->
 
-  <!-- Showing Comments Dialogue-->
+ // <!-- Showing Comments Dialogue-->
   $(document).on("click", ".review-reply" , function() {
      
     var errbtn = $(this).closest(".review-blog").find("#rev-err");  
@@ -578,11 +578,11 @@
         errbtn.text("Login to Comment on Reviews");
     }     
   });
-  <!-- End of Comments Dialogue-->
+ // <!-- End of Comments Dialogue-->
   
-  <!-- Start of Add commnts -->
+  //<!-- Start of Add commnts -->
    $(document).on("click", ".add-comment" , function() {
-
+      var sucbtn = $(this).closest(".review-blog").find("#rev-suc");  
       var ID = $(this).closest(".review-blog").find(".review-id");
       var revid= ID.data("reviewid");
       var commentUrl = "/products/reviews/comment/"+revid;	
@@ -598,21 +598,20 @@
        url: commentUrl,
        data: { commentBody: commentVal },
        success: function (data) {        
+         
         //$(this).closest(".review-blog").find(".comment-space").append("<div class='card card-inner'><div class='card-body'><div class='row'><div class='col-md-2'><img src='https://image.ibb.co/jw55Ex/def_face.jpg' class='img img-rounded img-fluid'/><p class='text-secondary text-center'>15 Minutes Ago</p></div><div class='col-md-10'><p><a href='https://maniruzzaman-akash.blogspot.com/p/contact.html'><strong>Maniruzzaman Akash</strong></a></p><p>"+commentVal+"</p><p><a class='float-right btn btn-outline-primary ml-2'>  <i class='fa fa-reply'></i> Reply</a><a class='float-right btn text-white btn-danger review-like'><i class='fa fa-heart'></i> <span>Like</span></a></p></div></div></div></div>");
         $("#commentDialog").hide();  
-        window.location.reload();
+        sucbtn.text("Comment Added Sucessfully");
+        window.setTimeout(function(){location.reload()},1800)
       },
         error: function (jqXhr, textStatus, errorMessage) {
           $("#comment-error").text(errorMessage);
-          //alert(errorMessage);
       }
     });
-    //  $(this).closest(".review-blog").find(".comment-space").append("<div class='card card-inner'><div class='card-body'><div class='row'><div class='col-md-2'><img src='https://image.ibb.co/jw55Ex/def_face.jpg' class='img img-rounded img-fluid'/><p class='text-secondary text-center'>15 Minutes Ago</p></div><div class='col-md-10'><p><a href='https://maniruzzaman-akash.blogspot.com/p/contact.html'><strong>Maniruzzaman Akash</strong></a></p><p>"+commentVal+"</p><p><a class='float-right btn btn-outline-primary ml-2'>  <i class='fa fa-reply'></i> Reply</a><a class='float-right btn text-white btn-danger review-like'><i class='fa fa-heart'></i> <span>Like</span></a></p></div></div></div></div>");
      $("#commentDialog").hide();   
     }
     else{
       $("#comment-error").text("Please Enter valid comment");
-     // alert("Please Enter valid comment");
     }   
          
           
