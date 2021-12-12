@@ -36,7 +36,8 @@ router.get("/:id", async (req, res) => {
       flag1: flag1,
     });
   } catch (e) {
-    res.status(404).json({ error: "Product not found" });
+   // res.status(404).json({ error: "Product not found" });
+    res.status(404).render("landing/error", { error: e, user: req.session.user  });
   }
 });
 
@@ -48,7 +49,7 @@ router.get("/", async (req, res) => {
       user: req.session.user,
     });
   } catch (e) {
-    res.status(404).send({ error: e, user: req.session.user });
+    res.status(404).render("landing/error", { error: e, user: req.session.user  });
   }
 });
 
@@ -59,7 +60,7 @@ router.post("/search", async (req, res) => {
     const productList = await productData.searchProducts(searchTerm);
     res.render("product/products", { products: productList, user: req.session.user });
   } catch (e) {
-    res.status(404).send({ error: e, user: req.session.user });;
+    res.status(404).render("landing/error", { error: e, user: req.session.user  });
   }
 });
 
@@ -254,7 +255,7 @@ router.post("/reviews/likes/:revId", async (req, res) => {
 router.post("/reviews/comment/:revId", async (req, res) => {
   const {commentBody} = req.body;
   if (!commentBody) {
-    res.status(400).json({ error: "You must provide review before adding" });
+    res.status(400).json({ error: "You must provide Comment before adding" });
     return;
   }
 

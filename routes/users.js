@@ -28,7 +28,7 @@ router.get("/", async (req, res) => {
       user: req.session.user
     });
   } catch (e) {
-    res.status(404).send({ error: e });
+    res.status(404).render("landing/error", { error: e, user: req.session.user  });
   }
 });
 
@@ -214,21 +214,21 @@ router.put("/users", async (req, res) => {
     );
     res.json(user);
   } catch (e) {
-    res.status(404).send({ error: e });
+    res.status(404).render("landing/error", { error: e, user: req.session.user  });
   }
 });
 
-router.post("/delete/:id", async (req, res) => {
-  try {
-    const user = await userData.remove(req.params.id);
-    // res.json({ userId: userId, deleted: true });
+// router.post("/delete/:id", async (req, res) => {
+//   try {
+//     const user = await userData.remove(req.params.id);
+//     // res.json({ userId: userId, deleted: true });
 
-    req.session.destroy();
-    res.redirect("/login");
-  } catch (e) {
-    res.status(404).send({ error: e });
-  }
-});
+//     req.session.destroy();
+//     res.redirect("/login");
+//   } catch (e) {
+//     res.status(404).send({ error: e });
+//   }
+// });
 
 router.get("/logout", async (req, res) => {
   req.session.destroy();
