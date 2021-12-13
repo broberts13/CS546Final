@@ -14,6 +14,9 @@ async function getAllProducts() {
     .sort({ likes: -1 })
     .toArray();
 
+    allProducts.sort(function (a, b) {
+      return b.likes.length - a.likes.length;
+    });
   // Change all _id values to strings
   return allProducts.map(validate.convertObjId);
 }
