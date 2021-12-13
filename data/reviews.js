@@ -5,25 +5,7 @@ const validate = require("./validation");
 const { ObjectId } = require("mongodb");
 
 let exportedMethods = {
-    // async getReviewById(reviewId) {
-    //     if (!validate.validString(reviewId)) throw 'ReviewId must be strings and not empty';
-    
-    //     try {
-    //       var parsedId = ObjectId(reviewId);
-    //     } catch (e) {
-    //       throw 'reviewId  is not a valid ObjectId';
-    //     }
-    //     const prodCollection = await products();
-    //     const prod = await prodCollection.findOne({ "reviews": { $elemMatch: { "_id": parsedId } } });
-    //     if (prod === null) throw 'No review with that reviewId';
-    //     for (let i = 0; i < prod.reviews.length; i++) {
-    //       if (prod.reviews[i]._id.toString() == reviewId) {
-    //         prod.reviews[i]._id = prod.reviews[i]._id.toString();
-    //         return prod.reviews[i];
-    //       }
-    //     }
-    //     throw 'No review with that reviewId';
-    // },
+
   
   async removeReview(reviewId) {
 
@@ -36,7 +18,7 @@ let exportedMethods = {
     }
     const prodCollection = await products();
 
-    const prod = await prodCollection.findOne({ "reviews": { $elemMatch: { "_id": parsedId } } });
+    let prod = await prodCollection.findOne({ "reviews": { $elemMatch: { "_id": parsedId } } });
 
     if (prod == null) {
       throw `Could not find prod with id of ${reviewId}`;
@@ -51,9 +33,29 @@ let exportedMethods = {
       throw `Could not delete review with id of ${reviewId}`;
     }
 
+    prod = await prodCollection.findOne({ _id: prod._id });
+    let overallRating = 0;
+
+    prod.reviews.forEach((review) => {
+      overallRating = overallRating + review.rating;
+    });
+    if (prod.reviews.length != 0) {
+      overallRating = overallRating / prod.reviews.length;
+    }
+    overallRating = overallRating.toFixed(2);
+    const ratingUpdateInfo = await prodCollection.updateOne(
+      { _id: prod._id },
+      { $set: { overallRating: overallRating } }
+    );
+
+    if (ratingUpdateInfo.matchedCount === 0)
+      throw "Could not update overall rating";
+
     return `review has been successfully deleted!`;
 
   }
+  
+  
 
 
 };

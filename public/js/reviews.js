@@ -45,7 +45,7 @@
         alert("delete successful!");
         window.location.reload();
       },
-      error: function (jqXhr, textStatus, errorMessage) {
+      error: function () {
         alert("Login to delete review");
         window.location.href = "/login";
       },
