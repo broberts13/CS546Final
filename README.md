@@ -6,7 +6,7 @@ Cosmetic Review Hub: A makeup review webapp
   
 The purpose of this website is to create a hub where people can share their makeup experiences, either promoting products they enjoy or warning others about ones they don’t. Those who are new to makeup can get insight on what to buy and use while those who are familiar with makeup can share their experience and expertise.
 
-This project was built using Node.js, Express, Bottstrap, MongoDB, HTML, and CSS.
+This project was built using Node.js, Express, Bootstrap, MongoDB, HTML, and CSS.
   
 
   ## Table of Contents
