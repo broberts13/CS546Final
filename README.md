@@ -20,7 +20,7 @@ This project was built using Node.js, Express, Bottstrap, MongoDB, HTML, and CSS
   
   1. In your terminal, run the command 'npm install' to install the required dependencies for the project. 
   2. Next, run the command 'npm run seed' to seed the database.
-  3. Lastly, run the command 'npm start' to run the application. In the terminal, it will say 'Your routes will be running on http://localhost:3001'. You can either ctrl+click on the link in the terminal or enter it into a web browser
+  3. Lastly, run the command 'npm start' to run the application. In the terminal, it will say 'Your routes will be running on http://localhost:3000'. You can either ctrl+click on the link in the terminal or enter it into a web browser
   
   ## Usage 
   
