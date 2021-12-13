@@ -82,7 +82,7 @@ async function createUser(
     userName: userName.toLowerCase(),
   });
   if (existUser) {
-    throw "Username alerady Exists";
+    throw "Username already Exists";
   }
   const hash = await bcrypt.hash(password, saltRounds);
 
